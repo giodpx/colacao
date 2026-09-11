@@ -181,8 +181,8 @@
           "Proposta oficial recebida e disponível para conferência abaixo."
         ],
         fotos: [],
-        pdfUrl: "./empresas/vitis/Orçamento Formatura 2026 Vitis Fotografia",
-        pdfDownload: "./empresas/vitis/Orçamento Formatura 2026 Vitis Fotografia"
+        pdfUrl: "./empresas/vitis/Orçamento Formatura 2026 Vitis Fotografia.pdf",
+        pdfDownload: "./empresas/vitis/Orçamento Formatura 2026 Vitis Fotografia.pdf"
       },
 
       // 4. FLAM FORMATURAS
@@ -207,17 +207,17 @@
         pdfsMultiplos: [
           {
             titulo: "1. Proposta Parcial (Apenas Evento de Colação de Grau)",
-            embedUrl: converterLinkDriveEmbed("https://drive.google.com/file/d/1ao7H2Uo-ZVgFrlxHw74lUNAZ06c4fW8u/view?usp=drive_link"),
-            downloadUrl: "https://drive.google.com/file/d/1ao7H2Uo-ZVgFrlxHw74lUNAZ06c4fW8u/view?usp=drive_link"
+            embedUrl: "./empresas/flam/FLAM - Proposta parcial Colação.pdf]",
+            downloadUrl: "./empresas/flam/FLAM - Proposta parcial Colação.pdf]"
           },
           {
             titulo: "2. Proposta Completa (Colação + Ensaio e Álbuns)",
-            embedUrl: converterLinkDriveEmbed("https://drive.google.com/file/d/1JzVweGCu0hc1qxq19qhazFyA5flqSSv-/view?usp=drive_link"),
-            downloadUrl: "https://drive.google.com/file/d/1JzVweGCu0hc1qxq19qhazFyA5flqSSv-/view?usp=drive_link"
+            embedUrl: "./empresas/flam/FLAM - Proposta completa.pdf]",
+            downloadUrl: "./empresas/flam/FLAM - Proposta completa.pdf]"
           }
         ],
         pdfUrl: "",
-        pdfDownload: "https://drive.google.com/file/d/1JzVweGCu0hc1qxq19qhazFyA5flqSSv-/view?usp=drive_link"
+        pdfDownload: ""
       },
 
       // 5. JANETE VIANA EVENTOS
@@ -260,8 +260,8 @@
           "Orçamento completo do espaço e recepção disponível para consulta no arquivo abaixo."
         ],
         fotos: [],
-        pdfUrl: converterLinkDriveEmbed("https://drive.google.com/file/d/1CFRXeDCB7H_EYkRLTsIwRWnIoVtdbXND/view?usp=drive_link"),
-        pdfDownload: "https://drive.google.com/file/d/1CFRXeDCB7H_EYkRLTsIwRWnIoVtdbXND/view?usp=drive_link"
+        pdfUrl: "./empresas/marialeite/Maria Leite Recepções - PACOTES FORMATURAS 2026-2027.pdf",
+        pdfDownload: "./empresas/marialeite/Maria Leite Recepções - PACOTES FORMATURAS 2026-2027.pdf"
       },
 
       // 7. COMPOR FOTOGRAFIA
@@ -536,13 +536,13 @@
         </div>
       `;
 
-      // 4. PDFs
+      // 4. PDFs com altura ampliada (ótima leitura no desktop e celular)
       let pdfHtml = '';
       if (p.pdfsMultiplos && p.pdfsMultiplos.length > 0) {
         pdfHtml = `
-          <div class="space-y-5">
+          <div class="space-y-6">
             ${p.pdfsMultiplos.map(item => `
-              <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-2xs">
+              <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs">
                 <div class="p-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
                   <span class="font-bold text-xs sm:text-sm text-slate-800 flex items-center gap-2">
                     <i data-lucide="file-text" class="w-4 h-4 text-emerald-600"></i>
@@ -552,8 +552,9 @@
                     Abrir no Drive <i data-lucide="external-link" class="w-3 h-3"></i>
                   </a>
                 </div>
-                <div class="aspect-16/9 w-full bg-slate-100">
-                  <iframe src="${item.embedUrl}" class="w-full h-full" frameborder="0"></iframe>
+                <!-- Altura ampliada de 500px no mobile para 800px no desktop -->
+                <div class="w-full h-[520px] sm:h-[800px] bg-slate-100">
+                  <iframe src="${item.embedUrl}" class="w-full h-full border-0" frameborder="0"></iframe>
                 </div>
               </div>
             `).join('')}
@@ -563,13 +564,14 @@
         pdfHtml = `
           <div class="space-y-3">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-slate-500">Visualizador interativo do PDF:</span>
-              <a href="${p.pdfDownload}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200 hover:bg-emerald-100">
+              <span class="text-xs text-slate-500 font-medium">Visualizador interativo do documento:</span>
+              <a href="${p.pdfDownload}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200 hover:bg-emerald-100 transition-colors">
                 <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Abrir no Google Drive
               </a>
             </div>
-            <div class="rounded-xl overflow-hidden border border-slate-200 aspect-16/9 w-full bg-slate-100 shadow-2xs">
-              <iframe src="${p.pdfUrl}" class="w-full h-full" frameborder="0"></iframe>
+            <!-- Altura ampliada de 520px no mobile para 800px no desktop -->
+            <div class="rounded-2xl overflow-hidden border border-slate-200 w-full h-[520px] sm:h-[800px] bg-slate-100 shadow-xs">
+              <iframe src="${p.pdfUrl}" class="w-full h-full border-0" frameborder="0"></iframe>
             </div>
           </div>
         `;
