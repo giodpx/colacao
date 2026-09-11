@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Formatura de Engenharias UNIVASF 2026.2 - Catálogo Oficial</title>
   
+  <!-- FAVICON DE FORMATURA (Capelo) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e8ce4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z'/><path d='M22 10v6'/><path d='M6 12.5V16a6 3 0 0 0 12 0v-3.5'/></svg>">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -152,7 +155,8 @@
         </div>
       </div>
 
-      <div id="empresasGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6"></div>
+      <!-- Grid com alinhamento items-start para evitar esticamento vertical -->
+      <div id="empresasGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 items-start"></div>
     </section>
 
     <!-- MONTE SEU COMBO -->
@@ -171,7 +175,7 @@
 
       <div id="colacaoStatusBanner" class="rounded-2xl p-4 sm:p-5 border transition-all"></div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         <div class="lg:col-span-2 space-y-4">
           <!-- Colação Solene -->
           <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs">
@@ -390,13 +394,16 @@
         servicos: ["fotografia"],
         contato: "(87) 9 8173-4674",
         instagram: "@inspirarfotografia",
-        observacoes: "Reunião realizada com a turma. Parcelamento em 7x sem juros no boleto, com valor de a vista. A prazo no cartão até 12x com juros.",
+        observacoes: "Reunião realizada com a turma. Parcelamento em 7x sem juros no boleto com valor de à vista. A prazo no cartão até 12x com juros.",
         pacotes: [
-          { id: "inspirar_pacote_vivencia", nome: "Pacote Vivência", valorVista: 850, valorPrazo: 1094, desc: "15 Fotos tratadas medianteescolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" },
-          { id: "inspirar_pacote_memoria", nome: "Pacote Memória", valorVista: 1300, valorPrazo: 1672, desc: "25 Fotos tratadas medianteescolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" },
-          { id: "inspirar_pacote_inspiracao", nome: "Pacote Inspiração", valorVista: 1500, valorPrazo: 16930, desc: "40 Fotos tratadas medianteescolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" }
+          { id: "inspirar_pacote_vivencia", nome: "Pacote Vivência", valorVista: 850, valorPrazo: 1094, desc: "15 Fotos tratadas mediante escolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" },
+          { id: "inspirar_pacote_memoria", nome: "Pacote Memória", valorVista: 1300, valorPrazo: 1672, desc: "25 Fotos tratadas mediante escolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" },
+          { id: "inspirar_pacote_inspiracao", nome: "Pacote Inspiração", valorVista: 1500, valorPrazo: 1930, desc: "40 Fotos tratadas mediante escolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" }
         ],
-        extras: [{ id: "inspirar_ex_replica", nome: "Réplica da Placa em Acrílico (15x21 cm)", valorVista: 230, valorPrazo: 230 },{ id: "inspirar_ex_replica", nome: "Álbum (31x23 cm)", valorVista: 700, valorPrazo: 700 }]
+        extras: [
+          { id: "inspirar_ex_replica", nome: "Réplica da Placa em Acrílico (15x21 cm)", valorVista: 230, valorPrazo: 230 },
+          { id: "inspirar_ex_album", nome: "Álbum (31x23 cm)", valorVista: 700, valorPrazo: 700 }
+        ]
       },
       {
         id: "vitis_fotografia",
@@ -628,19 +635,28 @@
           const isAguardando = pct.valorVista === 0 && pct.valorPrazo === 0;
 
           return `
-            <div class="p-3 sm:p-3.5 rounded-xl border ${isSelected ? 'border-univasf-500 bg-univasf-50/40 ring-1 ring-univasf-400' : 'border-slate-200 bg-white'} flex flex-col justify-between gap-2.5">
+            <div class="p-3.5 rounded-xl border ${isSelected ? 'border-univasf-500 bg-univasf-50/40 ring-1 ring-univasf-400' : 'border-slate-200 bg-white'} flex flex-col justify-between gap-3 shadow-2xs">
               <div>
-                <div class="flex items-start justify-between gap-2">
-                  <h4 class="font-bold text-slate-900 text-xs sm:text-sm">${escapeHtml(pct.nome)}</h4>
-                  ${isSelected ? `<span class="text-[10px] font-extrabold bg-univasf-600 text-white px-1.5 py-0.5 rounded">No Combo</span>` : ''}
+                <div class="flex items-start justify-between gap-2 mb-1">
+                  <h4 class="font-bold text-slate-900 text-xs sm:text-sm leading-snug">${escapeHtml(pct.nome)}</h4>
+                  ${isSelected ? `<span class="text-[10px] font-extrabold bg-univasf-600 text-white px-1.5 py-0.5 rounded shrink-0">No Combo</span>` : ''}
                 </div>
-                <p class="text-xs text-slate-500 mt-1 leading-relaxed">${escapeHtml(pct.desc)}</p>
+                <p class="text-xs text-slate-600 leading-relaxed">${escapeHtml(pct.desc)}</p>
+                
                 ${isAguardando ? `
                   <div class="mt-2 text-[11px] font-bold text-amber-800 bg-amber-50 p-1.5 rounded-md inline-block">Aguardando Envio de Orçamento</div>
                 ` : `
-                  <div class="mt-2 flex items-baseline gap-1.5">
-                    <span class="text-sm sm:text-base font-extrabold text-slate-900">${formatMoney(pct.valorVista)}</span>
-                    <span class="text-[10px] text-slate-500">à vista</span>
+                  <div class="mt-3 pt-2.5 border-t border-slate-100 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <div class="flex items-baseline gap-1">
+                      <span class="text-base font-extrabold text-slate-900">${formatMoney(pct.valorVista)}</span>
+                      <span class="text-[10px] text-slate-500 font-medium">à vista</span>
+                    </div>
+                    ${pct.valorPrazo && pct.valorPrazo !== pct.valorVista ? `
+                      <div class="flex items-baseline gap-1">
+                        <span class="text-xs font-bold text-slate-600">${formatMoney(pct.valorPrazo)}</span>
+                        <span class="text-[10px] text-slate-400 font-medium">a prazo</span>
+                      </div>
+                    ` : ''}
                   </div>
                 `}
               </div>
@@ -677,7 +693,7 @@
               </div>
 
               ${emp.observacoes ? `
-                <div class="mt-3 p-3 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-900 text-xs">
+                <div class="mt-3 p-3 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-900 text-xs leading-relaxed">
                   <strong>Atenção:</strong> ${escapeHtml(emp.observacoes)}
                 </div>
               ` : ''}
@@ -925,7 +941,7 @@
     }
 
     /* ========================================================
-     * RENDERIZAÇÃO DAS REUNIÕES (LAYOUT COMPLETO RESTAURADO)
+     * RENDERIZAÇÃO DAS REUNIÕES
      * ======================================================== */
     function applyFilterReunioes(filter) {
       currentFilterReunioes = filter;
