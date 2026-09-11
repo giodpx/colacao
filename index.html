@@ -336,6 +336,20 @@
           <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nome Completo *</label>
           <input type="text" id="inputNome" required placeholder="Seu nome" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm">
         </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Curso de Engenharia *</label>
+          <select id="inputCurso" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm bg-white text-slate-800">
+            <option value="" disabled selected>Selecione seu curso...</option>
+            <option value="Engenharia Agrícola e Ambiental">Engenharia Agrícola e Ambiental</option>
+            <option value="Engenharia Civil">Engenharia Civil</option>
+            <option value="Engenharia da Computação">Engenharia da Computação</option>
+            <option value="Engenharia de Produção">Engenharia de Produção</option>
+            <option value="Engenharia Elétrica">Engenharia Elétrica</option>
+            <option value="Engenharia Mecânica">Engenharia Mecânica</option>
+          </select>
+        </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">WhatsApp *</label>
@@ -565,7 +579,120 @@
     let currentFilter = 'todas';
     let currentFilterReunioes = 'todas';
 
-    let userProfile = { nome: '', whatsapp: '', email: '', interesses: { colacao: true, ensaio: true, placa: false, replica: false, festa: false } };
+    let userProfile = { 
+      nome: '', 
+      curso: '', 
+      whatsapp: '', 
+      email: '', 
+      interesses: { colacao: true, ensaio: true, placa: false, replica: false, festa: false } 
+    };
+
+    function openProfileModal() {
+      // Carrega os dados persistidos no formulário ao abrir
+      document.getElementById('inputNome').value = userProfile.nome || '';
+      document.getElementById('inputCurso').value = userProfile.curso || '';
+      document.getElementById('inputWhatsapp').value = userProfile.whatsapp || '';
+      document.getElementById('inputEmail').value = userProfile.email || '';
+
+      if (userProfile.interesses) {
+        document.getElementById('intColacao').checked = !!userProfile.interesses.colacao;
+        document.getElementById('intEnsaio').checked = !!userProfile.interesses.ensaio;
+        document.getElementById('intPlaca').checked = !!userProfile.interesses.placa;
+        document.getElementById('intReplica').checked = !!userProfile.interesses.replica;
+        document.getElementById('intFesta').checked = !!userProfile.interesses.festa;
+      }
+
+      document.getElementById('profileModal').classList.remove('hidden');
+      safeCreateIcons();
+    }
+
+    function salvarPerfil(e) {
+      if (e) e.preventDefault();
+      userProfile.nome = document.getElementById('inputNome').value.trim();
+      userProfile.curso = document.getElementById('inputCurso').value;
+      userProfile.whatsapp = document.getElementById('inputWhatsapp').value.trim();
+      userProfile.email = document.getElementById('inputEmail').value.trim();
+
+      userProfile.interesses = {
+        colacao: document.getElementById('intColacao').checked,
+        ensaio: document.getElementById('intEnsaio').checked,
+        placa: document.getElementById('intPlaca').checked,
+        replica: document.getElementById('intReplica').checked,
+        festa: document.getElementById('intFesta').checked
+      };
+
+      comboState.placaOficial = userProfile.interesses.placa;
+      comboState.replicaPlaca = userProfile.interesses.replica;
+
+      // Grava no armazenamento local do navegador
+      salvarPerfilStorage();
+      salvarComboStorage();
+      updateProfileUI();
+      updateComboDisplay();
+      closeProfileModal();
+
+      const registro = obterDadosRegistroAtual();
+      transmitirParaGooglePlanilha(registro);
+
+      showToast('Perfil e curso salvos com sucesso!', 'success');
+    }
+
+    function updateProfileUI() {
+      const isIdentified = !!userProfile.nome;
+      const navText = document.getElementById('navProfileText');
+      const navInd = document.getElementById('profileStatusIndicator');
+      
+      if (navText) navText.textContent = isIdentified ? userProfile.nome.split(' ')[0] : 'Perfil';
+      if (navInd) {
+        navInd.innerHTML = isIdentified 
+          ? `<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>` 
+          : `<span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>`;
+      }
+
+      const votoNome = document.getElementById('votoNomeDisplay');
+      if (votoNome) {
+        votoNome.textContent = isIdentified 
+          ? `${userProfile.nome} (${userProfile.curso || 'Sem curso definido'})` 
+          : 'Não identificado';
+      }
+    }
+
+    function obterDadosRegistroAtual() {
+      let opcaoColacaoTxt = "Não selecionada";
+      if (comboState.cerimonial && comboState.decoracao && comboState.cerimonial.empresaId === comboState.decoracao.empresaId) {
+        opcaoColacaoTxt = `${comboState.cerimonial.nomeEmpresa} (Única)`;
+      } else if (comboState.cerimonial && comboState.decoracao) {
+        opcaoColacaoTxt = `Cerimonial: ${comboState.cerimonial.nomeEmpresa} + Decoração: ${comboState.decoracao.nomeEmpresa}`;
+      } else if (comboState.cerimonial) {
+        opcaoColacaoTxt = `Cerimonial: ${comboState.cerimonial.nomeEmpresa}`;
+      } else if (comboState.decoracao) {
+        opcaoColacaoTxt = `Decoração: ${comboState.decoracao.nomeEmpresa}`;
+      }
+
+      const extras = [];
+      if (comboState.placaOficial) extras.push("Placa Oficial");
+      if (comboState.replicaPlaca) extras.push("Réplica");
+      if (comboState.fotoExtras) {
+        comboState.fotoExtras.forEach(e => extras.push(e.nome));
+      }
+
+      const totais = calcularTotalCombo();
+
+      return {
+        nome: userProfile.nome,
+        curso: userProfile.curso || 'Não informado',
+        contato: userProfile.whatsapp,
+        email: userProfile.email || '',
+        opcaoColacao: opcaoColacaoTxt,
+        empresaFoto: comboState.fotografia ? comboState.fotografia.nomeEmpresa : 'Não optou',
+        pacoteFoto: comboState.fotografia ? comboState.fotografia.nomePacote : 'Nenhum',
+        extras: extras,
+        interesses: { ...userProfile.interesses },
+        totalVista: totais.totalVista,
+        totalPrazo: totais.totalPrazo
+      };
+    }
+    
     let comboState = { cerimonial: null, decoracao: null, fotografia: null, fotoExtras: [], placaOficial: false, replicaPlaca: false };
 
     document.addEventListener('DOMContentLoaded', () => {
