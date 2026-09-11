@@ -101,7 +101,7 @@
           </div>
         </button>
 
-        <!-- Menu de Ações (Design compacto e sem overflow no mobile) -->
+        <!-- Menu de Ações (Compacto e sem overflow) -->
         <div class="flex items-center gap-1 sm:gap-2">
           
           <!-- Botão: Propostas Detalhadas -->
@@ -194,7 +194,7 @@
           <button onclick="applyFilter('decoracao')" data-filter="decoracao" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Decoração</button>
           <button onclick="applyFilter('baile')" data-filter="baile" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Baile</button>
           <button onclick="applyFilter('placa')" data-filter="placa" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Placa</button>
-<button onclick="applyFilter('replica')" data-filter="replica" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Réplica</button>
+          <button onclick="applyFilter('replica')" data-filter="replica" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Réplica</button>
         </div>
       </div>
 
@@ -310,24 +310,74 @@
     </section>
 
     <!-- ======================================================== -->
-    <!-- ABA 3: AGENDA DE REUNIÕES                                -->
+    <!-- ABA 3: AGENDA DE REUNIÕES (LAYOUT COMPLETO RESTAURADO)   -->
     <!-- ======================================================== -->
     <section id="viewReunioes" class="hidden space-y-6">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
+      
+      <!-- Topo com Botão de Retorno à Home -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
+          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-100 text-sky-800 mb-1">
+            <i data-lucide="calendar-clock" class="w-3.5 h-3.5"></i>
+            Ciclo Oficial de Encontros
+          </div>
           <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
             <i data-lucide="calendar" class="w-6 h-6 text-univasf-600"></i>
-            Agenda de Reuniões com Empresas
+            Agenda de Reuniões com as Empresas
           </h2>
-          <p class="text-xs sm:text-sm text-slate-500">Participe dos encontros antes da decisão final.</p>
+          <p class="text-xs sm:text-sm text-slate-500">Participe das apresentações para avaliar amostras, tirar dúvidas de contratos e negociar antes da decisão final da turma.</p>
         </div>
-        <button onclick="navigateTo('catalogo')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition-all shrink-0">
-          <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500"></i>
-          Voltar ao Catálogo
+        
+        <button onclick="navigateTo('catalogo')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition-all group shrink-0">
+          <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500 group-hover:-translate-x-1 transition-transform"></i>
+          Voltar para o Catálogo (Home)
         </button>
       </div>
 
-      <div id="reunioesGrid" class="space-y-3 sm:space-y-4"></div>
+      <!-- Banner de Instruções -->
+      <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-univasf-950 via-univasf-900 to-slate-900 text-white shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-start gap-3.5">
+          <div class="w-10 h-10 rounded-xl bg-univasf-500/20 border border-univasf-400/30 flex items-center justify-center shrink-0 text-amber-400">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm sm:text-base text-white">Participe e Tire suas Dúvidas Direto com os Fornecedores</h4>
+            <p class="text-xs sm:text-sm text-slate-300 mt-0.5 leading-relaxed">
+              Cada empresa terá um momento exclusivo com os formandos. Clique em <strong>"📅 Salvar no Google Agenda"</strong> para ser lembrado e acessar os links do Google Meet diretamente pelo celular.
+            </p>
+          </div>
+        </div>
+        <div class="shrink-0">
+          <button onclick="navigateTo('combo')" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-xs transition-colors whitespace-nowrap">
+            Simular Meu Combo
+          </button>
+        </div>
+      </div>
+
+      <!-- Barra de Filtros das Reuniões -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+        <div class="flex items-center gap-2">
+          <i data-lucide="filter" class="w-4 h-4 text-slate-400"></i>
+          <span class="text-xs sm:text-sm font-bold text-slate-700 uppercase tracking-wider">Filtrar Reuniões:</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-2" id="filterReunioesContainer">
+          <button onclick="applyFilterReunioes('todas')" data-filter-reuniao="todas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-univasf-700 text-white shadow-xs">
+            Todas
+          </button>
+          <button onclick="applyFilterReunioes('proximas')" data-filter-reuniao="proximas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
+            Próximas Reuniões
+          </button>
+          <button onclick="applyFilterReunioes('realizadas')" data-filter-reuniao="realizadas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
+            Reuniões Realizadas
+          </button>
+        </div>
+      </div>
+
+      <!-- Timeline / Lista de Cards de Reuniões -->
+      <div id="reunioesGrid" class="space-y-4">
+        <!-- Renderizado dinamicamente via renderReunioes() -->
+      </div>
+
     </section>
 
   </main>
@@ -558,18 +608,74 @@
     ];
 
     const reunioesData = [
-      { id: "meet_1", empresa: "Inspirar Fotografia", data: "2026-09-10", horario: "14:30", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes e demonstração de álbuns.", status: "realizada" },
-      { id: "meet_2", empresa: "Lisandro Reis", data: "2026-09-10", horario: "19:00", local: "Google Meet", linkMeet: "https://meet.google.com/sfu-vdjo-irr", pauta: "Apresentação de cerimonial e decoração.", status: "realizada" },
-      { id: "meet_3", empresa: "Vitis Fotografia", data: "2026-09-12", horario: "19:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação do serviço de fotografia e becas.", status: "agendada" },
-      { id: "meet_4", empresa: "Compor", data: "2026-09-14", horario: "10:30", local: "Rua Irmã Jerônima, 162, Centro, Petrolina", linkMeet: "", pauta: "Apresentação presencial da proposta de fotografia.", status: "agendada" },
-      { id: "meet_55", empresa: "Kathya Lucas Cerimonial", data: "2026-09-14", horario: "18:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação do cerimonial e decoração.", status: "agendada" },
-      { id: "meet_6", empresa: "Despertar Formaturas", data: "2026-09-16", horario: "15:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes de fotografia.", status: "agendada" }
+      {
+        id: "meet_1",
+        empresa: "Inspirar Fotografia",
+        data: "2026-09-10",
+        horario: "14:30",
+        local: "Google Meet",
+        linkMeet: "",
+        pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.",
+        status: "realizada"
+      },
+      {
+        id: "meet_2",
+        empresa: "Lisandro Reis",
+        data: "2026-09-10",
+        horario: "19:00",
+        local: "Google Meet",
+        linkMeet: "https://meet.google.com/sfu-vdjo-irr",
+        pauta: "Apresentação do serviço de cerimonial e decoração, além de valores. Empresa que faz as colações do CCA.",
+        status: "realizada"
+      },
+      {
+        id: "meet_3",
+        empresa: "Vitis Fotografia",
+        data: "2026-09-12",
+        horario: "19:00",
+        local: "Google Meet",
+        linkMeet: "",
+        pauta: "Apresentação sobre o serviço de fotografia.",
+        status: "agendada"
+      },
+      {
+        id: "meet_4",
+        empresa: "Compor",
+        data: "2026-09-14",
+        horario: "10:30",
+        local: "Rua Irmã Jerônima, 162, Centro, Petrolina - PE (CEP 56304-130)",
+        linkMeet: "",
+        pauta: "Apresentação presencial da proposta de fotografia e cerimonial.",
+        status: "agendada"
+      },
+      {
+        id: "meet_55",
+        empresa: "Kathya Lucas Cerimonial",
+        data: "2026-09-14",
+        horario: "18:00",
+        local: "Google Meet",
+        linkMeet: "",
+        pauta: "Apresentação do serviço de cerimonial e decoração, além de valores.",
+        status: "agendada"
+      },
+      {
+        id: "meet_6",
+        empresa: "Despertar Formaturas",
+        data: "2026-09-16",
+        horario: "15:00",
+        local: "Google Meet",
+        linkMeet: "",
+        pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.",
+        status: "agendada"
+      }
     ];
 
     const STORAGE_KEY_PROFILE = 'univasf_perfil';
     const STORAGE_KEY_COMBO = 'univasf_combo';
 
     let currentFilter = 'todas';
+    let currentFilterReunioes = 'todas';
+
     let userProfile = { nome: '', whatsapp: '', email: '', interesses: { colacao: true, ensaio: true, placa: false, replica: false, festa: false } };
     let comboState = { cerimonial: null, decoracao: null, fotografia: null, fotoExtras: [], placaOficial: false, replicaPlaca: false };
 
@@ -579,6 +685,7 @@
       updateComboDisplay();
       updateProfileUI();
       renderReunioes();
+      updateReunioesBadge();
       lucide.createIcons();
     });
 
@@ -633,7 +740,6 @@
       const filtradas = empresasData.filter(e => currentFilter === 'todas' || e.servicos.includes(currentFilter));
 
       grid.innerHTML = filtradas.map(emp => {
-        // Mapeamento completo com Placa e Réplica restauradas
         const badgesHtml = emp.servicos.map(s => {
           if (s === 'cerimonial') return `<span class="badge-cerimonial text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Cerimonial</span>`;
           if (s === 'decoracao') return `<span class="badge-decoracao text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Decoração</span>`;
@@ -880,24 +986,208 @@
       if (votoNome) votoNome.textContent = userProfile.nome || 'Não identificado';
     }
 
+    /* ========================================================
+     * AGENDA DE REUNIÕES (LAYOUT COMPLETO COM CALENDÁRIO E BOTÕES)
+     * ======================================================== */
+    function applyFilterReunioes(filter) {
+      currentFilterReunioes = filter;
+      document.querySelectorAll('#filterReunioesContainer .filter-reuniao-btn').forEach(btn => {
+        const btnFilter = btn.getAttribute('data-filter-reuniao');
+        if (btnFilter === filter) {
+          btn.className = "filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-univasf-700 text-white shadow-xs";
+        } else {
+          btn.className = "filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200";
+        }
+      });
+      renderReunioes();
+    }
+
+    function updateReunioesBadge() {
+      const elBadge = document.getElementById('reunioesCountBadge');
+      if (!elBadge) return;
+      const proximas = reunioesData.filter(r => r.status !== 'realizada').length;
+      elBadge.textContent = proximas;
+    }
+
+    function formatDataReuniao(dataStr, horarioStr) {
+      const partes = dataStr.split('-');
+      const ano = parseInt(partes[0], 10);
+      const mes = parseInt(partes[1], 10);
+      const dia = parseInt(partes[2], 10);
+      
+      const dataObj = new Date(ano, mes - 1, dia);
+      
+      const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+      const mesesAbrev = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+      const mesesExtenso = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+      const diaSemana = diasSemana[dataObj.getDay()] || 'Data marcada';
+      const mesAbrev = mesesAbrev[mes - 1] || 'SET';
+      const mesExtenso = mesesExtenso[mes - 1] || 'Setembro';
+
+      return {
+        diaSemana: diaSemana,
+        diaMes: String(dia).padStart(2, '0'),
+        mesAbrev: mesAbrev,
+        mesExtenso: mesExtenso,
+        ano: ano,
+        horario: horarioStr,
+        textoCompleto: `${diaSemana}, ${dia} de ${mesExtenso} às ${horarioStr}h`
+      };
+    }
+
+    function generateGoogleCalendarLink(reuniao) {
+      const [ano, mes, dia] = reuniao.data.split('-');
+      const [hora, minuto] = reuniao.horario.split(':');
+      
+      const startStr = `${ano}${mes}${dia}T${hora}${minuto}00`;
+      
+      let endHora = parseInt(hora, 10) + 1;
+      let endMinuto = parseInt(minuto, 10) + 30;
+      if (endMinuto >= 60) {
+        endHora += 1;
+        endMinuto -= 60;
+      }
+      const endHoraStr = String(endHora).padStart(2, '0');
+      const endMinStr = String(endMinuto).padStart(2, '0');
+      const endStr = `${ano}${mes}${dia}T${endHoraStr}${endMinStr}00`;
+      
+      const title = `Formatura UNIVASF: Reunião com ${reuniao.empresa}`;
+      const details = `Pauta: ${reuniao.pauta}\nLocal: ${reuniao.local}${reuniao.linkMeet ? '\nLink do Meet: ' + reuniao.linkMeet : ''}\n\nOrganização: Comissão de Formatura UNIVASF`;
+      const location = reuniao.local;
+
+      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startStr}/${endStr}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+    }
+
     function renderReunioes() {
       const grid = document.getElementById('reunioesGrid');
       if (!grid) return;
-      grid.innerHTML = reunioesData.map(r => `
-        <div class="bg-white p-4 rounded-xl border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="font-extrabold text-slate-900 text-sm">${escapeHtml(r.empresa)}</span>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${r.status === 'realizada' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-800'}">${r.status}</span>
-            </div>
-            <p class="text-slate-600 mt-1"><strong>Data:</strong> ${r.data} às ${r.horario}h &bull; <strong>Local:</strong> ${escapeHtml(r.local)}</p>
-            <p class="text-slate-500 mt-0.5">${escapeHtml(r.pauta)}</p>
+
+      const filtradas = reunioesData.filter(r => {
+        if (currentFilterReunioes === 'todas') return true;
+        if (currentFilterReunioes === 'proximas') return r.status === 'agendada' || r.status.toLowerCase().includes('aguardando');
+        if (currentFilterReunioes === 'realizadas') return r.status === 'realizada';
+        return true;
+      });
+
+      if (filtradas.length === 0) {
+        grid.innerHTML = `
+          <div class="text-center py-12 bg-white rounded-2xl border border-slate-200 p-8">
+            <i data-lucide="calendar-x" class="w-12 h-12 text-slate-300 mx-auto mb-3"></i>
+            <h3 class="text-base font-bold text-slate-700">Nenhuma reunião encontrada nesta categoria</h3>
+            <p class="text-xs text-slate-400 mt-1">Selecione "Todas" para visualizar o cronograma completo.</p>
           </div>
-          <a href="propostas.html?empresa=${r.empresa.toLowerCase().replace(/\s+/g, '_')}" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold shrink-0 text-center">
-            Ver Proposta & Ata
-          </a>
-        </div>
-      `).join('');
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      grid.innerHTML = filtradas.map(r => {
+        const dataFmt = formatDataReuniao(r.data, r.horario);
+        const googleUrl = generateGoogleCalendarLink(r);
+
+        let statusBadge = '';
+        if (r.status.toLowerCase().includes('aguardando')) {
+          statusBadge = `
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
+              <span class="w-2 h-2 rounded-full bg-amber-600"></span> ${escapeHtml(r.status)}
+            </span>
+          `;
+        } else if (r.status === 'realizada') {
+          statusBadge = `
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">
+              <i data-lucide="check" class="w-3.5 h-3.5 text-slate-500"></i> Realizada
+            </span>
+          `;
+        } else {
+          statusBadge = `
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Agendada
+            </span>
+          `;
+        }
+
+        let iconSegmento = 'building';
+        let corSegmento = 'bg-sky-100 text-sky-700';
+        if (r.empresa.toLowerCase().includes('foto')) {
+          iconSegmento = 'camera';
+          corSegmento = 'bg-amber-100 text-amber-800';
+        } else if (r.empresa.toLowerCase().includes('buffet') || r.empresa.toLowerCase().includes('festas')) {
+          iconSegmento = 'party-popper';
+          corSegmento = 'bg-pink-100 text-pink-700';
+        }
+
+        const isOnline = r.local.toLowerCase().includes('meet') || r.local.toLowerCase().includes('online') || !!r.linkMeet;
+        
+        let btnAcesso = '';
+        if (r.linkMeet && r.linkMeet.trim() !== '' && r.linkMeet !== 'https://meet.google.com/') {
+          btnAcesso = `
+            <a href="${r.linkMeet}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-univasf-700 hover:bg-univasf-800 text-white font-bold text-xs shadow-xs transition-all active:scale-98">
+              <i data-lucide="video" class="w-4 h-4"></i>
+              Acessar Reunião Online
+            </a>
+          `;
+        } else {
+          btnAcesso = `
+            <button type="button" onclick="alert('📍 Local / Plataforma:\\n${escapeHtml(r.local)}\\n\\nPauta: ${escapeHtml(r.pauta)}')" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors">
+              <i data-lucide="${isOnline ? 'video' : 'map-pin'}" class="w-4 h-4 text-slate-600"></i>
+              ${isOnline ? 'Link em breve' : 'Ver Local'}
+            </button>
+          `;
+        }
+
+        return `
+          <div class="card-transition bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md p-5 sm:p-6 transition-all">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+              
+              <div class="flex items-start gap-4">
+                <div class="w-16 h-18 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-b from-univasf-50 to-white border border-univasf-200 flex flex-col items-center justify-center shrink-0 shadow-2xs">
+                  <span class="text-[10px] font-extrabold uppercase text-univasf-700 tracking-wider">${dataFmt.mesAbrev}</span>
+                  <span class="text-2xl sm:text-3xl font-black text-slate-900 leading-none">${dataFmt.diaMes}</span>
+                  <span class="text-[10px] font-bold text-slate-500 mt-0.5">${dataFmt.horario}h</span>
+                </div>
+
+                <div class="space-y-1.5 flex-1">
+                  <div class="flex flex-wrap items-center gap-2">
+                    ${statusBadge}
+                    <span class="text-xs font-semibold text-slate-500 flex items-center gap-1">
+                      <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-400"></i>
+                      ${dataFmt.textoCompleto}
+                    </span>
+                  </div>
+
+                  <div class="flex items-center gap-2.5 pt-0.5">
+                    <div class="w-7 h-7 rounded-lg ${corSegmento} flex items-center justify-center shrink-0">
+                      <i data-lucide="${iconSegmento}" class="w-4 h-4"></i>
+                    </div>
+                    <h3 class="text-lg font-extrabold text-slate-900 tracking-tight">${escapeHtml(r.empresa)}</h3>
+                  </div>
+
+                  <div class="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1">
+                    <strong class="text-slate-800 font-bold">Pauta / Objetivo:</strong> ${escapeHtml(r.pauta)}
+                  </div>
+
+                  <div class="flex items-center gap-2 text-xs text-slate-500 pt-1">
+                    <i data-lucide="${isOnline ? 'video' : 'map-pin'}" class="w-3.5 h-3.5 text-univasf-600"></i>
+                    <span><strong>Local / Plataforma:</strong> ${escapeHtml(r.local)}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-center lg:items-end gap-2.5 shrink-0 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100">
+                ${btnAcesso}
+                <a href="${googleUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-xs shadow-2xs transition-all" title="Adicionar lembrete à sua agenda do Google">
+                  <i data-lucide="calendar-plus" class="w-4 h-4 text-univasf-600"></i>
+                  Salvar no Google Agenda
+                </a>
+              </div>
+
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
     }
 
     function formatMoney(v) {
