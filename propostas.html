@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Propostas & Atas - Formatura UNIVASF</title>
+  
+  <!-- Fontes & Tailwind CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+          colors: {
+            univasf: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0e8ce4',
+              700: '#03599e',
+              800: '#074b82',
+              900: '#0c3f6c',
+              950: '#082847',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    body { overflow-x: hidden; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-full flex flex-col antialiased">
+
+  <!-- BARRA SUPERIOR (HEADER) -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm transition-all group">
+          <i data-lucide="arrow-left" class="w-4 h-4 text-slate-600 group-hover:-translate-x-1 transition-transform"></i>
+          <span>Voltar ao Início</span>
+        </a>
+
+        <div class="text-right">
+          <span class="font-extrabold text-xs sm:text-base text-slate-900 block tracking-tight">Dossiê & Propostas</span>
+          <span class="text-[10px] sm:text-xs text-slate-500">Atas, Amostras & PDFs Oficiais</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LAYOUT PRINCIPAL (SIDEBAR + CONTEÚDO) -->
+  <div class="flex-1 flex flex-col md:flex-row max-w-7xl w-full mx-auto">
+    
+    <!-- SIDEBAR ESTILO FIREFOX (Horizontal no Mobile / Vertical no Desktop) -->
+    <aside class="sticky top-16 z-30 md:h-[calc(100vh-4rem)] md:w-24 bg-white/95 md:bg-white border-b md:border-b-0 md:border-r border-slate-200 shrink-0 flex md:flex-col items-center justify-between p-2 md:py-4">
+      <div class="hidden md:flex flex-col items-center gap-1 pb-3 mb-2 border-b border-slate-100 w-full">
+        <div class="w-7 h-7 rounded-lg bg-univasf-50 text-univasf-700 flex items-center justify-center">
+          <i data-lucide="layers" class="w-4 h-4"></i>
+        </div>
+        <span class="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest">Empresas</span>
+      </div>
+
+      <nav id="navEmpresasContainer" class="flex md:flex-col items-center gap-1.5 md:gap-2.5 w-full overflow-x-auto md:overflow-y-auto no-scrollbar py-1 md:py-0">
+        <!-- Gerado via JS -->
+      </nav>
+
+      <div class="hidden md:flex flex-col items-center pt-3 border-t border-slate-100 w-full text-center">
+        <span class="text-[9px] text-slate-400 font-bold uppercase">2026</span>
+      </div>
+    </aside>
+
+    <!-- ÁREA DE EXIBIÇÃO DA PROPOSTA ATIVA -->
+    <main class="flex-1 px-4 sm:px-6 lg:px-8 py-5 sm:py-7 min-w-0">
+      <div id="propostaContentContainer" class="space-y-6"></div>
+    </main>
+
+  </div>
+
+  <footer class="mt-auto bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+    Comissão de Formatura UNIVASF &bull; Portal de Decisão e Transparência
+  </footer>
+
+  <script>
+    function converterLinkDriveEmbed(url) {
+      if (!url) return '';
+      const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) {
+        return `https://drive.google.com/file/d/${match[1]}/preview`;
+      }
+      return url;
+    }
+
+    const propostasDb = [
+      // 1. INSPIRAR FOTOGRAFIA
+      {
+        id: "inspirar_fotografia",
+        sigla: "IN",
+        nome: "Inspirar Fotografia",
+        categoria: "fotografia",
+        segmento: "Fotografia",
+        dataReuniao: "10 de Setembro de 2026",
+        statusReuniao: "Apresentação Realizada",
+        impressoes: [
+          "Empresa muito boa e que transmite bastante segurança na qualidade do trabalho entregue.",
+          "Mais flexível em casos de adicionar eventos extras no contrato.",
+          "Parcelamento facilitado em até 7x (boleto agora será SEM JUROS e com opção de 30 dias para começar a pagar).",
+          "Beca e canudos já inclusos na contratação.",
+          "Não trabalham com pen drive entregando todas as fotos brutas para não comprometer o controle e padrão de qualidade (ponto positivo que deu muita segurança à comissão).",
+          "Exige um quórum mínimo de 15 alunos aderentes para manter os valores cotados.",
+          "Tempo de estúdio padrão de até 1 hora, permitindo até 10 convidados por formando.",
+          "Permitido levar pet ao estúdio, desde que com cuidado e apenas no momento exato do registro das fotos com o animal.",
+          "Entrega as fotos escolhidas reveladas.",
+          "Réplica pronta no dia do evento."
+        ],
+        comentarios: [
+          "Qualidade das fotos excelente (nota 10/10).",
+          "Álbum físico impresso é caro e avaliamos que não compensa pelo custo-benefício.",
+          "Expectativa de valor para a Placa de Formatura em torno de R$ 6.000,00 coletivos, mas ainda necessita de cotação técnica específica.",
+          "A empresa enviará em breve uma proposta complementar para fotos temáticas de profissão (sessões externas em obras, laboratórios, etc.)."
+        ],
+        fotos: [],
+        propostaExtraBtn: {
+          titulo: "Em breve: Proposta de Fotos Temáticas da Profissão (Obras / Externas)",
+          texto: "A equipe da Inspirar está elaborando um pacote exclusivo para fotos em campo e obras da Engenharia Civil. O documento será anexado aqui assim que liberado."
+        },
+        pdfUrl: converterLinkDriveEmbed("https://drive.google.com/file/d/1nN6c9YyX7O14WxHqxh8nUjmrnsKGtLB0/view?usp=drive_link"),
+        pdfDownload: "https://drive.google.com/file/d/1nN6c9YyX7O14WxHqxh8nUjmrnsKGtLB0/view?usp=drive_link"
+      },
+
+      // 2. CERIMONIAL LISANDRO REIS
+      {
+        id: "lisandro_reis",
+        sigla: "LR",
+        nome: "Cerimonial Lisandro Reis",
+        categoria: "cerimonial",
+        segmento: "Cerimonial & Colação",
+        dataReuniao: "10 de Setembro de 2026",
+        statusReuniao: "Apresentação Realizada",
+        impressoes: [
+          "Apresentação bastante séria, formal e postura extremamente profissional durante a reunião.",
+          "A decoração trabalha com uma proposta mais baseada em tecidos.",
+          "Inclusão de músico ao vivo (saxofonista ou violinista) para tocar na recepção e entrada dos convidados.",
+          "Sugeriu a montagem de 2 cenários decorados + 1 painel fotográfico (com fotos impressas da turma ou em painel de LED).",
+          "Incluso palco completo e cenários, não precisa contratar mais nada a parte. Coloca inclusive copos e oferece água aos professores no evento.",
+          "Organiza mapa de assentos do auditório, sem senhas.",
+          "Conta com programa Além da beca, que são palestras para quem entra no mercado de trabalho assim que forma, especialmente para quem pretende empreender.",
+          "Comentou sobre a possibilidade de se fazer um jantar de formatura",
+          "Indica lojas com descontos para vestimentas e outros itens da formatura",
+          "Há a possibilidade de incluir banda, desde que a UNIVASF autorize. Não vimos vantagem nisso, só no saxofonista/violinista na recepção."
+        ],
+        comentarios: [
+          "Ainda não temos certeza absoluta de como são os cenários da recepção na prática, pois a empresa possui poucas fotos de mostruário desse detalhe específico."
+        ],
+        fotos: [],
+        pdfUrl: "",
+        pdfDownload: "https://drive.google.com/drive/folders/1p2eSD5jgs1Y7Ke7nt4psJSjDJx23twtS"
+      },
+
+      // 3. VITIS FOTOGRAFIA
+      {
+        id: "vitis_fotografia",
+        sigla: "VT",
+        nome: "Vitis Fotografia",
+        categoria: "fotografia",
+        segmento: "Fotografia & Réplicas",
+        dataReuniao: "12 de Setembro de 2026",
+        statusReuniao: "Agendada",
+        impressoes: [
+          "Apresenta a proposta de preço com melhor custo-benefício avaliada até o momento.",
+          "Aguardando a reunião oficial de apresentação para alinhamento dos detalhes com os formandos."
+        ],
+        comentarios: [
+          "Proposta oficial recebida e disponível para conferência abaixo."
+        ],
+        fotos: [],
+        pdfUrl: converterLinkDriveEmbed("https://drive.google.com/file/d/1lytSoSAudQx8KEc9c7qGEBz3uB_J4XOm/view?usp=drive_link"),
+        pdfDownload: "https://drive.google.com/file/d/1lytSoSAudQx8KEc9c7qGEBz3uB_J4XOm/view?usp=drive_link"
+      },
+
+      // 4. FLAM FORMATURAS
+      {
+        id: "flam",
+        sigla: "FL",
+        nome: "Flam Formaturas",
+        categoria: "fotografia",
+        segmento: "Fotografia & Álbuns",
+        dataReuniao: "A definir",
+        statusReuniao: "Proposta Enviada",
+        impressoes: [
+          "Comunicação muito lenta e péssima agilidade de resposta no WhatsApp.",
+          "Não monta uma proposta personalizada voltada às solicitações que enviamos, limitando-se apenas a enviar pacotes genéricos e padronizados.",
+          "Não respondeu às dúvidas e questionamentos da comissão sobre a placa oficial e réplica individual."
+        ],
+        comentarios: [
+          "Apresentou duas propostas separadas em vez de consolidar as opções em um único documento transparente.",
+          "O que se sabe a partir de outras pessoas é que demora para entregar o produto."
+        ],
+        fotos: [],
+        pdfsMultiplos: [
+          {
+            titulo: "1. Proposta Parcial (Apenas Evento de Colação de Grau)",
+            embedUrl: converterLinkDriveEmbed("https://drive.google.com/file/d/1ao7H2Uo-ZVgFrlxHw74lUNAZ06c4fW8u/view?usp=drive_link"),
+            downloadUrl: "https://drive.google.com/file/d/1ao7H2Uo-ZVgFrlxHw74lUNAZ06c4fW8u/view?usp=drive_link"
+          },
+          {
+            titulo: "2. Proposta Completa (Colação + Ensaio e Álbuns)",
+            embedUrl: converterLinkDriveEmbed("https://drive.google.com/file/d/1JzVweGCu0hc1qxq19qhazFyA5flqSSv-/view?usp=drive_link"),
+            downloadUrl: "https://drive.google.com/file/d/1JzVweGCu0hc1qxq19qhazFyA5flqSSv-/view?usp=drive_link"
+          }
+        ],
+        pdfUrl: "",
+        pdfDownload: "https://drive.google.com/file/d/1JzVweGCu0hc1qxq19qhazFyA5flqSSv-/view?usp=drive_link"
+      },
+
+      // 5. JANETE VIANA EVENTOS
+      {
+        id: "Janete_Viana",
+        sigla: "JV",
+        nome: "Janete Viana Eventos",
+        categoria: "cerimonial",
+        segmento: "Cerimonial & Decoração",
+        dataReuniao: "Sem apresentação formal",
+        statusReuniao: "Apenas Valor Informado",
+        impressoes: [
+          "Não enviou proposta formalizada em documento, apenas passou o valor solto por mensagem.",
+          "Não detalhou forma de pagamento, parcelamento ou prazos.",
+          "Costuma fazer a colação solene e recepções separadas, em formato menor porém bonito."
+        ],
+        comentarios: [
+          "Opinião da comissão: o preço cobrado é alto demais para arriscar a contratação sem um projeto formalizado e sem ver mostruários consistentes."
+        ],
+        fotos: [],
+        pdfUrl: "",
+        pdfDownload: ""
+      },
+
+      // 6. MARIA LEITE RECEPÇÕES
+      {
+        id: "maria_leite_eventos",
+        sigla: "ML",
+        nome: "Maria Leite Recepções",
+        categoria: "baile",
+        segmento: "Espaço Nobre & Baile",
+        dataReuniao: "Sob consulta",
+        statusReuniao: "Orçamento Recebido",
+        impressoes: [
+          "Realiza os eventos exclusivamente no espaço físico próprio da empresa.",
+          "Só faz sentido e tem viabilidade para quem optar por fazer festa/baile de formatura.",
+          "Se for convidar muita gente o custo total fica muito elevado, sendo viável apenas para turmas pequenas ou com o próprio convidado pagando sua senha/entrada individual."
+        ],
+        comentarios: [
+          "Orçamento completo do espaço e recepção disponível para consulta no arquivo abaixo."
+        ],
+        fotos: [],
+        pdfUrl: converterLinkDriveEmbed("https://drive.google.com/file/d/1CFRXeDCB7H_EYkRLTsIwRWnIoVtdbXND/view?usp=drive_link"),
+        pdfDownload: "https://drive.google.com/file/d/1CFRXeDCB7H_EYkRLTsIwRWnIoVtdbXND/view?usp=drive_link"
+      },
+
+      // 7. COMPOR FOTOGRAFIA
+      {
+        id: "compor_eventos",
+        sigla: "CM",
+        nome: "Compor Fotografia",
+        categoria: "fotografia",
+        segmento: "Fotografia & Cerimonial",
+        dataReuniao: "14 de Setembro de 2026",
+        statusReuniao: "Aguardando Apresentação",
+        impressoes: [],
+        comentarios: [],
+        fotos: [],
+        pdfUrl: "",
+        pdfDownload: ""
+      },
+
+      // 8. DESPERTAR FORMATURAS
+      {
+        id: "despertar_formaturas",
+        sigla: "DP",
+        nome: "Despertar Formaturas",
+        categoria: "fotografia",
+        segmento: "Fotografia",
+        dataReuniao: "16 de Setembro de 2026",
+        statusReuniao: "Aguardando Apresentação",
+        impressoes: [],
+        comentarios: [],
+        fotos: [],
+        pdfUrl: "",
+        pdfDownload: ""
+      },
+
+      // 9. FORMAR EVENTOS
+      {
+        id: "formar_eventos",
+        sigla: "FM",
+        nome: "Formar Formaturas & Eventos",
+        categoria: "cerimonial",
+        segmento: "Cerimonial & Decoração",
+        dataReuniao: "A definir",
+        statusReuniao: "Aguardando Apresentação",
+        impressoes: [],
+        comentarios: [],
+        fotos: [],
+        pdfUrl: "",
+        pdfDownload: ""
+      },
+
+      // 10. OLIVEIRA CERIMONIAL
+      {
+        id: "oliveira_cerimonial",
+        sigla: "OL",
+        nome: "Oliveira Assessoria e Cerimonial",
+        categoria: "cerimonial",
+        segmento: "Cerimonial & Decoração",
+        dataReuniao: "Sem apresentação formal",
+        statusReuniao: "Apenas Valor Informado",
+        impressoes: [
+          "Não enviou proposta formalizada em documento, apenas passou o valor solto por mensagem.",
+          "Não detalhou forma de pagamento, parcelamento ou prazos.",
+          "Costuma fazer a colação solene e recepções separadas, em formato menor porém bonito."
+        ],
+        comentarios: [],
+        fotos: [],
+        pdfUrl: "",
+        pdfDownload: ""
+      },
+
+      // 11. FÉLIX FESTAS
+      {
+        id: "eventos_felix",
+        sigla: "FX",
+        nome: "Félix Festas e Eventos",
+        categoria: "cerimonial",
+        segmento: "Cerimonial & Decoração",
+        dataReuniao: "A definir",
+        statusReuniao: "Aguardando Apresentação",
+        impressoes: [],
+        comentarios: [],
+        fotos: [],
+        pdfUrl: "",
+        pdfDownload: ""
+      },
+
+      // 12. SAMARA VIDAL
+      {
+        id: "samara_vidal",
+        sigla: "SV",
+        nome: "Samara Vidal Assessoria e Cerimonial",
+        categoria: "cerimonial",
+        segmento: "Cerimonial & Decoração",
+        dataReuniao: "A definir",
+        statusReuniao: "Aguardando Apresentação",
+        impressoes: [],
+        comentarios: [],
+        fotos: [],
+        pdfUrl: "",
+        pdfDownload: ""
+      },
+
+      // 13. KATHYA LUCAS
+      {
+        id: "kathya_lucas",
+        sigla: "KL",
+        nome: "Kathya Lucas Cerimonial e Decoração",
+        categoria: "cerimonial",
+        segmento: "Cerimonial & Decoração",
+        dataReuniao: "A definir",
+        statusReuniao: "Aguardando Apresentação",
+        impressoes: [],
+        comentarios: [],
+        fotos: [],
+        pdfUrl: "",
+        pdfDownload: ""
+      },
+
+      // 14. LU FESTAS
+      {
+        id: "lu_festas",
+        sigla: "LU",
+        nome: "Lu Festas Buffet e Eventos",
+        categoria: "cerimonial",
+        segmento: "Cerimonial, Buffet & Baile",
+        dataReuniao: "A definir",
+        statusReuniao: "Aguardando Apresentação",
+        impressoes: [],
+        comentarios: [],
+        fotos: [],
+        pdfUrl: "",
+        pdfDownload: ""
+      }
+    ];
+
+    let currentEmpresaId = "inspirar_fotografia";
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramEmpresa = urlParams.get('empresa');
+      if (paramEmpresa && propostasDb.some(p => p.id === paramEmpresa)) {
+        currentEmpresaId = paramEmpresa;
+      }
+
+      renderSidebar();
+      renderPropostaAtiva();
+      lucide.createIcons();
+    });
+
+    function selectEmpresa(id) {
+      currentEmpresaId = id;
+      const newUrl = `${window.location.pathname}?empresa=${id}`;
+      window.history.pushState({ path: newUrl }, '', newUrl);
+
+      renderSidebar();
+      renderPropostaAtiva();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      lucide.createIcons();
+    }
+
+    function renderSidebar() {
+      const container = document.getElementById('navEmpresasContainer');
+      if (!container) return;
+
+      container.innerHTML = propostasDb.map(p => {
+        const isActive = p.id === currentEmpresaId;
+        
+        let iconName = 'camera';
+        if (p.categoria === 'cerimonial' || p.categoria === 'decoracao') {
+          iconName = 'star';
+        } else if (p.categoria === 'baile') {
+          iconName = 'glass-water';
+        }
+
+        return `
+          <button 
+            onclick="selectEmpresa('${p.id}')" 
+            title="${escapeHtml(p.nome)} (${escapeHtml(p.segmento)})" 
+            class="group relative flex items-center md:flex-col justify-center gap-1.5 md:gap-1 px-3 py-1.5 md:p-2 rounded-xl transition-all shrink-0 ${
+              isActive 
+                ? 'bg-univasf-700 text-white shadow-md shadow-univasf-700/20' 
+                : 'bg-slate-100/90 hover:bg-slate-200 text-slate-700 hover:text-slate-900'
+            } md:w-16 md:h-16"
+          >
+            ${isActive ? `<span class="hidden md:block absolute -left-2 top-2 bottom-2 w-1 rounded-r-full bg-univasf-600"></span>` : ''}
+            <i data-lucide="${iconName}" class="w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-slate-500 group-hover:text-slate-800'}"></i>
+            <span class="font-extrabold text-xs tracking-wider uppercase">${p.sigla}</span>
+            <span class="hidden md:group-hover:block absolute left-full ml-3 px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-semibold whitespace-nowrap shadow-lg z-50 pointer-events-none">
+              ${escapeHtml(p.nome)}
+            </span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderPropostaAtiva() {
+      const p = propostasDb.find(item => item.id === currentEmpresaId) || propostasDb[0];
+      const container = document.getElementById('propostaContentContainer');
+      if (!container) return;
+
+      // 1. Impressões
+      const impressoesHtml = p.impressoes.length > 0 ? `
+        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+          ${p.impressoes.map(imp => `
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+              <span>${escapeHtml(imp)}</span>
+            </li>
+          `).join('')}
+        </ul>
+      ` : `
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-500 italic">
+          Ainda não realizamos a reunião com esta empresa. As impressões serão adicionadas após o encontro com a comissão e formandos.
+        </div>
+      `;
+
+      // 2. Comentários
+      const comentariosHtml = p.comentarios.length > 0 ? `
+        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+          ${p.comentarios.map(com => `
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="info" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
+              <span>${escapeHtml(com)}</span>
+            </li>
+          `).join('')}
+        </ul>
+      ` : `
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-500 italic">
+          Nenhuma observação ou ponto de atenção registrado até o momento.
+        </div>
+      `;
+
+      // Botão extra de fotos temáticas (caso Inspirar)
+      let botaoExtraHtml = '';
+      if (p.propostaExtraBtn) {
+        botaoExtraHtml = `
+          <div class="p-4 rounded-2xl bg-amber-50 border border-amber-300/80 text-amber-950 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-amber-500 text-white flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="hard-hat" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <strong class="text-xs sm:text-sm font-bold block">${escapeHtml(p.propostaExtraBtn.titulo)}</strong>
+                <p class="text-xs text-amber-900 mt-0.5">${escapeHtml(p.propostaExtraBtn.texto)}</p>
+              </div>
+            </div>
+            <button onclick="alert('ℹ A equipe da Inspirar está finalizando o roteiro técnico e valores das fotos em obras. Assim que enviarem, o PDF estará disponível aqui!')" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shrink-0 transition-colors">
+              Consultar Status
+            </button>
+          </div>
+        `;
+      }
+
+      // 3. Fotos
+      const fotosHtml = p.fotos.length > 0 ? `
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          ${p.fotos.map(foto => `
+            <div class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+              <div class="aspect-4/3 overflow-hidden bg-slate-100">
+                <img src="${foto.url}" alt="${escapeHtml(foto.legenda)}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+              </div>
+              <div class="p-2.5 text-xs font-semibold text-slate-700 border-t border-slate-100">
+                ${escapeHtml(foto.legenda)}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      ` : `
+        <div class="p-6 rounded-xl bg-slate-50 border border-slate-200 text-center">
+          <i data-lucide="image" class="w-7 h-7 text-slate-300 mx-auto mb-1.5"></i>
+          <p class="text-xs text-slate-500">Nenhuma foto adicionada para esta empresa até o momento.</p>
+        </div>
+      `;
+
+      // 4. PDFs
+      let pdfHtml = '';
+      if (p.pdfsMultiplos && p.pdfsMultiplos.length > 0) {
+        pdfHtml = `
+          <div class="space-y-5">
+            ${p.pdfsMultiplos.map(item => `
+              <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-2xs">
+                <div class="p-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                  <span class="font-bold text-xs sm:text-sm text-slate-800 flex items-center gap-2">
+                    <i data-lucide="file-text" class="w-4 h-4 text-emerald-600"></i>
+                    ${escapeHtml(item.titulo)}
+                  </span>
+                  <a href="${item.downloadUrl}" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-700 hover:underline font-bold flex items-center gap-1">
+                    Abrir no Drive <i data-lucide="external-link" class="w-3 h-3"></i>
+                  </a>
+                </div>
+                <div class="aspect-16/9 w-full bg-slate-100">
+                  <iframe src="${item.embedUrl}" class="w-full h-full" frameborder="0"></iframe>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (p.pdfUrl) {
+        pdfHtml = `
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-slate-500">Visualizador interativo do PDF:</span>
+              <a href="${p.pdfDownload}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200 hover:bg-emerald-100">
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Abrir no Google Drive
+              </a>
+            </div>
+            <div class="rounded-xl overflow-hidden border border-slate-200 aspect-16/9 w-full bg-slate-100 shadow-2xs">
+              <iframe src="${p.pdfUrl}" class="w-full h-full" frameborder="0"></iframe>
+            </div>
+          </div>
+        `;
+      } else if (p.pdfDownload) {
+        pdfHtml = `
+          <div class="p-4 sm:p-5 rounded-xl bg-emerald-50/50 border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="folder-archive" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <strong class="font-bold text-slate-900 text-sm block">Documentos & Minutas no Drive Oficial</strong>
+                <p class="text-xs text-slate-600 mt-0.5">Os arquivos desta empresa estão salvos na pasta geral da Colação.</p>
+              </div>
+            </div>
+            <a href="${p.pdfDownload}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shrink-0 shadow-xs">
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+              <span>Acessar Pasta</span>
+            </a>
+          </div>
+        `;
+      } else {
+        pdfHtml = `
+          <div class="p-6 rounded-xl bg-slate-50 border border-slate-200 text-center">
+            <i data-lucide="file-x" class="w-7 h-7 text-slate-300 mx-auto mb-1.5"></i>
+            <p class="text-xs text-slate-500">Nenhuma proposta formal em PDF foi enviada por este fornecedor até o momento.</p>
+          </div>
+        `;
+      }
+
+      container.innerHTML = `
+        <!-- Cabeçalho -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-univasf-100 text-univasf-800">${escapeHtml(p.segmento)}</span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700">Status: ${escapeHtml(p.statusReuniao)}</span>
+            </div>
+            <h1 class="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+              <span>${escapeHtml(p.nome)}</span>
+              <span class="text-xs font-black px-2 py-0.5 rounded bg-slate-200 text-slate-700">[${p.sigla}]</span>
+            </h1>
+            <p class="text-xs text-slate-500 mt-1">Data da Reunião com a Turma: <strong>${escapeHtml(p.dataReuniao)}</strong></p>
+          </div>
+        </div>
+
+        ${botaoExtraHtml}
+
+        <!-- 1. Impressões -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs">
+          <div class="flex items-center gap-2.5 mb-3 pb-2.5 border-b border-slate-100">
+            <div class="w-7 h-7 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center">
+              <i data-lucide="users" class="w-4 h-4"></i>
+            </div>
+            <h2 class="font-extrabold text-slate-900 text-sm sm:text-base">1. Impressões Obtidas na Reunião</h2>
+          </div>
+          ${impressoesHtml}
+        </div>
+
+        <!-- 2. Comentários -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs">
+          <div class="flex items-center gap-2.5 mb-3 pb-2.5 border-b border-slate-100">
+            <div class="w-7 h-7 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center">
+              <i data-lucide="message-square" class="w-4 h-4"></i>
+            </div>
+            <h2 class="font-extrabold text-slate-900 text-sm sm:text-base">2. Comentários & Pontos de Atenção</h2>
+          </div>
+          ${comentariosHtml}
+        </div>
+
+        <!-- 3. Fotos -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs">
+          <div class="flex items-center gap-2.5 mb-3 pb-2.5 border-b border-slate-100">
+            <div class="w-7 h-7 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center">
+              <i data-lucide="camera" class="w-4 h-4"></i>
+            </div>
+            <h2 class="font-extrabold text-slate-900 text-sm sm:text-base">3. Fotos e Amostras de Trabalhos</h2>
+          </div>
+          ${fotosHtml}
+        </div>
+
+        <!-- 4. PDF -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs">
+          <div class="flex items-center gap-2.5 mb-3 pb-2.5 border-b border-slate-100">
+            <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+            </div>
+            <h2 class="font-extrabold text-slate-900 text-sm sm:text-base">4. PDF com a Proposta Oficial</h2>
+          </div>
+          ${pdfHtml}
+        </div>
+      `;
+
+      lucide.createIcons();
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[m]);
+    }
+  </script>
+</body>
+</html>
