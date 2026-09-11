@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Formatura de Engenharias UNIVASF 2026.2 - Catálogo Oficial</title>
   
-  <!-- FAVICON DE FORMATURA (Capelo) -->
+  <!-- FAVICON DE FORMATURA (Capelo em SVG embutido) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e8ce4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z'/><path d='M22 10v6'/><path d='M6 12.5V16a6 3 0 0 0 12 0v-3.5'/></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -155,8 +155,8 @@
         </div>
       </div>
 
-      <!-- Grid com alinhamento items-start para evitar esticamento vertical -->
-      <div id="empresasGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 items-start"></div>
+      <!-- Grid Masonry (colunas dinâmicas para os blocos subirem sem buraco) -->
+      <div id="empresasGrid" class="columns-1 lg:columns-2 gap-4 sm:gap-6 space-y-4 sm:space-y-6"></div>
     </section>
 
     <!-- MONTE SEU COMBO -->
@@ -566,8 +566,18 @@
       updateProfileUI();
       renderReunioes();
       updateReunioesBadge();
-      lucide.createIcons();
+      safeCreateIcons();
     });
+
+    function safeCreateIcons() {
+      try {
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+      } catch (err) {
+        console.warn("Lucide icons warning:", err);
+      }
+    }
 
     function carregarLocalStorage() {
       try {
@@ -599,7 +609,7 @@
       if (tab === 'combo') updateComboDisplay();
       if (tab === 'catalogo') renderCatalogo();
       if (tab === 'reunioes') renderReunioes();
-      lucide.createIcons();
+      safeCreateIcons();
     }
 
     function applyFilter(f) {
@@ -665,9 +675,15 @@
                 ${isAguardando ? `
                   <a href="propostas.html?empresa=${emp.id}" class="text-xs font-semibold text-univasf-700 hover:underline">Ver status da reunião →</a>
                 ` : (isSelected ? `
-                  <button onclick="removerPacoteDoCombo('${emp.id}', '${pct.id}')" class="px-2.5 py-1 rounded-lg bg-red-50 text-red-700 text-xs font-bold hover:bg-red-100 transition-colors">Remover</button>
+                  <button onclick="removerPacoteDoCombo('${emp.id}', '${pct.id}')" class="px-2.5 py-1.5 rounded-lg bg-red-50 text-red-700 text-xs font-bold hover:bg-red-100 transition-colors flex items-center gap-1">
+                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                    <span>Remover</span>
+                  </button>
                 ` : `
-                  <button onclick="adicionarPacoteAoCombo('${emp.id}', '${pct.id}')" class="px-3 py-1.5 rounded-lg bg-univasf-700 hover:bg-univasf-800 text-white text-xs font-bold transition-all shadow-xs active:scale-98">Adicionar ao Combo</button>
+                  <button onclick="adicionarPacoteAoCombo('${emp.id}', '${pct.id}')" class="px-3.5 py-1.5 rounded-lg bg-univasf-700 hover:bg-univasf-800 text-white text-xs font-bold transition-all shadow-xs active:scale-98 flex items-center gap-1.5">
+                    <i data-lucide="plus" class="w-4 h-4 text-white"></i>
+                    <span>Adicionar ao Combo</span>
+                  </button>
                 `)}
               </div>
             </div>
@@ -675,7 +691,7 @@
         }).join('');
 
         return `
-          <div class="card-transition bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 flex flex-col justify-between shadow-xs">
+          <div class="break-inside-avoid mb-4 sm:mb-6 card-transition bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 flex flex-col justify-between shadow-xs">
             <div>
               <div class="flex items-start justify-between gap-2 pb-3 border-b border-slate-100">
                 <div>
@@ -707,7 +723,7 @@
         `;
       }).join('');
 
-      lucide.createIcons();
+      safeCreateIcons();
     }
 
     function isPacoteNoCombo(empresaId, pacoteId) {
@@ -838,7 +854,7 @@
       document.getElementById('inputWhatsapp').value = userProfile.whatsapp || '';
       document.getElementById('inputEmail').value = userProfile.email || '';
       document.getElementById('profileModal').classList.remove('hidden');
-      lucide.createIcons();
+      safeCreateIcons();
     }
     function closeProfileModal() {
       document.getElementById('profileModal').classList.add('hidden');
@@ -941,7 +957,7 @@
     }
 
     /* ========================================================
-     * RENDERIZAÇÃO DAS REUNIÕES
+     * RENDERIZAÇÃO DAS REUNIÕES (ROBUSTO E SEM ERROS DE ÍCONE)
      * ======================================================== */
     function applyFilterReunioes(filter) {
       currentFilterReunioes = filter;
@@ -959,11 +975,12 @@
     function updateReunioesBadge() {
       const elBadge = document.getElementById('reunioesCountBadge');
       if (!elBadge) return;
-      const proximas = reunioesData.filter(r => r.status !== 'realizada').length;
+      const proximas = reunioesData.filter(r => (r.status || '').toLowerCase() !== 'realizada').length;
       elBadge.textContent = proximas;
     }
 
     function formatDataReuniao(dataStr, horarioStr) {
+      if (!dataStr) return { mesAbrev: 'SET', diaMes: '00', horario: horarioStr || '00:00', textoCompleto: '' };
       const partes = dataStr.split('-');
       const ano = parseInt(partes[0], 10);
       const mes = parseInt(partes[1], 10);
@@ -978,27 +995,31 @@
         diaSemana: diasSemana[dataObj.getDay()] || 'Data marcada',
         diaMes: String(dia).padStart(2, '0'),
         mesAbrev: mesesAbrev[mes - 1] || 'SET',
-        horario: horarioStr,
-        textoCompleto: `${diasSemana[dataObj.getDay()] || ''}, ${dia} de ${mesExtenso[mes - 1] || ''} às ${horarioStr}h`
+        horario: horarioStr || '00:00',
+        textoCompleto: `${diasSemana[dataObj.getDay()] || ''}, ${dia} de ${mesExtenso[mes - 1] || ''} às ${horarioStr || ''}h`
       };
     }
 
     function generateGoogleCalendarLink(reuniao) {
-      const [ano, mes, dia] = reuniao.data.split('-');
-      const [hora, minuto] = reuniao.horario.split(':');
-      const startStr = `${ano}${mes}${dia}T${hora}${minuto}00`;
-      
-      let endHora = parseInt(hora, 10) + 1;
-      let endMinuto = parseInt(minuto, 10) + 30;
-      if (endMinuto >= 60) {
-        endHora += 1;
-        endMinuto -= 60;
+      try {
+        const [ano, mes, dia] = (reuniao.data || '2026-09-01').split('-');
+        const [hora, minuto] = (reuniao.horario || '12:00').split(':');
+        const startStr = `${ano}${mes}${dia}T${hora}${minuto}00`;
+        
+        let endHora = parseInt(hora, 10) + 1;
+        let endMinuto = parseInt(minuto, 10) + 30;
+        if (endMinuto >= 60) {
+          endHora += 1;
+          endMinuto -= 60;
+        }
+        const endStr = `${ano}${mes}${dia}T${String(endHora).padStart(2, '0')}${String(endMinuto).padStart(2, '0')}00`;
+        
+        const title = `Formatura UNIVASF: Reunião com ${reuniao.empresa}`;
+        const details = `Pauta: ${reuniao.pauta}\nLocal: ${reuniao.local}\n\nComissão de Formatura UNIVASF`;
+        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startStr}/${endStr}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(reuniao.local || '')}`;
+      } catch (e) {
+        return '#';
       }
-      const endStr = `${ano}${mes}${dia}T${String(endHora).padStart(2, '0')}${String(endMinuto).padStart(2, '0')}00`;
-      
-      const title = `Formatura UNIVASF: Reunião com ${reuniao.empresa}`;
-      const details = `Pauta: ${reuniao.pauta}\nLocal: ${reuniao.local}\n\nComissão de Formatura UNIVASF`;
-      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startStr}/${endStr}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(reuniao.local)}`;
     }
 
     function renderReunioes() {
@@ -1006,9 +1027,10 @@
       if (!grid) return;
 
       const filtradas = reunioesData.filter(r => {
+        const st = (r.status || '').toLowerCase();
         if (currentFilterReunioes === 'todas') return true;
-        if (currentFilterReunioes === 'proximas') return r.status === 'agendada' || r.status.toLowerCase().includes('aguardando');
-        if (currentFilterReunioes === 'realizadas') return r.status === 'realizada';
+        if (currentFilterReunioes === 'proximas') return st === 'agendada' || st.includes('aguardando');
+        if (currentFilterReunioes === 'realizadas') return st === 'realizada';
         return true;
       });
 
@@ -1020,17 +1042,18 @@
             <p class="text-xs text-slate-400 mt-1">Selecione "Todas" para visualizar o cronograma completo.</p>
           </div>
         `;
-        lucide.createIcons();
+        safeCreateIcons();
         return;
       }
 
       grid.innerHTML = filtradas.map(r => {
         const dataFmt = formatDataReuniao(r.data, r.horario);
         const googleUrl = generateGoogleCalendarLink(r);
-        const isRealizada = r.status.toLowerCase() === 'realizada';
+        const st = (r.status || '').toLowerCase();
+        const isRealizada = st === 'realizada';
 
         let statusBadge = '';
-        if (r.status.toLowerCase().includes('aguardando')) {
+        if (st.includes('aguardando')) {
           statusBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300"><span class="w-2 h-2 rounded-full bg-amber-600"></span> ${escapeHtml(r.status)}</span>`;
         } else if (isRealizada) {
           statusBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200"><i data-lucide="check" class="w-3.5 h-3.5 text-slate-500"></i> Realizada</span>`;
@@ -1040,15 +1063,16 @@
 
         let iconSegmento = 'building';
         let corSegmento = 'bg-sky-100 text-sky-700';
-        if (r.empresa.toLowerCase().includes('foto')) {
+        const empNome = (r.empresa || '').toLowerCase();
+        if (empNome.includes('foto')) {
           iconSegmento = 'camera';
           corSegmento = 'bg-amber-100 text-amber-800';
-        } else if (r.empresa.toLowerCase().includes('buffet') || r.empresa.toLowerCase().includes('festas')) {
+        } else if (empNome.includes('buffet') || empNome.includes('festas') || empNome.includes('leite')) {
           iconSegmento = 'party-popper';
           corSegmento = 'bg-pink-100 text-pink-700';
         }
 
-        const isOnline = r.local.toLowerCase().includes('meet') || r.local.toLowerCase().includes('online') || !!r.linkMeet;
+        const isOnline = (r.local || '').toLowerCase().includes('meet') || (r.local || '').toLowerCase().includes('online') || !!r.linkMeet;
 
         let botoesAcao = '';
         if (isRealizada) {
@@ -1129,7 +1153,7 @@
         `;
       }).join('');
 
-      lucide.createIcons();
+      safeCreateIcons();
     }
 
     function formatMoney(v) {
