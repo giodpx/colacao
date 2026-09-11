@@ -3,28 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Formatura UNIVASF - Catálogo, Combo & Votação Oficial</title>
+  <title>Formatura de Engenharias UNIVASF 2026.2 - Catálogo Oficial</title>
   
-  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   
-  <!-- Tailwind Custom Config -->
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
           colors: {
             univasf: {
               50: '#f0f7ff',
@@ -46,46 +39,26 @@
   </script>
 
   <style>
-    body {
-      overflow-x: hidden;
-    }
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
+    body { overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-    
     .badge-cerimonial { background-color: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
     .badge-decoracao { background-color: #fce7f3; color: #be185d; border: 1px solid #fbcfe8; }
     .badge-fotografia { background-color: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
     .badge-baile { background-color: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
-    
-    .card-transition {
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .card-transition:hover {
-      transform: translateY(-2px);
-    }
-    @keyframes slideIn {
-      from { transform: translateY(100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .toast-animate {
-      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
+    .card-transition { transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    .card-transition:hover { transform: translateY(-2px); }
+    @keyframes slideIn { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .toast-animate { animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-full flex flex-col antialiased selection:bg-univasf-500 selection:text-white">
 
-  <!-- ========================================== -->
-  <!-- 1. NAVBAR OTIMIZADA PARA MOBILE E DESKTOP  -->
-  <!-- ========================================== -->
+  <!-- NAVBAR OTIMIZADA -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 sm:h-18 gap-2">
-        
-        <!-- Logo / Titulo Principal -->
         <button onclick="navigateTo('catalogo')" class="group flex items-center gap-2 sm:gap-3 text-left focus:outline-hidden min-w-0" title="Voltar ao Catálogo">
           <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-univasf-800 via-univasf-600 to-sky-500 flex items-center justify-center text-white shadow-md shadow-univasf-500/20 shrink-0">
             <i data-lucide="graduation-cap" class="w-5 h-5 sm:w-6 sm:h-6"></i>
@@ -93,31 +66,24 @@
           <div class="truncate">
             <div class="flex items-center gap-1.5">
               <span class="font-extrabold text-base sm:text-xl text-slate-900 tracking-tight truncate">UNIVASF</span>
-              <span class="hidden md:inline-flex items-center px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-univasf-100 text-univasf-800 border border-univasf-200">
-                Oficial
-              </span>
+              <span class="hidden md:inline-flex items-center px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-univasf-100 text-univasf-800 border border-univasf-200">Oficial</span>
             </div>
             <p class="text-[10px] sm:text-xs text-slate-500 font-medium truncate">Formatura & Cotações</p>
           </div>
         </button>
 
-        <!-- Menu de Ações (Compacto e sem overflow) -->
         <div class="flex items-center gap-1 sm:gap-2">
-          
-          <!-- Botão: Propostas Detalhadas -->
-          <a href="propostas.html" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-univasf-700 hover:bg-slate-100 rounded-lg transition-colors" title="Ver propostas completas, atas e documentos">
+          <a href="propostas.html" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-univasf-700 hover:bg-slate-100 rounded-lg transition-colors">
             <i data-lucide="file-text" class="w-4 h-4 text-emerald-600"></i>
             <span class="hidden md:inline">Propostas & Atas</span>
           </a>
 
-          <!-- Botão: Reuniões -->
-          <button onclick="navigateTo('reunioes')" id="navReunioesBtn" class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 rounded-lg transition-colors relative" title="Reuniões">
+          <button onclick="navigateTo('reunioes')" id="navReunioesBtn" class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 rounded-lg transition-colors relative">
             <i data-lucide="calendar" class="w-4 h-4 text-univasf-600"></i>
             <span class="hidden sm:inline">Reuniões</span>
             <span id="reunioesCountBadge" class="px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-sky-100 text-sky-800 border border-sky-200">5</span>
           </button>
 
-          <!-- Perfil / Cadastro -->
           <button onclick="openProfileModal()" id="navProfileBtn" class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-all shadow-2xs">
             <span class="relative flex h-2 w-2" id="profileStatusIndicator">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
@@ -127,7 +93,6 @@
             <span id="navProfileText" class="hidden sm:inline">Perfil</span>
           </button>
 
-          <!-- Meu Combo (Carrinho) -->
           <button onclick="navigateTo('combo')" id="navComboBtn" class="relative flex items-center gap-1.5 px-2.5 sm:px-3 py-2 text-xs sm:text-sm font-bold text-white bg-univasf-700 hover:bg-univasf-800 rounded-xl shadow-xs transition-all active:scale-98">
             <div class="relative">
               <i data-lucide="shopping-bag" class="w-4 h-4"></i>
@@ -135,23 +100,15 @@
             </div>
             <span id="cartTotalHeader" class="font-extrabold text-amber-300 text-xs sm:text-sm">R$ 0</span>
           </button>
-
         </div>
       </div>
     </div>
   </header>
 
-  <!-- ========================================== -->
-  <!-- CONTEÚDO PRINCIPAL (SPA TABS)              -->
-  <!-- ========================================== -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-8">
 
-    <!-- ======================================================== -->
-    <!-- ABA 1: CATÁLOGO DE EMPRESAS (HOME)                       -->
-    <!-- ======================================================== -->
+    <!-- CATÁLOGO (HOME) -->
     <section id="viewCatalogo" class="space-y-5 sm:space-y-6">
-      
-      <!-- Banner de Boas-vindas -->
       <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-univasf-900 via-univasf-800 to-slate-900 text-white p-5 sm:p-8 shadow-lg">
         <div class="relative z-10 max-w-3xl">
           <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-univasf-500/20 border border-univasf-400/30 text-univasf-200 text-xs font-semibold mb-2 sm:mb-3">
@@ -166,22 +123,19 @@
           </p>
           <div class="flex flex-wrap items-center gap-2 sm:gap-3">
             <a href="propostas.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold transition-colors shadow-xs">
-              <i data-lucide="file-check-2" class="w-4 h-4"></i>
-              Ver Propostas Completas & PDFs
+              <i data-lucide="file-check-2" class="w-4 h-4"></i> Ver Propostas Completas & PDFs
             </a>
             <button onclick="navigateTo('reunioes')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-900 text-xs sm:text-sm font-bold transition-colors shadow-xs">
-              <i data-lucide="calendar" class="w-4 h-4"></i>
-              Agenda de Reuniões
+              <i data-lucide="calendar" class="w-4 h-4"></i> Agenda de Reuniões
             </button>
             <button onclick="navigateTo('combo')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-xs sm:text-sm font-semibold text-white transition-colors backdrop-blur-xs">
-              <i data-lucide="calculator" class="w-4 h-4 text-emerald-300"></i>
-              Simular Combo
+              <i data-lucide="calculator" class="w-4 h-4 text-emerald-300"></i> Simular Combo
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Barra de Filtros -->
+      <!-- Filtros -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200 shadow-xs">
         <div class="flex items-center gap-2">
           <i data-lucide="filter" class="w-4 h-4 text-slate-400"></i>
@@ -198,38 +152,28 @@
         </div>
       </div>
 
-      <!-- Grid de Cards de Empresas -->
-      <div id="empresasGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-        <!-- Gerado dinamicamente via JS -->
-      </div>
+      <div id="empresasGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6"></div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- ABA 2: MONTE SEU COMBO                                   -->
-    <!-- ======================================================== -->
+    <!-- MONTE SEU COMBO -->
     <section id="viewCombo" class="hidden space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
         <div>
           <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-            <i data-lucide="shopping-bag" class="w-6 h-6 text-univasf-600"></i>
-            Monte Seu Combo Individual
+            <i data-lucide="shopping-bag" class="w-6 h-6 text-univasf-600"></i> Monte Seu Combo Individual
           </h2>
-          <p class="text-xs sm:text-sm text-slate-500">Revise sua seleção, valide a colação e simule os custos.</p>
+          <p class="text-xs sm:text-sm text-slate-500">Revise sua seleção, valide a colação e grave suas opções na planilha.</p>
         </div>
         <button onclick="navigateTo('catalogo')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition-all group shrink-0">
-          <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500 group-hover:-translate-x-1 transition-transform"></i>
-          Voltar ao Catálogo
+          <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500 group-hover:-translate-x-1 transition-transform"></i> Voltar ao Catálogo
         </button>
       </div>
 
-      <!-- STATUS DA COLAÇÃO -->
       <div id="colacaoStatusBanner" class="rounded-2xl p-4 sm:p-5 border transition-all"></div>
 
-      <!-- ITENS SELECIONADOS & RESUMO -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="lg:col-span-2 space-y-4">
-          
-          <!-- Card Colação Solene -->
+          <!-- Colação Solene -->
           <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs">
             <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
               <span class="font-bold text-slate-900 text-sm sm:text-base">1. Colação de Grau Solene</span>
@@ -238,7 +182,7 @@
             <div id="colacaoComboItems" class="space-y-3"></div>
           </div>
 
-          <!-- Card Fotografia -->
+          <!-- Fotografia -->
           <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs">
             <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
               <span class="font-bold text-slate-900 text-sm sm:text-base">2. Fotografia & Extras</span>
@@ -247,7 +191,7 @@
             <div id="fotografiaComboItems" class="space-y-3"></div>
           </div>
 
-          <!-- Card Placa Oficial -->
+          <!-- Placa Oficial -->
           <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs space-y-3">
             <span class="font-bold text-slate-900 text-sm sm:text-base block border-b border-slate-100 pb-2">3. Placa UNIVASF & Réplica</span>
             <label class="flex items-start gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
@@ -274,7 +218,6 @@
           </div>
         </div>
 
-        <!-- Coluna Financeira -->
         <div>
           <div class="bg-gradient-to-b from-slate-900 to-univasf-950 text-white rounded-2xl p-5 sm:p-6 shadow-xl sticky top-20">
             <div class="flex items-center justify-between pb-3 border-b border-white/10">
@@ -294,8 +237,7 @@
             </div>
 
             <button type="button" onclick="salvarComboSimulacao()" class="w-full py-3 px-4 rounded-xl bg-univasf-700 hover:bg-univasf-800 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2">
-              <i data-lucide="bookmark-check" class="w-4 h-4 text-sky-300"></i>
-              Salvar Minha Simulação
+              <i data-lucide="bookmark-check" class="w-4 h-4 text-sky-300"></i> Salvar / Atualizar Minha Simulação
             </button>
 
             <div class="mt-4 pt-3 border-t border-white/10 text-center">
@@ -309,32 +251,23 @@
       </div>
     </section>
 
-    <!-- ======================================================== -->
-    <!-- ABA 3: AGENDA DE REUNIÕES (LAYOUT COMPLETO RESTAURADO)   -->
-    <!-- ======================================================== -->
+    <!-- AGENDA DE REUNIÕES -->
     <section id="viewReunioes" class="hidden space-y-6">
-      
-      <!-- Topo com Botão de Retorno à Home -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
           <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-100 text-sky-800 mb-1">
-            <i data-lucide="calendar-clock" class="w-3.5 h-3.5"></i>
-            Ciclo Oficial de Encontros
+            <i data-lucide="calendar-clock" class="w-3.5 h-3.5"></i> Ciclo Oficial de Encontros
           </div>
           <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-            <i data-lucide="calendar" class="w-6 h-6 text-univasf-600"></i>
-            Agenda de Reuniões com as Empresas
+            <i data-lucide="calendar" class="w-6 h-6 text-univasf-600"></i> Agenda de Reuniões com as Empresas
           </h2>
           <p class="text-xs sm:text-sm text-slate-500">Participe das apresentações para avaliar amostras, tirar dúvidas de contratos e negociar antes da decisão final da turma.</p>
         </div>
-        
         <button onclick="navigateTo('catalogo')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition-all group shrink-0">
-          <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500 group-hover:-translate-x-1 transition-transform"></i>
-          Voltar para o Catálogo (Home)
+          <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500 group-hover:-translate-x-1 transition-transform"></i> Voltar ao Catálogo
         </button>
       </div>
 
-      <!-- Banner de Instruções -->
       <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-univasf-950 via-univasf-900 to-slate-900 text-white shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="flex items-start gap-3.5">
           <div class="w-10 h-10 rounded-xl bg-univasf-500/20 border border-univasf-400/30 flex items-center justify-center shrink-0 text-amber-400">
@@ -343,7 +276,7 @@
           <div>
             <h4 class="font-bold text-sm sm:text-base text-white">Participe e Tire suas Dúvidas Direto com os Fornecedores</h4>
             <p class="text-xs sm:text-sm text-slate-300 mt-0.5 leading-relaxed">
-              Cada empresa terá um momento exclusivo com os formandos. Clique em <strong>"📅 Salvar no Google Agenda"</strong> para ser lembrado e acessar os links do Google Meet diretamente pelo celular.
+              Cada empresa terá um momento exclusivo com os formandos. Clique em <strong>"📅 Salvar no Google Agenda"</strong> para ser lembrado no celular.
             </p>
           </div>
         </div>
@@ -354,43 +287,31 @@
         </div>
       </div>
 
-      <!-- Barra de Filtros das Reuniões -->
+      <!-- Filtros Reuniões -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
         <div class="flex items-center gap-2">
           <i data-lucide="filter" class="w-4 h-4 text-slate-400"></i>
           <span class="text-xs sm:text-sm font-bold text-slate-700 uppercase tracking-wider">Filtrar Reuniões:</span>
         </div>
         <div class="flex flex-wrap items-center gap-2" id="filterReunioesContainer">
-          <button onclick="applyFilterReunioes('todas')" data-filter-reuniao="todas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-univasf-700 text-white shadow-xs">
-            Todas
-          </button>
-          <button onclick="applyFilterReunioes('proximas')" data-filter-reuniao="proximas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
-            Próximas Reuniões
-          </button>
-          <button onclick="applyFilterReunioes('realizadas')" data-filter-reuniao="realizadas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
-            Reuniões Realizadas
-          </button>
+          <button onclick="applyFilterReunioes('todas')" data-filter-reuniao="todas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-univasf-700 text-white shadow-xs">Todas</button>
+          <button onclick="applyFilterReunioes('proximas')" data-filter-reuniao="proximas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Próximas Reuniões</button>
+          <button onclick="applyFilterReunioes('realizadas')" data-filter-reuniao="realizadas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Reuniões Realizadas</button>
         </div>
       </div>
 
-      <!-- Timeline / Lista de Cards de Reuniões -->
-      <div id="reunioesGrid" class="space-y-4">
-        <!-- Renderizado dinamicamente via renderReunioes() -->
-      </div>
-
+      <div id="reunioesGrid" class="space-y-4"></div>
     </section>
 
   </main>
 
-  <!-- ========================================== -->
-  <!-- MODAL DE IDENTIFICAÇÃO / PERFIL            -->
-  <!-- ========================================== -->
+  <!-- MODAL DE CADASTRO -->
   <div id="profileModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div class="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden my-6">
       <div class="p-5 bg-gradient-to-r from-univasf-900 to-univasf-800 text-white flex items-start justify-between">
         <div>
           <h3 class="text-lg font-bold">Identificação do Aluno</h3>
-          <p class="text-xs text-slate-300">Preencha para gravar seus interesses e simulações.</p>
+          <p class="text-xs text-slate-300">Preencha para gravar seus dados diretamente na planilha oficial.</p>
         </div>
         <button onclick="closeProfileModal()" class="text-white/70 hover:text-white p-1">
           <i data-lucide="x" class="w-5 h-5"></i>
@@ -436,7 +357,7 @@
 
         <div class="pt-3 border-t border-slate-200 flex justify-end gap-2">
           <button type="button" onclick="closeProfileModal()" class="px-4 py-2 rounded-xl border border-slate-300 text-xs font-semibold">Cancelar</button>
-          <button type="submit" class="px-4 py-2 rounded-xl bg-univasf-700 text-white text-xs font-bold">Salvar Perfil</button>
+          <button type="submit" class="px-4 py-2 rounded-xl bg-univasf-700 text-white text-xs font-bold">Salvar e Atualizar</button>
         </div>
       </form>
     </div>
@@ -448,8 +369,12 @@
     Comissão de Formatura UNIVASF &bull; Petrolina / Juazeiro
   </footer>
 
-  <!-- SCRIPTS -->
   <script>
+    /* ========================================================
+     * INSIRA ABAIXO A URL DO SEU GOOGLE APPS SCRIPT
+     * ======================================================== */
+    const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwTx2dVMfz22n8YZZ9ouYe77zfjV-kqrviAEm-M7xOttOFEEmKpvX1wh5NLB9W2TBzL/exec";
+
     const empresasData = [
       {
         id: "despertar_formaturas",
@@ -467,8 +392,8 @@
         servicos: ["fotografia"],
         contato: "",
         instagram: "@inspirarfotografia",
-        observacoes: "Reunião agendada. Aguardando apresentação e envio formal da proposta.",
-        pacotes: [{ id: "inspirar_aguardando", nome: "Proposta em Análise", valorVista: 0, valorPrazo: 0, desc: "Aguardando apresentação." }],
+        observacoes: "Reunião realizada com a turma. Parcelamento em 7x sem juros no boleto e fotos nota 10/10.",
+        pacotes: [{ id: "inspirar_aguardando", nome: "Proposta em Análise", valorVista: 0, valorPrazo: 0, desc: "Consulte o PDF na aba de propostas." }],
         extras: []
       },
       {
@@ -477,7 +402,7 @@
         servicos: ["fotografia", "placa", "replica"],
         contato: "(87) 9 9106-8494",
         instagram: "@vitisfotografia",
-        observacoes: "• Escolha individual. Mínimo 10 formandos para estúdio coletivo. Até 24x no boleto ou 5x sem juros.",
+        observacoes: "• Proposta de preço mais acessível até o momento. Boleto em até 24x ou cartão até 5x sem juros.",
         pacotes: [
           { id: "vitis_basic", nome: "Pacote Basic (10 Fotos)", valorVista: 400, valorPrazo: 450, desc: "1 produção, 10 fotos digitais editadas em alta resolução, beca e canudo premium." },
           { id: "vitis_essential", nome: "Pacote Essential (25 Fotos)", valorVista: 700, valorPrazo: 780, desc: "Até 2 produções, 25 fotos digitais editadas, beca e canudo premium." },
@@ -495,7 +420,7 @@
         servicos: ["fotografia"],
         contato: "(87) 9 9938-0001",
         instagram: "@flamformaturas",
-        observacoes: "Contato com retorno lento. Pacotes completos com álbum físico incluso.",
+        observacoes: "Comunicação lenta e proposta fragmentada em dois PDFs.",
         pacotes: [
           { id: "investimento_slim", nome: "Investimento Slim - Apenas Colação", valorVista: 470, valorPrazo: 490, desc: "Cobertura exclusiva da colação, fotos digitais, diária da beca." },
           { id: "investimento_basicCompleto", nome: "Investimento Basic - Completo", valorVista: 790, valorPrazo: 890, desc: "25 fotos, foto-livro 20x30 com 12 páginas, estojo e canudo." }
@@ -568,8 +493,8 @@
         servicos: ["cerimonial", "decoracao"],
         contato: "(87) 98101-8576",
         instagram: "@cerimonialisandroreis",
-        observacoes: "Empresa tradicional com vasta experiência em solenidades da UNIVASF (CCA).",
-        pacotes: [{ id: "lr_aguardando", nome: "Cerimonial & Colação", valorVista: 0, valorPrazo: 0, desc: "Apresentação e proposta em reunião." }],
+        observacoes: "Apresentação profissional com proposta de decoração em tecido e música ao vivo.",
+        pacotes: [{ id: "lr_aguardando", nome: "Cerimonial & Colação", valorVista: 0, valorPrazo: 0, desc: "Apresentação concluída. Consulte a ata." }],
         extras: []
       },
       {
@@ -588,7 +513,7 @@
         servicos: ["cerimonial", "decoracao"],
         contato: "(87) 9 8835-4434",
         instagram: "@janetevianaeventos",
-        observacoes: "Decoração e cerimonial integrados. Proposta enviada por mensagem.",
+        observacoes: "Não formalizou proposta nem formas de pagamento. Preço elevado para arriscar sem projeto.",
         pacotes: [{ id: "decoracao_janeteviana", nome: "Pacote Colação Solene", valorVista: 1300, valorPrazo: 1300, desc: "Decoração, mestre de cerimônias e telão." }],
         extras: []
       },
@@ -598,7 +523,7 @@
         servicos: ["decoracao", "baile"],
         contato: "(87) 98800-0000",
         instagram: "@marialeiterecepcoesoficial",
-        observacoes: "Opção para recepções e festas completas com buffet.",
+        observacoes: "Apenas no espaço próprio. Viável apenas para turmas com adesão de festa.",
         pacotes: [
           { id: "ml_colacao_solene", nome: "Colação Solene no Espaço", valorVista: 1116, valorPrazo: 1200, desc: "Espaço climatizado, som, LED e buffet leve (aluno + 10 convidados)." },
           { id: "ml_baile_padrao", nome: "Baile Padrão (Mesa c/ 8)", valorVista: 1860, valorPrazo: 2000, desc: "Buffet 6h, drinks 4h, DJ e estrutura." }
@@ -608,66 +533,12 @@
     ];
 
     const reunioesData = [
-      {
-        id: "meet_1",
-        empresa: "Inspirar Fotografia",
-        data: "2026-09-10",
-        horario: "14:30",
-        local: "Google Meet",
-        linkMeet: "",
-        pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.",
-        status: "realizada"
-      },
-      {
-        id: "meet_2",
-        empresa: "Lisandro Reis",
-        data: "2026-09-10",
-        horario: "19:00",
-        local: "Google Meet",
-        linkMeet: "https://meet.google.com/sfu-vdjo-irr",
-        pauta: "Apresentação do serviço de cerimonial e decoração, além de valores. Empresa que faz as colações do CCA.",
-        status: "realizada"
-      },
-      {
-        id: "meet_3",
-        empresa: "Vitis Fotografia",
-        data: "2026-09-12",
-        horario: "19:00",
-        local: "Google Meet",
-        linkMeet: "",
-        pauta: "Apresentação sobre o serviço de fotografia.",
-        status: "agendada"
-      },
-      {
-        id: "meet_4",
-        empresa: "Compor",
-        data: "2026-09-14",
-        horario: "10:30",
-        local: "Rua Irmã Jerônima, 162, Centro, Petrolina - PE (CEP 56304-130)",
-        linkMeet: "",
-        pauta: "Apresentação presencial da proposta de fotografia e cerimonial.",
-        status: "agendada"
-      },
-      {
-        id: "meet_55",
-        empresa: "Kathya Lucas Cerimonial",
-        data: "2026-09-14",
-        horario: "18:00",
-        local: "Google Meet",
-        linkMeet: "",
-        pauta: "Apresentação do serviço de cerimonial e decoração, além de valores.",
-        status: "agendada"
-      },
-      {
-        id: "meet_6",
-        empresa: "Despertar Formaturas",
-        data: "2026-09-16",
-        horario: "15:00",
-        local: "Google Meet",
-        linkMeet: "",
-        pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.",
-        status: "agendada"
-      }
+      { id: "meet_1", empresa: "Inspirar Fotografia", data: "2026-09-10", horario: "14:30", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.", status: "realizada" },
+      { id: "meet_2", empresa: "Lisandro Reis", data: "2026-09-10", horario: "19:00", local: "Google Meet", linkMeet: "https://meet.google.com/sfu-vdjo-irr", pauta: "Apresentação do serviço de cerimonial e decoração, além de valores. Empresa que faz as colações do CCA.", status: "realizada" },
+      { id: "meet_3", empresa: "Vitis Fotografia", data: "2026-09-12", horario: "19:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação sobre o serviço de fotografia.", status: "agendada" },
+      { id: "meet_4", empresa: "Compor", data: "2026-09-14", horario: "10:30", local: "Rua Irmã Jerônima, 162, Centro, Petrolina - PE", linkMeet: "", pauta: "Apresentação presencial da proposta de fotografia e cerimonial.", status: "agendada" },
+      { id: "meet_55", empresa: "Kathya Lucas Cerimonial", data: "2026-09-14", horario: "18:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação do serviço de cerimonial e decoração, além de valores.", status: "agendada" },
+      { id: "meet_6", empresa: "Despertar Formaturas", data: "2026-09-16", horario: "15:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.", status: "agendada" }
     ];
 
     const STORAGE_KEY_PROFILE = 'univasf_perfil';
@@ -798,7 +669,7 @@
               <div class="mt-3">
                 <a href="propostas.html?empresa=${emp.id}" class="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-slate-100 hover:bg-univasf-50 hover:text-univasf-700 hover:border-univasf-300 border border-slate-200 text-slate-700 text-xs font-bold transition-all group">
                   <i data-lucide="file-search" class="w-4 h-4 text-slate-500 group-hover:text-univasf-600"></i>
-                  <span>Abrir e Ver Proposta Completa (Fotos & PDF)</span>
+                  <span>Abrir Proposta Completa</span>
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5 opacity-70 group-hover:translate-x-1 transition-transform"></i>
                 </a>
               </div>
@@ -955,25 +826,98 @@
       document.getElementById('profileModal').classList.add('hidden');
     }
 
+    /* ========================================================
+     * ENVIO E ATUALIZAÇÃO DIRETA NA GOOGLE PLANILHA
+     * ======================================================== */
+    function obterDadosRegistroAtual() {
+      let opcaoColacaoTxt = "Não selecionada";
+      if (comboState.cerimonial && comboState.decoracao && comboState.cerimonial.empresaId === comboState.decoracao.empresaId) {
+        opcaoColacaoTxt = `${comboState.cerimonial.nomeEmpresa} (Única)`;
+      } else if (comboState.cerimonial && comboState.decoracao) {
+        opcaoColacaoTxt = `Cerimonial: ${comboState.cerimonial.nomeEmpresa} + Decoração: ${comboState.decoracao.nomeEmpresa}`;
+      } else if (comboState.cerimonial) {
+        opcaoColacaoTxt = `Cerimonial: ${comboState.cerimonial.nomeEmpresa}`;
+      } else if (comboState.decoracao) {
+        opcaoColacaoTxt = `Decoração: ${comboState.decoracao.nomeEmpresa}`;
+      }
+
+      const extras = [];
+      if (comboState.placaOficial) extras.push("Placa Oficial");
+      if (comboState.replicaPlaca) extras.push("Réplica");
+
+      const totais = calcularTotalCombo();
+
+      return {
+        nome: userProfile.nome,
+        contato: userProfile.whatsapp,
+        email: userProfile.email || '',
+        opcaoColacao: opcaoColacaoTxt,
+        empresaFoto: comboState.fotografia ? comboState.fotografia.nomeEmpresa : 'Não optou',
+        pacoteFoto: comboState.fotografia ? comboState.fotografia.nomePacote : 'Nenhum',
+        extras: extras,
+        interesses: { ...userProfile.interesses },
+        totalVista: totais.totalVista,
+        totalPrazo: totais.totalPrazo
+      };
+    }
+
+    function transmitirParaGooglePlanilha(registro) {
+      if (!GOOGLE_SHEETS_WEBAPP_URL || GOOGLE_SHEETS_WEBAPP_URL.includes("SUA_URL")) {
+        console.log("Aviso: Conecte a URL do Google Apps Script para sincronizar com o Google Sheets.");
+        return;
+      }
+
+      fetch(GOOGLE_SHEETS_WEBAPP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(registro)
+      }).then(() => {
+        console.log("✅ Dados sincronizados e atualizados na Google Planilha!");
+      }).catch(err => {
+        console.error("Erro ao enviar dados para a Planilha:", err);
+      });
+    }
+
     function salvarPerfil(e) {
       if (e) e.preventDefault();
       userProfile.nome = document.getElementById('inputNome').value.trim();
       userProfile.whatsapp = document.getElementById('inputWhatsapp').value.trim();
       userProfile.email = document.getElementById('inputEmail').value.trim();
+
+      userProfile.interesses = {
+        colacao: document.getElementById('intColacao').checked,
+        ensaio: document.getElementById('intEnsaio').checked,
+        placa: document.getElementById('intPlaca').checked,
+        replica: document.getElementById('intReplica').checked,
+        festa: document.getElementById('intFesta').checked
+      };
+
+      comboState.placaOficial = userProfile.interesses.placa;
+      comboState.replicaPlaca = userProfile.interesses.replica;
+
       salvarPerfilStorage();
+      salvarComboStorage();
       updateProfileUI();
+      updateComboDisplay();
       closeProfileModal();
-      showToast('Perfil salvo com sucesso!', 'success');
+
+      const registro = obterDadosRegistroAtual();
+      transmitirParaGooglePlanilha(registro);
+
+      showToast('Dados salvos e atualizados na planilha da comissão!', 'success');
     }
 
     function salvarComboSimulacao() {
-      if (!userProfile.nome) {
-        showToast('Identifique-se no perfil primeiro!', 'info');
+      if (!userProfile.nome || !userProfile.whatsapp) {
+        showToast('Identifique-se no perfil antes de salvar a simulação!', 'info');
         openProfileModal();
         return;
       }
       salvarComboStorage();
-      showToast('Simulação gravada com sucesso!', 'success');
+      const registro = obterDadosRegistroAtual();
+      transmitirParaGooglePlanilha(registro);
+      showToast('Simulação gravada e atualizada na planilha!', 'success');
     }
 
     function updateProfileUI() {
@@ -987,7 +931,7 @@
     }
 
     /* ========================================================
-     * AGENDA DE REUNIÕES (LAYOUT COMPLETO COM CALENDÁRIO E BOTÕES)
+     * RENDERIZAÇÃO DAS REUNIÕES (COM OCULTAÇÃO DE BOTÕES REALIZADOS)
      * ======================================================== */
     function applyFilterReunioes(filter) {
       currentFilterReunioes = filter;
@@ -1014,32 +958,24 @@
       const ano = parseInt(partes[0], 10);
       const mes = parseInt(partes[1], 10);
       const dia = parseInt(partes[2], 10);
-      
       const dataObj = new Date(ano, mes - 1, dia);
       
       const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
       const mesesAbrev = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
       const mesesExtenso = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
-      const diaSemana = diasSemana[dataObj.getDay()] || 'Data marcada';
-      const mesAbrev = mesesAbrev[mes - 1] || 'SET';
-      const mesExtenso = mesesExtenso[mes - 1] || 'Setembro';
-
       return {
-        diaSemana: diaSemana,
+        diaSemana: diasSemana[dataObj.getDay()] || 'Data marcada',
         diaMes: String(dia).padStart(2, '0'),
-        mesAbrev: mesAbrev,
-        mesExtenso: mesExtenso,
-        ano: ano,
+        mesAbrev: mesesAbrev[mes - 1] || 'SET',
         horario: horarioStr,
-        textoCompleto: `${diaSemana}, ${dia} de ${mesExtenso} às ${horarioStr}h`
+        textoCompleto: `${diasSemana[dataObj.getDay()] || ''}, ${dia} de ${mesExtenso[mes - 1] || ''} às ${horarioStr}h`
       };
     }
 
     function generateGoogleCalendarLink(reuniao) {
       const [ano, mes, dia] = reuniao.data.split('-');
       const [hora, minuto] = reuniao.horario.split(':');
-      
       const startStr = `${ano}${mes}${dia}T${hora}${minuto}00`;
       
       let endHora = parseInt(hora, 10) + 1;
@@ -1048,15 +984,11 @@
         endHora += 1;
         endMinuto -= 60;
       }
-      const endHoraStr = String(endHora).padStart(2, '0');
-      const endMinStr = String(endMinuto).padStart(2, '0');
-      const endStr = `${ano}${mes}${dia}T${endHoraStr}${endMinStr}00`;
+      const endStr = `${ano}${mes}${dia}T${String(endHora).padStart(2, '0')}${String(endMinuto).padStart(2, '0')}00`;
       
       const title = `Formatura UNIVASF: Reunião com ${reuniao.empresa}`;
-      const details = `Pauta: ${reuniao.pauta}\nLocal: ${reuniao.local}${reuniao.linkMeet ? '\nLink do Meet: ' + reuniao.linkMeet : ''}\n\nOrganização: Comissão de Formatura UNIVASF`;
-      const location = reuniao.local;
-
-      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startStr}/${endStr}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+      const details = `Pauta: ${reuniao.pauta}\nLocal: ${reuniao.local}\n\nComissão de Formatura UNIVASF`;
+      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startStr}/${endStr}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(reuniao.local)}`;
     }
 
     function renderReunioes() {
@@ -1089,23 +1021,11 @@
 
         let statusBadge = '';
         if (r.status.toLowerCase().includes('aguardando')) {
-          statusBadge = `
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
-              <span class="w-2 h-2 rounded-full bg-amber-600"></span> ${escapeHtml(r.status)}
-            </span>
-          `;
+          statusBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300"><span class="w-2 h-2 rounded-full bg-amber-600"></span> ${escapeHtml(r.status)}</span>`;
         } else if (isRealizada) {
-          statusBadge = `
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-slate-500"></i> Realizada
-            </span>
-          `;
+          statusBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200"><i data-lucide="check" class="w-3.5 h-3.5 text-slate-500"></i> Realizada</span>`;
         } else {
-          statusBadge = `
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Agendada
-            </span>
-          `;
+          statusBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Agendada</span>`;
         }
 
         let iconSegmento = 'building';
@@ -1120,10 +1040,8 @@
 
         const isOnline = r.local.toLowerCase().includes('meet') || r.local.toLowerCase().includes('online') || !!r.linkMeet;
 
-        // Bloco de botões na lateral direita
         let botoesAcao = '';
         if (isRealizada) {
-          // Quando estiver realizada: esconde Meet e Agenda, mostrando o atalho direto para a Ata/Proposta
           botoesAcao = `
             <a href="propostas.html?empresa=${r.empresa.toLowerCase().replace(/\s+/g, '_')}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-univasf-50 hover:text-univasf-700 hover:border-univasf-300 border border-slate-200 text-slate-700 font-bold text-xs transition-all shadow-2xs group">
               <i data-lucide="file-check-2" class="w-4 h-4 text-emerald-600"></i>
@@ -1132,20 +1050,17 @@
             </a>
           `;
         } else {
-          // Quando estiver agendada: exibe botão do Meet e Google Agenda
           let btnAcesso = '';
           if (r.linkMeet && r.linkMeet.trim() !== '' && r.linkMeet !== 'https://meet.google.com/') {
             btnAcesso = `
               <a href="${r.linkMeet}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-univasf-700 hover:bg-univasf-800 text-white font-bold text-xs shadow-xs transition-all active:scale-98">
-                <i data-lucide="video" class="w-4 h-4"></i>
-                Acessar Reunião Online
+                <i data-lucide="video" class="w-4 h-4"></i> Acessar Reunião Online
               </a>
             `;
           } else {
             btnAcesso = `
               <button type="button" onclick="alert('📍 Local / Plataforma:\\n${escapeHtml(r.local)}\\n\\nPauta: ${escapeHtml(r.pauta)}')" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors">
-                <i data-lucide="${isOnline ? 'video' : 'map-pin'}" class="w-4 h-4 text-slate-600"></i>
-                ${isOnline ? 'Link em breve' : 'Ver Local'}
+                <i data-lucide="${isOnline ? 'video' : 'map-pin'}" class="w-4 h-4 text-slate-600"></i> ${isOnline ? 'Link em breve' : 'Ver Local'}
               </button>
             `;
           }
@@ -1153,8 +1068,7 @@
           botoesAcao = `
             ${btnAcesso}
             <a href="${googleUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-xs shadow-2xs transition-all" title="Adicionar lembrete à sua agenda do Google">
-              <i data-lucide="calendar-plus" class="w-4 h-4 text-univasf-600"></i>
-              Salvar no Google Agenda
+              <i data-lucide="calendar-plus" class="w-4 h-4 text-univasf-600"></i> Salvar no Google Agenda
             </a>
           `;
         }
@@ -1174,8 +1088,7 @@
                   <div class="flex flex-wrap items-center gap-2">
                     ${statusBadge}
                     <span class="text-xs font-semibold text-slate-500 flex items-center gap-1">
-                      <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-400"></i>
-                      ${dataFmt.textoCompleto}
+                      <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-400"></i> ${dataFmt.textoCompleto}
                     </span>
                   </div>
 
