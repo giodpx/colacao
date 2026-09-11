@@ -189,15 +189,24 @@
           <!-- Fotografia -->
           <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs">
             <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
-              <span class="font-bold text-slate-900 text-sm sm:text-base">2. Fotografia & Extras</span>
+              <span class="font-bold text-slate-900 text-sm sm:text-base">2. Fotografia & Pacote Base</span>
               <button onclick="navigateTo('catalogo'); applyFilter('fotografia');" class="text-xs font-semibold text-univasf-700 hover:underline">Ver fotos</button>
             </div>
             <div id="fotografiaComboItems" class="space-y-3"></div>
           </div>
 
+          <!-- Itens Extras Escolhidos -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs">
+            <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+              <span class="font-bold text-slate-900 text-sm sm:text-base">3. Itens Extras de Empresas Adicionados</span>
+              <button onclick="navigateTo('catalogo')" class="text-xs font-semibold text-univasf-700 hover:underline">Ver extras</button>
+            </div>
+            <div id="extrasEmpresasComboItems" class="space-y-2"></div>
+          </div>
+
           <!-- Placa Oficial -->
           <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs space-y-3">
-            <span class="font-bold text-slate-900 text-sm sm:text-base block border-b border-slate-100 pb-2">3. Placa UNIVASF & Réplica</span>
+            <span class="font-bold text-slate-900 text-sm sm:text-base block border-b border-slate-100 pb-2">4. Placa UNIVASF & Réplica</span>
             <label class="flex items-start gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
               <input type="checkbox" id="checkPlacaOficial" onchange="toggleItemInteresse('placa', this.checked)" class="mt-1 w-4 h-4 rounded text-univasf-600 focus:ring-univasf-500 border-slate-300">
               <div class="flex-1">
@@ -394,11 +403,11 @@
         servicos: ["fotografia"],
         contato: "(87) 9 8173-4674",
         instagram: "@inspirarfotografia",
-        observacoes: "Reunião realizada com a turma. Parcelamento em 7x sem juros no boleto com valor de à vista. A prazo no cartão até 12x com juros.",
+        observacoes: "Parcelamento em 7x sem juros no boleto com valor de à vista. A prazo no cartão até 12x com juros.",
         pacotes: [
-          { id: "inspirar_pacote_vivencia", nome: "Pacote Vivência", valorVista: 850, valorPrazo: 1094, desc: "15 Fotos tratadas mediante escolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" },
-          { id: "inspirar_pacote_memoria", nome: "Pacote Memória", valorVista: 1300, valorPrazo: 1672, desc: "25 Fotos tratadas mediante escolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" },
-          { id: "inspirar_pacote_inspiracao", nome: "Pacote Inspiração", valorVista: 1500, valorPrazo: 1930, desc: "40 Fotos tratadas mediante escolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" }
+          { id: "inspirar_pacote_vivencia", nome: "Pacote Vivência", valorVista: 850, valorPrazo: 1094, desc: "15 Fotos tratadas mediante escolha do formando, disponibilizadas em formato digital + impressas no tamanho 20x25 cm" },
+          { id: "inspirar_pacote_memoria", nome: "Pacote Memória", valorVista: 1300, valorPrazo: 1672, desc: "25 Fotos tratadas mediante escolha do formando, disponibilizadas em formato digital + impressas no tamanho 20x25 cm" },
+          { id: "inspirar_pacote_inspiracao", nome: "Pacote Inspiração", valorVista: 1500, valorPrazo: 1930, desc: "40 Fotos tratadas mediante escolha do formando, disponibilizadas em formato digital + impressas no tamanho 20x25 cm" }
         ],
         extras: [
           { id: "inspirar_ex_replica", nome: "Réplica da Placa em Acrílico (15x21 cm)", valorVista: 230, valorPrazo: 230 },
@@ -584,7 +593,10 @@
         const p = localStorage.getItem(STORAGE_KEY_PROFILE);
         if (p) userProfile = JSON.parse(p);
         const c = localStorage.getItem(STORAGE_KEY_COMBO);
-        if (c) comboState = JSON.parse(c);
+        if (c) {
+          comboState = JSON.parse(c);
+          if (!comboState.fotoExtras) comboState.fotoExtras = [];
+        }
       } catch (e) {}
     }
 
@@ -640,6 +652,7 @@
           return '';
         }).join(' ');
 
+        // Pacotes Principais
         const pacotesHtml = emp.pacotes.map(pct => {
           const isSelected = isPacoteNoCombo(emp.id, pct.id);
           const isAguardando = pct.valorVista === 0 && pct.valorPrazo === 0;
@@ -690,6 +703,35 @@
           `;
         }).join('');
 
+        // Itens Extras / Opcionais
+        let extrasHtml = '';
+        if (emp.extras && emp.extras.length > 0) {
+          extrasHtml = `
+            <div class="mt-4 pt-3 border-t border-slate-200">
+              <span class="text-[11px] font-bold uppercase text-slate-400 block mb-2">Itens Adicionais / Opcionais:</span>
+              <div class="space-y-2">
+                ${emp.extras.map(ex => {
+                  const isExtraSelected = isExtraNoCombo(ex.id);
+                  return `
+                    <div class="p-2.5 rounded-xl border ${isExtraSelected ? 'border-amber-400 bg-amber-50/40' : 'border-slate-200 bg-slate-50/60'} flex items-center justify-between gap-2 text-xs">
+                      <div>
+                        <strong class="font-bold text-slate-800 block text-xs">${escapeHtml(ex.nome)}</strong>
+                        <div class="flex items-center gap-2 mt-0.5">
+                          <span class="font-extrabold text-slate-900">${formatMoney(ex.valorVista)} <span class="text-[9px] text-slate-400 font-normal">à vista</span></span>
+                          ${ex.valorPrazo && ex.valorPrazo !== ex.valorVista ? `<span class="text-slate-500">${formatMoney(ex.valorPrazo)} <span class="text-[9px] text-slate-400 font-normal">a prazo</span></span>` : ''}
+                        </div>
+                      </div>
+                      <button onclick="toggleExtraDoCombo('${emp.id}', '${ex.id}')" class="px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${isExtraSelected ? 'bg-red-50 text-red-700 hover:bg-red-100' : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-100'}">
+                        ${isExtraSelected ? 'Remover' : '+ Adicionar'}
+                      </button>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }
+
         return `
           <div class="break-inside-avoid mb-4 sm:mb-6 card-transition bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 flex flex-col justify-between shadow-xs">
             <div>
@@ -718,6 +760,8 @@
                 <span class="text-[11px] font-bold uppercase text-slate-400">Opções de Pacote:</span>
                 ${pacotesHtml}
               </div>
+
+              ${extrasHtml}
             </div>
           </div>
         `;
@@ -731,6 +775,38 @@
       if (comboState.decoracao?.empresaId === empresaId && comboState.decoracao?.pacoteId === pacoteId) return true;
       if (comboState.fotografia?.empresaId === empresaId && comboState.fotografia?.pacoteId === pacoteId) return true;
       return false;
+    }
+
+    function isExtraNoCombo(extraId) {
+      if (!comboState.fotoExtras) return false;
+      return comboState.fotoExtras.some(e => e.id === extraId);
+    }
+
+    function toggleExtraDoCombo(empresaId, extraId) {
+      const empresa = empresasData.find(e => e.id === empresaId);
+      const extra = empresa?.extras?.find(ex => ex.id === extraId);
+      if (!extra) return;
+
+      if (!comboState.fotoExtras) comboState.fotoExtras = [];
+
+      const index = comboState.fotoExtras.findIndex(e => e.id === extraId);
+      if (index > -1) {
+        comboState.fotoExtras.splice(index, 1);
+        showToast('Item extra removido.', 'info');
+      } else {
+        comboState.fotoExtras.push({
+          id: extra.id,
+          nome: extra.nome,
+          empresa: empresa.nome,
+          valorVista: extra.valorVista,
+          valorPrazo: extra.valorPrazo
+        });
+        showToast('Item extra adicionado ao combo!', 'success');
+      }
+
+      salvarComboStorage();
+      renderCatalogo();
+      updateComboDisplay();
     }
 
     function adicionarPacoteAoCombo(empresaId, pacoteId) {
@@ -787,7 +863,8 @@
 
     function updateComboDisplay() {
       const total = calcularTotalCombo();
-      const count = (comboState.cerimonial ? 1 : 0) + (comboState.decoracao && comboState.decoracao.empresaId !== comboState.cerimonial?.empresaId ? 1 : 0) + (comboState.fotografia ? 1 : 0) + (comboState.placaOficial ? 1 : 0) + (comboState.replicaPlaca ? 1 : 0);
+      const extrasCount = (comboState.fotoExtras || []).length;
+      const count = (comboState.cerimonial ? 1 : 0) + (comboState.decoracao && comboState.decoracao.empresaId !== comboState.cerimonial?.empresaId ? 1 : 0) + (comboState.fotografia ? 1 : 0) + (comboState.placaOficial ? 1 : 0) + (comboState.replicaPlaca ? 1 : 0) + extrasCount;
 
       document.getElementById('cartTotalHeader').textContent = formatMoney(total.totalVista);
       document.getElementById('cartCountBadge').textContent = count;
@@ -813,6 +890,23 @@
         fotoContainer.innerHTML = comboState.fotografia 
           ? `<div class="text-xs bg-slate-50 p-3 rounded-xl border border-slate-200 font-bold text-slate-800">${comboState.fotografia.nomeEmpresa} - ${comboState.fotografia.nomePacote} (${formatMoney(comboState.fotografia.valorVista)})</div>`
           : `<p class="text-xs text-slate-400 italic">Nenhum pacote de fotografia escolhido.</p>`;
+      }
+
+      const extrasContainer = document.getElementById('extrasEmpresasComboItems');
+      if (extrasContainer) {
+        if (!comboState.fotoExtras || comboState.fotoExtras.length === 0) {
+          extrasContainer.innerHTML = `<p class="text-xs text-slate-400 italic">Nenhum item adicional selecionado.</p>`;
+        } else {
+          extrasContainer.innerHTML = comboState.fotoExtras.map(ex => `
+            <div class="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs">
+              <div>
+                <strong class="text-slate-800">${escapeHtml(ex.nome)}</strong>
+                <span class="text-slate-500 block text-[11px]">${escapeHtml(ex.empresa)}</span>
+              </div>
+              <span class="font-extrabold text-slate-900">${formatMoney(ex.valorVista)}</span>
+            </div>
+          `).join('');
+        }
       }
 
       updateColacaoBanner();
@@ -844,6 +938,12 @@
       if (comboState.cerimonial) { v += comboState.cerimonial.valorVista; p += comboState.cerimonial.valorPrazo; }
       if (comboState.decoracao && comboState.decoracao.empresaId !== comboState.cerimonial?.empresaId) { v += comboState.decoracao.valorVista; p += comboState.decoracao.valorPrazo; }
       if (comboState.fotografia) { v += comboState.fotografia.valorVista; p += comboState.fotografia.valorPrazo; }
+      if (comboState.fotoExtras) {
+        comboState.fotoExtras.forEach(ex => {
+          v += ex.valorVista || 0;
+          p += ex.valorPrazo || ex.valorVista || 0;
+        });
+      }
       if (comboState.placaOficial) { v += 150; p += 150; }
       if (comboState.replicaPlaca) { v += 250; p += 250; }
       return { totalVista: v, totalPrazo: p };
@@ -875,6 +975,9 @@
       const extras = [];
       if (comboState.placaOficial) extras.push("Placa Oficial");
       if (comboState.replicaPlaca) extras.push("Réplica");
+      if (comboState.fotoExtras) {
+        comboState.fotoExtras.forEach(e => extras.push(e.nome));
+      }
 
       const totais = calcularTotalCombo();
 
