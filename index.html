@@ -155,7 +155,7 @@
         </div>
       </div>
 
-      <!-- Grid Masonry (colunas dinâmicas para os blocos subirem sem buraco) -->
+      <!-- Grid Masonry -->
       <div id="empresasGrid" class="columns-1 lg:columns-2 gap-4 sm:gap-6 space-y-4 sm:space-y-6"></div>
     </section>
 
@@ -571,11 +571,11 @@
 
     function safeCreateIcons() {
       try {
-        if (window.lucide) {
+        if (window.lucide && typeof lucide.createIcons === 'function') {
           lucide.createIcons();
         }
       } catch (err) {
-        console.warn("Lucide icons warning:", err);
+        console.warn("Lucide icons:", err);
       }
     }
 
@@ -680,7 +680,7 @@
                     <span>Remover</span>
                   </button>
                 ` : `
-                  <button onclick="adicionarPacoteAoCombo('${emp.id}', '${pct.id}')" class="px-3.5 py-1.5 rounded-lg bg-univasf-700 hover:bg-univasf-800 text-white text-xs font-bold transition-all shadow-xs active:scale-98 flex items-center gap-1.5">
+                  <button onclick="adicionarPacoteAoCombo('${emp.id}', '${pct.id}')" class="px-3 py-1.5 rounded-lg bg-univasf-700 hover:bg-univasf-800 text-white text-xs font-bold transition-all shadow-xs active:scale-98 flex items-center gap-1.5">
                     <i data-lucide="plus" class="w-4 h-4 text-white"></i>
                     <span>Adicionar ao Combo</span>
                   </button>
@@ -957,7 +957,7 @@
     }
 
     /* ========================================================
-     * RENDERIZAÇÃO DAS REUNIÕES (ROBUSTO E SEM ERROS DE ÍCONE)
+     * RENDERIZAÇÃO ROBUSTA DA AGENDA DE REUNIÕES
      * ======================================================== */
     function applyFilterReunioes(filter) {
       currentFilterReunioes = filter;
@@ -980,30 +980,34 @@
     }
 
     function formatDataReuniao(dataStr, horarioStr) {
-      if (!dataStr) return { mesAbrev: 'SET', diaMes: '00', horario: horarioStr || '00:00', textoCompleto: '' };
-      const partes = dataStr.split('-');
-      const ano = parseInt(partes[0], 10);
-      const mes = parseInt(partes[1], 10);
-      const dia = parseInt(partes[2], 10);
-      const dataObj = new Date(ano, mes - 1, dia);
-      
-      const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-      const mesesAbrev = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-      const mesesExtenso = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+      try {
+        if (!dataStr) return { mesAbrev: 'SET', diaMes: '00', horario: horarioStr || '00:00', textoCompleto: '' };
+        const partes = String(dataStr).split('-');
+        const ano = parseInt(partes[0], 10);
+        const mes = parseInt(partes[1], 10);
+        const dia = parseInt(partes[2], 10);
+        const dataObj = new Date(ano, mes - 1, dia);
+        
+        const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+        const mesesAbrev = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+        const mesesExtenso = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
-      return {
-        diaSemana: diasSemana[dataObj.getDay()] || 'Data marcada',
-        diaMes: String(dia).padStart(2, '0'),
-        mesAbrev: mesesAbrev[mes - 1] || 'SET',
-        horario: horarioStr || '00:00',
-        textoCompleto: `${diasSemana[dataObj.getDay()] || ''}, ${dia} de ${mesExtenso[mes - 1] || ''} às ${horarioStr || ''}h`
-      };
+        return {
+          diaSemana: diasSemana[dataObj.getDay()] || 'Data marcada',
+          diaMes: String(dia).padStart(2, '0'),
+          mesAbrev: mesesAbrev[mes - 1] || 'SET',
+          horario: horarioStr || '00:00',
+          textoCompleto: `${diasSemana[dataObj.getDay()] || ''}, ${dia} de ${mesExtenso[mes - 1] || ''} às ${horarioStr || ''}h`
+        };
+      } catch (e) {
+        return { mesAbrev: 'SET', diaMes: '00', horario: horarioStr || '00:00', textoCompleto: '' };
+      }
     }
 
     function generateGoogleCalendarLink(reuniao) {
       try {
-        const [ano, mes, dia] = (reuniao.data || '2026-09-01').split('-');
-        const [hora, minuto] = (reuniao.horario || '12:00').split(':');
+        const [ano, mes, dia] = String(reuniao.data || '2026-09-01').split('-');
+        const [hora, minuto] = String(reuniao.horario || '12:00').split(':');
         const startStr = `${ano}${mes}${dia}T${hora}${minuto}00`;
         
         let endHora = parseInt(hora, 10) + 1;
@@ -1027,7 +1031,7 @@
       if (!grid) return;
 
       const filtradas = reunioesData.filter(r => {
-        const st = (r.status || '').toLowerCase();
+        const st = String(r.status || '').toLowerCase();
         if (currentFilterReunioes === 'todas') return true;
         if (currentFilterReunioes === 'proximas') return st === 'agendada' || st.includes('aguardando');
         if (currentFilterReunioes === 'realizadas') return st === 'realizada';
@@ -1049,11 +1053,10 @@
       grid.innerHTML = filtradas.map(r => {
         const dataFmt = formatDataReuniao(r.data, r.horario);
         const googleUrl = generateGoogleCalendarLink(r);
-        const st = (r.status || '').toLowerCase();
-        const isRealizada = st === 'realizada';
+        const isRealizada = String(r.status || '').toLowerCase() === 'realizada';
 
         let statusBadge = '';
-        if (st.includes('aguardando')) {
+        if (String(r.status || '').toLowerCase().includes('aguardando')) {
           statusBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300"><span class="w-2 h-2 rounded-full bg-amber-600"></span> ${escapeHtml(r.status)}</span>`;
         } else if (isRealizada) {
           statusBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200"><i data-lucide="check" class="w-3.5 h-3.5 text-slate-500"></i> Realizada</span>`;
@@ -1063,7 +1066,7 @@
 
         let iconSegmento = 'building';
         let corSegmento = 'bg-sky-100 text-sky-700';
-        const empNome = (r.empresa || '').toLowerCase();
+        const empNome = String(r.empresa || '').toLowerCase();
         if (empNome.includes('foto')) {
           iconSegmento = 'camera';
           corSegmento = 'bg-amber-100 text-amber-800';
@@ -1072,18 +1075,22 @@
           corSegmento = 'bg-pink-100 text-pink-700';
         }
 
-        const isOnline = (r.local || '').toLowerCase().includes('meet') || (r.local || '').toLowerCase().includes('online') || !!r.linkMeet;
+        const isOnline = String(r.local || '').toLowerCase().includes('meet') || String(r.local || '').toLowerCase().includes('online') || !!r.linkMeet;
 
+        // BOTÕES DA REUNIÃO
         let botoesAcao = '';
         if (isRealizada) {
+          // Quando realizada: oculta Meet e Agenda, mostrando botão da Ata
+          const idEmpresaLink = r.empresaId ? r.empresaId : String(r.empresa || '').toLowerCase().replace(/\s+/g, '_');
           botoesAcao = `
-            <a href="propostas.html?empresa=${r.empresaId || r.empresa.toLowerCase().replace(/\s+/g, '_')}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-univasf-50 hover:text-univasf-700 hover:border-univasf-300 border border-slate-200 text-slate-700 font-bold text-xs transition-all shadow-2xs group">
+            <a href="propostas.html?empresa=${idEmpresaLink}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-univasf-50 hover:text-univasf-700 hover:border-univasf-300 border border-slate-200 text-slate-700 font-bold text-xs transition-all shadow-2xs group">
               <i data-lucide="file-check-2" class="w-4 h-4 text-emerald-600"></i>
               <span>Ver Impressões & Ata</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5 opacity-60 group-hover:translate-x-0.5 transition-transform"></i>
             </a>
           `;
         } else {
+          // Quando agendada: mostra Meet e Agenda
           let btnAcesso = '';
           if (r.linkMeet && r.linkMeet.trim() !== '' && r.linkMeet !== 'https://meet.google.com/') {
             btnAcesso = `
@@ -1160,7 +1167,7 @@
       return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v || 0);
     }
     function escapeHtml(t) {
-      return (t || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[m]);
+      return String(t || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[m]);
     }
     function showToast(msg, type = 'info') {
       const c = document.getElementById('toastContainer');
