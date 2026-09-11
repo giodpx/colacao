@@ -1085,6 +1085,7 @@
       grid.innerHTML = filtradas.map(r => {
         const dataFmt = formatDataReuniao(r.data, r.horario);
         const googleUrl = generateGoogleCalendarLink(r);
+        const isRealizada = r.status.toLowerCase() === 'realizada';
 
         let statusBadge = '';
         if (r.status.toLowerCase().includes('aguardando')) {
@@ -1093,7 +1094,7 @@
               <span class="w-2 h-2 rounded-full bg-amber-600"></span> ${escapeHtml(r.status)}
             </span>
           `;
-        } else if (r.status === 'realizada') {
+        } else if (isRealizada) {
           statusBadge = `
             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">
               <i data-lucide="check" class="w-3.5 h-3.5 text-slate-500"></i> Realizada
@@ -1118,21 +1119,43 @@
         }
 
         const isOnline = r.local.toLowerCase().includes('meet') || r.local.toLowerCase().includes('online') || !!r.linkMeet;
-        
-        let btnAcesso = '';
-        if (r.linkMeet && r.linkMeet.trim() !== '' && r.linkMeet !== 'https://meet.google.com/') {
-          btnAcesso = `
-            <a href="${r.linkMeet}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-univasf-700 hover:bg-univasf-800 text-white font-bold text-xs shadow-xs transition-all active:scale-98">
-              <i data-lucide="video" class="w-4 h-4"></i>
-              Acessar Reunião Online
+
+        // Bloco de botões na lateral direita
+        let botoesAcao = '';
+        if (isRealizada) {
+          // Quando estiver realizada: esconde Meet e Agenda, mostrando o atalho direto para a Ata/Proposta
+          botoesAcao = `
+            <a href="propostas.html?empresa=${r.empresa.toLowerCase().replace(/\s+/g, '_')}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-univasf-50 hover:text-univasf-700 hover:border-univasf-300 border border-slate-200 text-slate-700 font-bold text-xs transition-all shadow-2xs group">
+              <i data-lucide="file-check-2" class="w-4 h-4 text-emerald-600"></i>
+              <span>Ver Impressões & Ata</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 opacity-60 group-hover:translate-x-0.5 transition-transform"></i>
             </a>
           `;
         } else {
-          btnAcesso = `
-            <button type="button" onclick="alert('📍 Local / Plataforma:\\n${escapeHtml(r.local)}\\n\\nPauta: ${escapeHtml(r.pauta)}')" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors">
-              <i data-lucide="${isOnline ? 'video' : 'map-pin'}" class="w-4 h-4 text-slate-600"></i>
-              ${isOnline ? 'Link em breve' : 'Ver Local'}
-            </button>
+          // Quando estiver agendada: exibe botão do Meet e Google Agenda
+          let btnAcesso = '';
+          if (r.linkMeet && r.linkMeet.trim() !== '' && r.linkMeet !== 'https://meet.google.com/') {
+            btnAcesso = `
+              <a href="${r.linkMeet}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-univasf-700 hover:bg-univasf-800 text-white font-bold text-xs shadow-xs transition-all active:scale-98">
+                <i data-lucide="video" class="w-4 h-4"></i>
+                Acessar Reunião Online
+              </a>
+            `;
+          } else {
+            btnAcesso = `
+              <button type="button" onclick="alert('📍 Local / Plataforma:\\n${escapeHtml(r.local)}\\n\\nPauta: ${escapeHtml(r.pauta)}')" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors">
+                <i data-lucide="${isOnline ? 'video' : 'map-pin'}" class="w-4 h-4 text-slate-600"></i>
+                ${isOnline ? 'Link em breve' : 'Ver Local'}
+              </button>
+            `;
+          }
+
+          botoesAcao = `
+            ${btnAcesso}
+            <a href="${googleUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-xs shadow-2xs transition-all" title="Adicionar lembrete à sua agenda do Google">
+              <i data-lucide="calendar-plus" class="w-4 h-4 text-univasf-600"></i>
+              Salvar no Google Agenda
+            </a>
           `;
         }
 
@@ -1175,11 +1198,7 @@
               </div>
 
               <div class="flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-center lg:items-end gap-2.5 shrink-0 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100">
-                ${btnAcesso}
-                <a href="${googleUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-xs shadow-2xs transition-all" title="Adicionar lembrete à sua agenda do Google">
-                  <i data-lucide="calendar-plus" class="w-4 h-4 text-univasf-600"></i>
-                  Salvar no Google Agenda
-                </a>
+                ${botoesAcao}
               </div>
 
             </div>
