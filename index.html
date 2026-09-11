@@ -2,7 +2,7 @@
 <html lang="pt-BR" class="h-full scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Formatura UNIVASF - Catálogo, Combo & Votação Oficial</title>
   
   <!-- Google Fonts: Plus Jakarta Sans -->
@@ -38,14 +38,6 @@
               800: '#074b82',
               900: '#0c3f6c',
               950: '#082847',
-            },
-            amberBrand: {
-              50: '#fffbeb',
-              100: '#fef3c7',
-              400: '#fbbf24',
-              500: '#f59e0b',
-              600: '#d97706',
-              700: '#b45309',
             }
           }
         }
@@ -54,46 +46,26 @@
   </script>
 
   <style>
-    /* Custom Scrollbar */
+    body {
+      overflow-x: hidden;
+    }
     ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
     }
-    ::-webkit-scrollbar-track {
-      background: #f1f5f9;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
-    }
-    .badge-cerimonial {
-      background-color: #e0f2fe;
-      color: #0369a1;
-      border: 1px solid #bae6fd;
-    }
-    .badge-decoracao {
-      background-color: #fce7f3;
-      color: #be185d;
-      border: 1px solid #fbcfe8;
-    }
-    .badge-fotografia {
-      background-color: #fef3c7;
-      color: #b45309;
-      border: 1px solid #fde68a;
-    }
-    .badge-baile {
-      background-color: #f3e8ff;
-      color: #7e22ce;
-      border: 1px solid #e9d5ff;
-    }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    
+    .badge-cerimonial { background-color: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+    .badge-decoracao { background-color: #fce7f3; color: #be185d; border: 1px solid #fbcfe8; }
+    .badge-fotografia { background-color: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+    .badge-baile { background-color: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+    
     .card-transition {
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .card-transition:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
     }
     @keyframes slideIn {
       from { transform: translateY(100%); opacity: 0; }
@@ -107,65 +79,61 @@
 <body class="bg-slate-50 text-slate-800 font-sans min-h-full flex flex-col antialiased selection:bg-univasf-500 selection:text-white">
 
   <!-- ========================================== -->
-  <!-- 1. HEADER FIXO / NAVBAR                   -->
+  <!-- 1. NAVBAR OTIMIZADA PARA MOBILE E DESKTOP  -->
   <!-- ========================================== -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-18">
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-18 gap-2">
         
-        <!-- Logo / Titulo (Clicavel: Retorna para Home) -->
-        <button onclick="navigateTo('catalogo')" class="group flex items-center gap-3 text-left focus:outline-hidden" title="Voltar ao Catálogo Principal">
-          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-univasf-800 via-univasf-600 to-sky-500 flex items-center justify-center text-white shadow-md shadow-univasf-500/20 group-hover:scale-105 transition-transform">
-            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+        <!-- Logo / Titulo Principal -->
+        <button onclick="navigateTo('catalogo')" class="group flex items-center gap-2 sm:gap-3 text-left focus:outline-hidden min-w-0" title="Voltar ao Catálogo">
+          <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-univasf-800 via-univasf-600 to-sky-500 flex items-center justify-center text-white shadow-md shadow-univasf-500/20 shrink-0">
+            <i data-lucide="graduation-cap" class="w-5 h-5 sm:w-6 sm:h-6"></i>
           </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="font-extrabold text-lg sm:text-xl text-slate-900 tracking-tight group-hover:text-univasf-700 transition-colors">Formatura UNIVASF</span>
-              <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-univasf-100 text-univasf-800 border border-univasf-200">
+          <div class="truncate">
+            <div class="flex items-center gap-1.5">
+              <span class="font-extrabold text-base sm:text-xl text-slate-900 tracking-tight truncate">UNIVASF</span>
+              <span class="hidden md:inline-flex items-center px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-univasf-100 text-univasf-800 border border-univasf-200">
                 Oficial
               </span>
             </div>
-            <p class="text-xs text-slate-500 font-medium">Comissão de Formatura &bull; Portal de Decisão</p>
+            <p class="text-[10px] sm:text-xs text-slate-500 font-medium truncate">Formatura & Cotações</p>
           </div>
         </button>
 
-        <!-- Ações do Topo -->
-        <div class="flex items-center gap-1.5 sm:gap-2.5">
+        <!-- Menu de Ações (Design compacto e sem overflow no mobile) -->
+        <div class="flex items-center gap-1 sm:gap-2">
           
-          <!-- Botão de Navegação: Agenda de Reuniões -->
-          <button onclick="navigateTo('reunioes')" id="navReunioesBtn" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-univasf-700 hover:bg-slate-100 rounded-lg transition-colors relative" title="Ver cronograma de apresentações das empresas">
+          <!-- Botão: Propostas Detalhadas -->
+          <a href="propostas.html" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-univasf-700 hover:bg-slate-100 rounded-lg transition-colors" title="Ver propostas completas, atas e documentos">
+            <i data-lucide="file-text" class="w-4 h-4 text-emerald-600"></i>
+            <span class="hidden md:inline">Propostas & Atas</span>
+          </a>
+
+          <!-- Botão: Reuniões -->
+          <button onclick="navigateTo('reunioes')" id="navReunioesBtn" class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 rounded-lg transition-colors relative" title="Reuniões">
             <i data-lucide="calendar" class="w-4 h-4 text-univasf-600"></i>
-            <span class="hidden md:inline">Reuniões / Apresentações</span>
-            <span class="md:hidden">Reuniões</span>
+            <span class="hidden sm:inline">Reuniões</span>
             <span id="reunioesCountBadge" class="px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-sky-100 text-sky-800 border border-sky-200">5</span>
           </button>
 
-          <!-- Link Discreto: Apuração / Votação -->
-          <button onclick="navigateTo('apuracao')" id="navApuracaoBtn" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 text-xs sm:text-sm font-medium text-slate-600 hover:text-univasf-700 hover:bg-slate-100 rounded-lg transition-colors">
-            <i data-lucide="bar-chart-3" class="w-4 h-4 text-slate-500"></i>
-            <span class="hidden lg:inline">Apuração / Votação</span>
-            <span class="lg:hidden hidden sm:inline">Votos</span>
-          </button>
-
-          <!-- Botão de Ação Rápida: Meu Cadastro / Perfil -->
-          <button onclick="openProfileModal()" id="navProfileBtn" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-400 transition-all shadow-2xs">
+          <!-- Perfil / Cadastro -->
+          <button onclick="openProfileModal()" id="navProfileBtn" class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-all shadow-2xs">
             <span class="relative flex h-2 w-2" id="profileStatusIndicator">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
             </span>
             <i data-lucide="user" class="w-4 h-4 text-slate-600"></i>
-            <span id="navProfileText" class="hidden sm:inline">Meu Cadastro / Perfil</span>
-            <span class="sm:hidden">Perfil</span>
+            <span id="navProfileText" class="hidden sm:inline">Perfil</span>
           </button>
 
-          <!-- Botão do Carrinho/Combo: Meu Combo -->
-          <button onclick="navigateTo('combo')" id="navComboBtn" class="relative flex items-center gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-bold text-white bg-univasf-700 hover:bg-univasf-800 rounded-xl shadow-md shadow-univasf-700/20 hover:shadow-lg transition-all active:scale-98">
+          <!-- Meu Combo (Carrinho) -->
+          <button onclick="navigateTo('combo')" id="navComboBtn" class="relative flex items-center gap-1.5 px-2.5 sm:px-3 py-2 text-xs sm:text-sm font-bold text-white bg-univasf-700 hover:bg-univasf-800 rounded-xl shadow-xs transition-all active:scale-98">
             <div class="relative">
               <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-              <span id="cartCountBadge" class="absolute -top-2.5 -right-2.5 w-4 h-4 bg-amber-500 text-white font-extrabold text-[10px] rounded-full flex items-center justify-center ring-2 ring-white">0</span>
+              <span id="cartCountBadge" class="absolute -top-2.5 -right-2.5 w-4 h-4 bg-amber-500 text-white font-black text-[9px] rounded-full flex items-center justify-center ring-2 ring-white">0</span>
             </div>
-            <span class="hidden lg:inline">Meu Combo:</span>
-            <span id="cartTotalHeader" class="font-extrabold text-amber-300">R$ 0</span>
+            <span id="cartTotalHeader" class="font-extrabold text-amber-300 text-xs sm:text-sm">R$ 0</span>
           </button>
 
         </div>
@@ -176,1258 +144,484 @@
   <!-- ========================================== -->
   <!-- CONTEÚDO PRINCIPAL (SPA TABS)              -->
   <!-- ========================================== -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-8">
 
     <!-- ======================================================== -->
-    <!-- ABA 1: CATÁLOGO DE EMPRESAS (HOME - PÁGINA PRINCIPAL)     -->
+    <!-- ABA 1: CATÁLOGO DE EMPRESAS (HOME)                       -->
     <!-- ======================================================== -->
-    <section id="viewCatalogo" class="space-y-6">
+    <section id="viewCatalogo" class="space-y-5 sm:space-y-6">
       
-      <!-- Banner de Boas-vindas / Contexto -->
-      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-univasf-900 via-univasf-800 to-slate-900 text-white p-6 sm:p-8 shadow-lg">
-        <div class="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-univasf-500/10 blur-2xl pointer-events-none"></div>
+      <!-- Banner de Boas-vindas -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-univasf-900 via-univasf-800 to-slate-900 text-white p-5 sm:p-8 shadow-lg">
         <div class="relative z-10 max-w-3xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-univasf-500/20 border border-univasf-400/30 text-univasf-200 text-xs font-semibold mb-3">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-univasf-500/20 border border-univasf-400/30 text-univasf-200 text-xs font-semibold mb-2 sm:mb-3">
             <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
-            Assemblia e Cotação Oficial de Fornecedores
+            Assembleia & Cotação Oficial
           </div>
-          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-2">
+          <h1 class="text-xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-2">
             Escolha e Monte seu Combo de Formatura
           </h1>
-          <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
-            Explore as propostas recebidas pela Comissão, confira pacotes, valores e observações detalhadas. Monte seu combo personalizado para simular seus custos e acompanhar as reuniões de negociação da turma.
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+            Confira valores, pacotes e acesse as atas detalhadas de cada fornecedor com fotos e PDF completo das propostas.
           </p>
-          <div class="flex flex-wrap items-center gap-3 pt-1">
-            <button onclick="navigateTo('reunioes')" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-900 text-xs sm:text-sm font-bold transition-colors shadow-xs">
-              <i data-lucide="calendar" class="w-4 h-4"></i>
-              Ver Agenda de Reuniões
-            </button>
-            <a href="https://drive.google.com/drive/folders/1p2eSD5jgs1Y7Ke7nt4psJSjDJx23twtS" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold transition-colors shadow-xs group" title="Acessar pasta oficial do Google Drive com propostas e documentos">
-              <i data-lucide="folder-open" class="w-4 h-4 text-emerald-200"></i>
-              <span>Drive da Colação</span>
-              <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-80 group-hover:translate-x-0.5 transition-transform"></i>
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+            <a href="propostas.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold transition-colors shadow-xs">
+              <i data-lucide="file-check-2" class="w-4 h-4"></i>
+              Ver Propostas Completas & PDFs
             </a>
-            <button onclick="openProfileModal()" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-xs sm:text-sm font-semibold text-white transition-colors backdrop-blur-xs">
-              <i data-lucide="id-card" class="w-4 h-4 text-sky-300"></i>
-              Identifique-se no Perfil
+            <button onclick="navigateTo('reunioes')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-900 text-xs sm:text-sm font-bold transition-colors shadow-xs">
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+              Agenda de Reuniões
             </button>
-            <button onclick="navigateTo('combo')" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-xs sm:text-sm font-semibold text-white transition-colors backdrop-blur-xs">
+            <button onclick="navigateTo('combo')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-xs sm:text-sm font-semibold text-white transition-colors backdrop-blur-xs">
               <i data-lucide="calculator" class="w-4 h-4 text-emerald-300"></i>
-              Simular Meu Combo
+              Simular Combo
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Card Destaque: Drive da Colação (Documentos, Contratos & Orçamentos) -->
-      <div class="bg-gradient-to-r from-emerald-50 via-teal-50/50 to-white border border-emerald-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs">
-        <div class="flex items-start gap-3.5">
-          <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
-            <i data-lucide="folder-archive" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <div class="flex flex-wrap items-center gap-2 mb-0.5">
-              <h3 class="font-extrabold text-slate-900 text-sm sm:text-base">Documentos & Orçamentos Oficiais no Drive</h3>
-              <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase tracking-wider">Google Drive</span>
-            </div>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Acesse as pastas completas com arquivos de propostas, minutas contratuais e materiais enviados pelas empresas à Comissão da UNIVASF.
-            </p>
-          </div>
-        </div>
-        <a href="https://drive.google.com/drive/folders/1p2eSD5jgs1Y7Ke7nt4psJSjDJx23twtS" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition-all shrink-0 group">
-          <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
-          <span>Acessar Drive da Colação</span>
-        </a>
-      </div>
-
-      <!-- Barra de Filtros (Pílulas com Baile / Festa) -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+      <!-- Barra de Filtros -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200 shadow-xs">
         <div class="flex items-center gap-2">
           <i data-lucide="filter" class="w-4 h-4 text-slate-400"></i>
-          <span class="text-xs sm:text-sm font-bold text-slate-700 uppercase tracking-wider">Filtrar por Serviço:</span>
+          <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Filtrar Serviço:</span>
         </div>
-        <div class="flex flex-wrap items-center gap-2" id="filterContainer">
-          <button onclick="applyFilter('todas')" data-filter="todas" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-univasf-700 text-white shadow-xs">
-            Todas
-          </button>
-          <button onclick="applyFilter('fotografia')" data-filter="fotografia" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
-            Fotografia
-          </button>
-          <button onclick="applyFilter('cerimonial')" data-filter="cerimonial" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
-            Cerimonial
-          </button>
-          <button onclick="applyFilter('decoracao')" data-filter="decoracao" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
-            Decoração
-          </button>
-          <button onclick="applyFilter('baile')" data-filter="baile" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
-            Baile / Festa
-          </button>
+        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2" id="filterContainer">
+          <button onclick="applyFilter('todas')" data-filter="todas" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-univasf-700 text-white shadow-xs">Todas</button>
+          <button onclick="applyFilter('fotografia')" data-filter="fotografia" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Fotografia</button>
+          <button onclick="applyFilter('cerimonial')" data-filter="cerimonial" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Cerimonial</button>
+          <button onclick="applyFilter('decoracao')" data-filter="decoracao" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Decoração</button>
+          <button onclick="applyFilter('baile')" data-filter="baile" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Baile</button>
+          <button onclick="applyFilter('placa')" data-filter="placa" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Placa</button>
+<button onclick="applyFilter('replica')" data-filter="replica" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Réplica</button>
         </div>
       </div>
 
       <!-- Grid de Cards de Empresas -->
-      <div id="empresasGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Inserido dinamicamente via JS -->
+      <div id="empresasGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        <!-- Gerado dinamicamente via JS -->
       </div>
     </section>
 
     <!-- ======================================================== -->
-    <!-- ABA 2: MONTE SEU COMBO (CARRINHO INTELIGENTE & VOTAÇÃO)   -->
+    <!-- ABA 2: MONTE SEU COMBO                                   -->
     <!-- ======================================================== -->
     <section id="viewCombo" class="hidden space-y-6">
-      
-      <!-- Topo de Navegação com Retorno Explícito -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
         <div>
-          <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
             <i data-lucide="shopping-bag" class="w-6 h-6 text-univasf-600"></i>
             Monte Seu Combo Individual
           </h2>
-          <p class="text-sm text-slate-500">Revise sua seleção, valide a colação de grau e simule o investimento por formando.</p>
+          <p class="text-xs sm:text-sm text-slate-500">Revise sua seleção, valide a colação e simule os custos.</p>
         </div>
-        <button onclick="navigateTo('catalogo')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-sm font-bold shadow-2xs transition-all group">
+        <button onclick="navigateTo('catalogo')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition-all group shrink-0">
           <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500 group-hover:-translate-x-1 transition-transform"></i>
-          Voltar para o Catálogo (Home)
+          Voltar ao Catálogo
         </button>
       </div>
 
-      <!-- REGRA INTELIGENTE DA COLAÇÃO SOLENE (Cerimonial + Decoração) -->
-      <div id="colacaoStatusBanner" class="rounded-2xl p-5 border transition-all">
-        <!-- Renderizado dinamicamente via updateColacaoBanner() -->
-      </div>
+      <!-- STATUS DA COLAÇÃO -->
+      <div id="colacaoStatusBanner" class="rounded-2xl p-4 sm:p-5 border transition-all"></div>
 
-      <!-- Container de Itens Selecionados no Combo -->
+      <!-- ITENS SELECIONADOS & RESUMO -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        <!-- Coluna Esquerda/Centro: Detalhamento dos Serviços -->
-        <div class="lg:col-span-2 space-y-5">
+        <div class="lg:col-span-2 space-y-4">
           
-          <!-- Card 1: Colação Solene (Cerimonial & Decoração) -->
-          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
-            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-              <div class="flex items-center gap-2.5">
-                <span class="w-8 h-8 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-sm">
-                  1
-                </span>
-                <div>
-                  <h3 class="font-bold text-slate-900 text-base">Colação de Grau Solene</h3>
-                  <p class="text-xs text-slate-500">Exige obrigatoriamente Cerimonial e Decoração</p>
-                </div>
-              </div>
-              <button onclick="navigateTo('catalogo')" class="text-xs font-semibold text-univasf-700 hover:text-univasf-800 underline">
-                Alterar no catálogo
-              </button>
+          <!-- Card Colação Solene -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs">
+            <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+              <span class="font-bold text-slate-900 text-sm sm:text-base">1. Colação de Grau Solene</span>
+              <button onclick="navigateTo('catalogo')" class="text-xs font-semibold text-univasf-700 hover:underline">Alterar</button>
             </div>
-            
-            <div id="colacaoComboItems" class="space-y-3">
-              <!-- Renderizado via JS -->
-            </div>
+            <div id="colacaoComboItems" class="space-y-3"></div>
           </div>
 
-          <!-- Card 2: Fotografia & Extras -->
-          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
-            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-              <div class="flex items-center gap-2.5">
-                <span class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-sm">
-                  2
-                </span>
-                <div>
-                  <h3 class="font-bold text-slate-900 text-base">Fotografia & Itens Opcionais</h3>
-                  <p class="text-xs text-slate-500">Pacote principal escolhido e produtos avulsos</p>
-                </div>
-              </div>
-              <button onclick="navigateTo('catalogo'); applyFilter('fotografia');" class="text-xs font-semibold text-univasf-700 hover:text-univasf-800 underline">
-                Ver opções de fotos
-              </button>
+          <!-- Card Fotografia -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs">
+            <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+              <span class="font-bold text-slate-900 text-sm sm:text-base">2. Fotografia & Extras</span>
+              <button onclick="navigateTo('catalogo'); applyFilter('fotografia');" class="text-xs font-semibold text-univasf-700 hover:underline">Ver fotos</button>
             </div>
-            
-            <div id="fotografiaComboItems" class="space-y-3">
-              <!-- Renderizado via JS -->
-            </div>
+            <div id="fotografiaComboItems" class="space-y-3"></div>
           </div>
 
-          <!-- Card 3: Placa & Réplica Oficial -->
-          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
-            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-              <div class="flex items-center gap-2.5">
-                <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">
-                  3
-                </span>
-                <div>
-                  <h3 class="font-bold text-slate-900 text-base">Placa de Formatura & Réplica</h3>
-                  <p class="text-xs text-slate-500">Cota coletiva da placa do bloco e réplica individual de acrílico/inox</p>
+          <!-- Card Placa Oficial -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs space-y-3">
+            <span class="font-bold text-slate-900 text-sm sm:text-base block border-b border-slate-100 pb-2">3. Placa UNIVASF & Réplica</span>
+            <label class="flex items-start gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+              <input type="checkbox" id="checkPlacaOficial" onchange="toggleItemInteresse('placa', this.checked)" class="mt-1 w-4 h-4 rounded text-univasf-600 focus:ring-univasf-500 border-slate-300">
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-slate-800 text-xs sm:text-sm">Cota da Placa Oficial (Campus UNIVASF)</span>
+                  <span class="text-xs font-bold text-slate-700">R$ 150,00</span>
                 </div>
+                <p class="text-[11px] text-slate-500 mt-0.5">Participação no custo total da placa de formatura gravada.</p>
               </div>
-              <span class="text-xs text-slate-400 font-medium">Itens Oficiais</span>
-            </div>
+            </label>
 
-            <div class="space-y-3">
-              <!-- Placa Coletiva -->
-              <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
-                <input type="checkbox" id="checkPlacaOficial" onchange="toggleItemInteresse('placa', this.checked)" class="mt-1 w-4 h-4 rounded text-univasf-600 focus:ring-univasf-500 border-slate-300">
-                <div class="flex-1">
-                  <div class="flex items-center justify-between">
-                    <span class="font-bold text-slate-800 text-sm">Cota da Placa Oficial UNIVASF (Fixada no Campus)</span>
-                    <span class="text-xs font-bold text-slate-700">R$ 150,00</span>
-                  </div>
-                  <p class="text-xs text-slate-500 mt-0.5">Participação individual no custo total de confecção e instalação da placa oficial com nome dos formandos e professores.</p>
+            <label class="flex items-start gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+              <input type="checkbox" id="checkReplicaPlaca" onchange="toggleItemInteresse('replica', this.checked)" class="mt-1 w-4 h-4 rounded text-univasf-600 focus:ring-univasf-500 border-slate-300">
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-slate-800 text-xs sm:text-sm">Réplica Individual (Mesa / Acrílico)</span>
+                  <span class="text-xs font-bold text-slate-700">R$ 250,00</span>
                 </div>
-              </label>
-
-              <!-- Réplica Individual -->
-              <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
-                <input type="checkbox" id="checkReplicaPlaca" onchange="toggleItemInteresse('replica', this.checked)" class="mt-1 w-4 h-4 rounded text-univasf-600 focus:ring-univasf-500 border-slate-300">
-                <div class="flex-1">
-                  <div class="flex items-center justify-between">
-                    <span class="font-bold text-slate-800 text-sm">Réplica Individual da Placa (Mesa / Acrílico)</span>
-                    <span class="text-xs font-bold text-slate-700">R$ 250,00</span>
-                  </div>
-                  <p class="text-xs text-slate-500 mt-0.5">Lembrança personalizada de mesa em acrílico/aço escovado para guardar de recordação.</p>
-                </div>
-              </label>
-            </div>
+                <p class="text-[11px] text-slate-500 mt-0.5">Lembrança personalizada individual para estante.</p>
+              </div>
+            </label>
           </div>
-
         </div>
 
-        <!-- Coluna Direita: Resumo Financeiro & Votação Oficial -->
-        <div class="space-y-5">
-          
-          <div class="bg-gradient-to-b from-slate-900 to-univasf-950 text-white rounded-2xl p-6 shadow-xl sticky top-24">
-            <div class="flex items-center justify-between pb-4 border-b border-white/10">
-              <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Resumo Financeiro</span>
-              <span class="px-2 py-0.5 rounded text-[11px] font-extrabold bg-amber-400 text-slate-950">Simulação</span>
+        <!-- Coluna Financeira -->
+        <div>
+          <div class="bg-gradient-to-b from-slate-900 to-univasf-950 text-white rounded-2xl p-5 sm:p-6 shadow-xl sticky top-20">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Resumo da Simulação</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-amber-400 text-slate-950">Pessoal</span>
             </div>
 
-            <!-- Valores -->
-            <div class="py-5 space-y-4">
+            <div class="py-4 space-y-3">
               <div>
-                <span class="text-xs text-slate-400 block mb-1">Total Estimado à Vista:</span>
-                <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400 tracking-tight" id="comboTotalVista">
-                  R$ 0,00
-                </div>
+                <span class="text-xs text-slate-400 block">Total Estimado à Vista:</span>
+                <div class="text-3xl font-extrabold text-emerald-400 tracking-tight" id="comboTotalVista">R$ 0,00</div>
               </div>
-
               <div class="pt-2 border-t border-white/10">
-                <span class="text-xs text-slate-400 block mb-1">Total Estimado Parcelado:</span>
-                <div class="text-xl font-bold text-slate-200" id="comboTotalPrazo">
-                  R$ 0,00
-                </div>
-                <p class="text-[11px] text-slate-400 mt-1">Conforme condições de cartão de crédito ou boleto informadas por cada fornecedor.</p>
+                <span class="text-xs text-slate-400 block">Total Estimado Parcelado:</span>
+                <div class="text-lg font-bold text-slate-200" id="comboTotalPrazo">R$ 0,00</div>
               </div>
             </div>
 
-            <!-- Mensagem explicativa -->
-            <div class="p-3 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 leading-relaxed mb-4">
-              <i data-lucide="info" class="w-3.5 h-3.5 text-amber-400 inline mr-1"></i>
-              Essa simulação serve para guiar seu orçamento pessoal. A contratação dos serviços coletivos da turma será decidida pela votação da maioria.
-            </div>
-
-            <!-- Card Informativo de Bloqueio da Votação Oficial -->
-            <div class="p-3.5 rounded-xl bg-amber-500/15 border border-amber-400/30 text-xs text-amber-100 leading-relaxed mb-4">
-              <div class="flex items-start gap-2.5">
-                <i data-lucide="info" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
-                <div>
-                  <strong class="font-bold text-amber-300 block mb-1">Aviso da Comissão de Formatura:</strong>
-                  ℹA votação oficial da turma ainda não está aberta. Acompanhe a aba <button type="button" onclick="navigateTo('reunioes')" class="underline font-bold text-white hover:text-amber-300 inline">"📅 Agenda de Reuniões"</button> para participar das conversas com as empresas antes da decisão final. Você ainda pode simular seus custos e salvar seu cadastro normalmente!
-                </div>
-              </div>
-            </div>
-
-            <!-- Botão de Voto Oficial (Bloqueado Temporariamente) -->
-            <button disabled id="btnRegistrarVoto" class="w-full py-3.5 px-4 rounded-xl bg-slate-800 text-slate-400 border border-slate-700 font-extrabold text-xs sm:text-sm cursor-not-allowed shadow-inner transition-all flex items-center justify-center gap-2 opacity-90" title="A votação oficial será aberta após o ciclo de apresentações com as empresas">
-              <i data-lucide="lock" class="w-4 h-4 text-amber-400"></i>
-              <span>Votação Oficial em Breve (Ciclo de Reuniões em Andamento)</span>
-            </button>
-            <!-- Botão de Salvar Simulação de Combo -->
-            <button type="button" onclick="salvarComboSimulacao()" class="w-full mt-2.5 py-3 px-4 rounded-xl bg-univasf-700 hover:bg-univasf-800 text-white font-bold text-xs sm:text-sm shadow-md shadow-univasf-700/20 transition-all flex items-center justify-center gap-2">
+            <button type="button" onclick="salvarComboSimulacao()" class="w-full py-3 px-4 rounded-xl bg-univasf-700 hover:bg-univasf-800 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2">
               <i data-lucide="bookmark-check" class="w-4 h-4 text-sky-300"></i>
-              <span>Salvar Minha Simulação de Combo</span>
+              Salvar Minha Simulação
             </button>
 
-            <!-- Status do Formando -->
             <div class="mt-4 pt-3 border-t border-white/10 text-center">
               <span class="text-[11px] text-slate-400 block" id="votoUsuarioContext">
-                Formando identificado: <strong class="text-white" id="votoNomeDisplay">Não identificado</strong>
+                Formando: <strong class="text-white" id="votoNomeDisplay">Não identificado</strong>
               </span>
-              <button onclick="openProfileModal()" class="text-xs text-sky-300 hover:underline font-semibold mt-1">
-                Editar dados do formando
-              </button>
+              <button onclick="openProfileModal()" class="text-xs text-sky-300 hover:underline font-semibold mt-1">Editar perfil</button>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
 
     <!-- ======================================================== -->
-    <!-- ABA NOVA: 📅 AGENDA DE REUNIÕES COM EMPRESAS             -->
+    <!-- ABA 3: AGENDA DE REUNIÕES                                -->
     <!-- ======================================================== -->
     <section id="viewReunioes" class="hidden space-y-6">
-      
-      <!-- Topo com Botão de Retorno à Home -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
         <div>
-          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-100 text-sky-800 mb-1">
-            <i data-lucide="calendar-clock" class="w-3.5 h-3.5"></i>
-            Ciclo Oficial de Encontros
-          </div>
-          <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
             <i data-lucide="calendar" class="w-6 h-6 text-univasf-600"></i>
-            Agenda de Reuniões com as Empresas
+            Agenda de Reuniões com Empresas
           </h2>
-          <p class="text-sm text-slate-500">Participe das apresentações para avaliar amostras, tirar dúvidas de contratos e negociar antes da decisão final da turma.</p>
+          <p class="text-xs sm:text-sm text-slate-500">Participe dos encontros antes da decisão final.</p>
         </div>
-        
-        <button onclick="navigateTo('catalogo')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition-all group shrink-0">
-          <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500 group-hover:-translate-x-1 transition-transform"></i>
-          Voltar para o Catálogo (Home)
+        <button onclick="navigateTo('catalogo')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition-all shrink-0">
+          <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500"></i>
+          Voltar ao Catálogo
         </button>
       </div>
 
-      <!-- Banner de Instruções -->
-      <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-univasf-950 via-univasf-900 to-slate-900 text-white shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div class="flex items-start gap-3.5">
-          <div class="w-10 h-10 rounded-xl bg-univasf-500/20 border border-univasf-400/30 flex items-center justify-center shrink-0 text-amber-400">
-            <i data-lucide="sparkles" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <h4 class="font-bold text-sm sm:text-base text-white">Participe e Tire suas Dúvidas Direto com os Fornecedores</h4>
-            <p class="text-xs sm:text-sm text-slate-300 mt-0.5 leading-relaxed">
-              Cada empresa terá um momento exclusivo com os formandos. Clique em <strong>"📅 Salvar no Google Agenda"</strong> para ser lembrado e acessar os links do Google Meet diretamente pelo celular.
-            </p>
-          </div>
-        </div>
-        <div class="shrink-0">
-          <button onclick="navigateTo('combo')" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-xs transition-colors whitespace-nowrap">
-            Simular Meu Combo
-          </button>
-        </div>
-      </div>
-
-      <!-- Barra de Filtros das Reuniões -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
-        <div class="flex items-center gap-2">
-          <i data-lucide="filter" class="w-4 h-4 text-slate-400"></i>
-          <span class="text-xs sm:text-sm font-bold text-slate-700 uppercase tracking-wider">Filtrar Reuniões:</span>
-        </div>
-        <div class="flex flex-wrap items-center gap-2" id="filterReunioesContainer">
-          <button onclick="applyFilterReunioes('todas')" data-filter-reuniao="todas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-univasf-700 text-white shadow-xs">
-            Todas
-          </button>
-          <button onclick="applyFilterReunioes('proximas')" data-filter-reuniao="proximas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
-            Próximas Reuniões
-          </button>
-          <button onclick="applyFilterReunioes('realizadas')" data-filter-reuniao="realizadas" class="filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
-            Reuniões Realizadas
-          </button>
-        </div>
-      </div>
-
-      <!-- Timeline / Lista de Cards de Reuniões -->
-      <div id="reunioesGrid" class="space-y-4">
-        <!-- Inserido dinamicamente via renderReunioes() -->
-      </div>
-
+      <div id="reunioesGrid" class="space-y-3 sm:space-y-4"></div>
     </section>
-
-    <!-- ======================================================== -->
-    <!-- ABA 3: AUDITORIA & APURAÇÃO (PAINEL DA COMISSÃO)          -->
-    <!-- ======================================================== -->
-    <section id="viewApuracao" class="hidden space-y-6">
-      
-      <!-- Topo com Botão de Retorno à Home -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
-        <div>
-          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-800 mb-1">
-            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-            Transparência & Governança
-          </div>
-          <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">
-            Painel de Apuração & Auditoria de Votos
-          </h2>
-          <p class="text-sm text-slate-500">Visualização em tempo real das preferências da turma com dados salvos no sistema.</p>
-        </div>
-        
-        <div class="flex flex-wrap items-center gap-2">
-          <button onclick="navigateTo('catalogo')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition-all group">
-            <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500 group-hover:-translate-x-1 transition-transform"></i>
-            Voltar para o Catálogo (Home)
-          </button>
-          
-                    <input type="file" id="inputImportCsv" accept=".csv" class="hidden" onchange="importarPlanilhaCsv(event)">
-          <button onclick="document.getElementById('inputImportCsv').click()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition-all" title="Importar planilha CSV (ex: baixada do Netlify Forms)">
-            <i data-lucide="upload" class="w-4 h-4 text-slate-500"></i>
-            Importar CSV
-          </button>
-
-          <button onclick="exportarVotacaoCSV()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-xs transition-colors">
-            <i data-lucide="download" class="w-4 h-4"></i>
-            Exportar Votação para CSV / Excel
-          </button>
-        </div>
-      </div>
-
-            <!-- Banner Informativo Netlify Forms -->
-      <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-200 text-indigo-950 text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
-        <div class="flex items-start gap-3">
-          <div class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center shrink-0 mt-0.5">
-            <i data-lucide="cloud" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <strong class="font-bold text-indigo-900 block text-sm">☁️ Armazenamento Online Centralizado (Netlify Forms Gratuito)</strong>
-            <p class="text-xs text-indigo-800 mt-0.5 leading-relaxed">
-              Cada formando que salva o cadastro ou simulação transmite sua resposta em tempo real para o banco de dados do <strong>Netlify Forms</strong> da Comissão.
-              Para baixar a planilha consolidada com todas as respostas dos alunos: acesse seu painel em <em>Netlify &gt; Forms &gt; cadastro-formandos &gt; Download as CSV</em> ou utilize o botão verde de exportação.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dashboard de Contagem (KPI Cards) -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-slate-500 uppercase">Total de Votos</span>
-            <div class="w-8 h-8 rounded-lg bg-univasf-100 text-univasf-700 flex items-center justify-center">
-              <i data-lucide="users" class="w-4 h-4"></i>
-            </div>
-          </div>
-          <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900" id="kpiTotalVotos">0</div>
-          <p class="text-xs text-slate-400 mt-1">Formandos votantes</p>
-        </div>
-
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-slate-500 uppercase">Interesse no Baile</span>
-            <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center">
-              <i data-lucide="party-popper" class="w-4 h-4"></i>
-            </div>
-          </div>
-          <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-amber-600" id="kpiInteresseFesta">0</div>
-          <p class="text-xs text-slate-400 mt-1" id="kpiInteresseFestaPct">0% de adesão</p>
-        </div>
-
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-slate-500 uppercase">Adesão à Placa</span>
-            <div class="w-8 h-8 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center">
-              <i data-lucide="award" class="w-4 h-4"></i>
-            </div>
-          </div>
-          <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-sky-700" id="kpiInteressePlaca">0</div>
-          <p class="text-xs text-slate-400 mt-1" id="kpiInteressePlacaPct">0% dos votantes</p>
-        </div>
-
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-slate-500 uppercase">Média do Combo</span>
-            <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
-              <i data-lucide="calculator" class="w-4 h-4"></i>
-            </div>
-          </div>
-          <div class="mt-2 text-2xl sm:text-3xl font-extrabold text-emerald-600" id="kpiMediaCombo">R$ 0</div>
-          <p class="text-xs text-slate-400 mt-1">Custo individual médio</p>
-        </div>
-
-      </div>
-
-      <!-- Gráficos de Votos (CSS bars) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- Votos Colação (Cerimonial / Decoração) -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
-              <i data-lucide="building" class="w-4 h-4 text-univasf-600"></i>
-              Preferência: Colação (Cerimonial & Decoração)
-            </h3>
-            <span class="text-xs text-slate-400 font-medium">Por empresa</span>
-          </div>
-          <div id="chartColacaoContainer" class="space-y-3">
-            <!-- Inserido dinamicamente via JS -->
-          </div>
-        </div>
-
-        <!-- Votos Fotografia -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
-              <i data-lucide="camera" class="w-4 h-4 text-amber-600"></i>
-              Preferência: Fotografia & Pacotes
-            </h3>
-            <span class="text-xs text-slate-400 font-medium">Por pacote</span>
-          </div>
-          <div id="chartFotoContainer" class="space-y-3">
-            <!-- Inserido dinamicamente via JS -->
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Tabela de Votos Auditáveis -->
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-        <div class="p-5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/50">
-          <div>
-            <h3 class="font-bold text-slate-900 text-base">Registro Auditável de Votos</h3>
-            <p class="text-xs text-slate-500">Histórico completo de cada formulário submetido pelos formandos.</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <button onclick="limparVotos()" class="px-3 py-1.5 rounded-lg border border-red-200 text-red-600 hover:bg-red-50 text-xs font-semibold flex items-center gap-1.5" title="Requer senha da comissão">
-              <i data-lucide="lock" class="w-3.5 h-3.5"></i>
-              Limpar Registros (Senha)
-            </button>
-          </div>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs sm:text-sm">
-            <thead>
-              <tr class="bg-slate-100/75 border-b border-slate-200 text-slate-600 uppercase text-[11px] font-bold tracking-wider">
-                <th class="py-3.5 px-4">Data / Hora</th>
-                <th class="py-3.5 px-4">Formando & Contato</th>
-                <th class="py-3.5 px-4">Opção Colação Solene</th>
-                <th class="py-3.5 px-4">Fotografia</th>
-                <th class="py-3.5 px-4">Extras & Placa</th>
-                <th class="py-3.5 px-4">Total Estimado</th>
-                <th class="py-3.5 px-4 text-center">Ações</th>
-              </tr>
-            </thead>
-            <tbody id="tabelaVotosBody" class="divide-y divide-slate-200">
-              <!-- Renderizado via JS -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- Formulário invisível para detecção estática do Netlify Forms (Hospedagem 100% Gratuita) -->
-  <form name="cadastro-formandos" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
-    <input type="hidden" name="form-name" value="cadastro-formandos" />
-    <input type="text" name="nome" />
-    <input type="text" name="whatsapp" />
-    <input type="email" name="email" />
-    <input type="text" name="quer_colacao" />
-    <input type="text" name="quer_ensaio" />
-    <input type="text" name="quer_placa" />
-    <input type="text" name="quer_replica" />
-    <input type="text" name="quer_festa" />
-    <input type="text" name="opcao_colacao" />
-    <input type="text" name="empresa_fotografia" />
-    <input type="text" name="pacote_fotografia" />
-    <input type="text" name="extras_selecionados" />
-    <input type="text" name="total_estimado_vista" />
-    <input type="text" name="total_estimado_prazo" />
-    <input type="text" name="data_hora" />
-  </form>
 
   </main>
 
   <!-- ========================================== -->
-  <!-- 3. MODAL / TELA DE CADASTRO DO FORMANDO    -->
+  <!-- MODAL DE IDENTIFICAÇÃO / PERFIL            -->
   <!-- ========================================== -->
-  <div id="profileModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden transform transition-all my-8">
-      
-      <!-- Cabeçalho do Modal -->
-      <div class="p-6 bg-gradient-to-r from-univasf-900 to-univasf-800 text-white flex items-start justify-between">
+  <div id="profileModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden my-6">
+      <div class="p-5 bg-gradient-to-r from-univasf-900 to-univasf-800 text-white flex items-start justify-between">
         <div>
-          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-white/10 text-sky-200 text-xs font-semibold mb-1">
-            <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
-            Identificação do Aluno
-          </div>
-          <h3 class="text-xl font-bold tracking-tight">Cadastro & Interesses do Formando</h3>
-          <p class="text-xs text-slate-300 mt-0.5">Esses dados garantem o mapeamento dos interesses da turma.</p>
+          <h3 class="text-lg font-bold">Identificação do Aluno</h3>
+          <p class="text-xs text-slate-300">Preencha para gravar seus interesses e simulações.</p>
         </div>
-        <button onclick="closeProfileModal()" class="text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors">
-          <i data-lucide="x" class="w-6 h-6"></i>
+        <button onclick="closeProfileModal()" class="text-white/70 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
-      <!-- Formulário do Perfil -->
-      <form id="formPerfil" onsubmit="salvarPerfil(event)" class="p-6 space-y-5">
-        
-        <!-- Dados Pessoais -->
-        <div class="space-y-4">
+      <form id="formPerfil" onsubmit="salvarPerfil(event)" class="p-5 space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nome Completo *</label>
+          <input type="text" id="inputNome" required placeholder="Seu nome" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nome Completo *</label>
-            <input type="text" id="inputNome" required placeholder="Ex: João da Silva Santos" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-univasf-600 focus:ring-2 focus:ring-univasf-500/20 text-sm text-slate-800 font-medium">
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">WhatsApp *</label>
+            <input type="tel" id="inputWhatsapp" required placeholder="(87) 99999-9999" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm">
           </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">WhatsApp / Telefone *</label>
-              <input type="tel" id="inputWhatsapp" required placeholder="(87) 99999-9999" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-univasf-600 focus:ring-2 focus:ring-univasf-500/20 text-sm text-slate-800 font-medium">
-            </div>
-            <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">E-mail Acadêmico / Pessoal *</label>
-              <input type="email" id="inputEmail" required placeholder="seuemail@discente.univasf.edu.br" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-univasf-600 focus:ring-2 focus:ring-univasf-500/20 text-sm text-slate-800 font-medium">
-            </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">E-mail</label>
+            <input type="email" id="inputEmail" placeholder="seuemail@univasf.edu.br" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm">
           </div>
         </div>
 
-        <!-- Checkboxes de Interesse -->
         <div class="pt-2 border-t border-slate-100">
-          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-            Interesse nos Eventos & Itens da Formatura:
-          </label>
-
-          <div class="space-y-2.5">
-            <label class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
-              <input type="checkbox" id="intColacao" class="w-4 h-4 rounded text-univasf-600 focus:ring-univasf-500 border-slate-300">
-              <span class="text-sm font-semibold text-slate-800">Colação de Grau Solene</span>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Seus Interesses:</label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2.5 text-xs font-semibold text-slate-800">
+              <input type="checkbox" id="intColacao" class="rounded text-univasf-600"> Colação Solene
             </label>
-
-            <label class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
-              <input type="checkbox" id="intEnsaio" class="w-4 h-4 rounded text-univasf-600 focus:ring-univasf-500 border-slate-300">
-              <span class="text-sm font-semibold text-slate-800">Ensaio Fotográfico & Estúdio</span>
+            <label class="flex items-center gap-2.5 text-xs font-semibold text-slate-800">
+              <input type="checkbox" id="intEnsaio" class="rounded text-univasf-600"> Ensaio Fotográfico & Estúdio
             </label>
-
-            <label class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
-              <input type="checkbox" id="intPlaca" class="w-4 h-4 rounded text-univasf-600 focus:ring-univasf-500 border-slate-300">
-              <span class="text-sm font-semibold text-slate-800">Placa de Formatura Oficial UNIVASF</span>
+            <label class="flex items-center gap-2.5 text-xs font-semibold text-slate-800">
+              <input type="checkbox" id="intPlaca" class="rounded text-univasf-600"> Placa de Formatura Oficial
             </label>
-
-            <label class="flex items-center gap-3 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
-              <input type="checkbox" id="intReplica" class="w-4 h-4 rounded text-univasf-600 focus:ring-univasf-500 border-slate-300">
-              <span class="text-sm font-semibold text-slate-800">Réplica Individual da Placa</span>
+            <label class="flex items-center gap-2.5 text-xs font-semibold text-slate-800">
+              <input type="checkbox" id="intReplica" class="rounded text-univasf-600"> Réplica da Placa
             </label>
-
-            <!-- Checkbox Festa com Regra de Aviso -->
-            <label class="flex items-center gap-3 p-2.5 rounded-xl border border-amber-200 bg-amber-50/40 hover:bg-amber-50 cursor-pointer transition-colors">
-              <input type="checkbox" id="intFesta" onchange="toggleFestaAlert(this.checked)" class="w-4 h-4 rounded text-amber-600 focus:ring-amber-500 border-amber-300">
-              <div class="flex items-center gap-2">
-                <span class="text-sm font-bold text-amber-900">Festa / Baile de Formatura</span>
-                <span class="text-[10px] uppercase font-extrabold px-1.5 py-0.5 rounded bg-amber-200 text-amber-900">Condicional</span>
-              </div>
+            <label class="flex items-center gap-2.5 text-xs font-semibold text-amber-900 bg-amber-50 p-2 rounded-lg border border-amber-200">
+              <input type="checkbox" id="intFesta" class="rounded text-amber-600"> Festa / Baile de Formatura
             </label>
           </div>
-
-          <!-- REGRA DO AVISO DA FESTA / BAILE -->
-          <div id="festaAlertBox" class="mt-3 p-3.5 rounded-xl bg-amber-100/90 border border-amber-300 text-amber-900 text-xs leading-relaxed shadow-2xs">
-            <div class="flex items-start gap-2.5">
-              <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-700 shrink-0 mt-0.5"></i>
-              <div>
-                <strong class="font-bold block text-amber-950">Nota sobre o Baile de Formatura:</strong>
-                A viabilidade da festa depende do número mínimo de adesões da turma. O custo estimado parte de R$ 2.000,00 para 7 senhas, com média histórica de R$ 5.000,00 por formando.
-              </div>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Botões do Modal -->
-        <div class="pt-4 border-t border-slate-200 flex items-center justify-end gap-3">
-          <button type="button" onclick="closeProfileModal()" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-xs sm:text-sm font-semibold hover:bg-slate-50 transition-colors">
-            Cancelar
-          </button>
-          <button type="submit" class="px-5 py-2.5 rounded-xl bg-univasf-700 hover:bg-univasf-800 text-white text-xs sm:text-sm font-bold shadow-md shadow-univasf-700/20 transition-all flex items-center gap-2">
-            <i data-lucide="save" class="w-4 h-4"></i>
-            Salvar Perfil
-          </button>
+        <div class="pt-3 border-t border-slate-200 flex justify-end gap-2">
+          <button type="button" onclick="closeProfileModal()" class="px-4 py-2 rounded-xl border border-slate-300 text-xs font-semibold">Cancelar</button>
+          <button type="submit" class="px-4 py-2 rounded-xl bg-univasf-700 text-white text-xs font-bold">Salvar Perfil</button>
         </div>
-
       </form>
-
     </div>
   </div>
 
-  <!-- ========================================== -->
-  <!-- TOAST NOTIFICATION CONTAINER               -->
-  <!-- ========================================== -->
-  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+  <div id="toastContainer" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
 
-  <!-- ========================================== -->
-  <!-- FOOTER                                     -->
-  <!-- ========================================== -->
-  <footer class="mt-auto bg-white border-t border-slate-200 py-6">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:flex sm:items-center sm:justify-between">
-      <div class="text-xs text-slate-500">
-        &copy; 2026 Comissão de Formatura &bull; Universidade Federal do Vale do São Francisco (UNIVASF)
-      </div>
-      <div class="mt-2 sm:mt-0 text-xs text-slate-400">
-        Portal de Decisão e Transparência &bull; Petrolina / Juazeiro
-      </div>
-    </div>
+  <footer class="mt-auto bg-white border-t border-slate-200 py-5 text-center text-xs text-slate-500">
+    Comissão de Formatura UNIVASF &bull; Petrolina / Juazeiro
   </footer>
 
-  <!-- ========================================== -->
-  <!-- 4. BANCO DE DADOS CENTRALIZADO E SCRIPTS   -->
-  <!-- ========================================== -->
+  <!-- SCRIPTS -->
   <script>
-    /* ========================================================
-     * BANCO DE DADOS CENTRALIZADO (empresasData)
-     * Totalmente corrigido, estruturado e sem erros de sintaxe!
-     * ======================================================== */
     const empresasData = [
-      // 1. Despertar Formaturas (Fotografia)
       {
         id: "despertar_formaturas",
         nome: "Despertar Formaturas",
         servicos: ["fotografia"],
         contato: "",
         instagram: "@despertarformaturas",
-        portfolioUrl: "#",
-        observacoes: "Aguardando envio da proposta oficial de orçamento para a turma. Equipe com opções digitais e impressas.",
-        pacotes: [
-          {
-            id: "despertar_aguardando",
-            nome: "Pacotes de Fotografia (Aguardando Orçamento)",
-            valorVista: 0,
-            valorPrazo: 0,
-            desc: "Aguardando envio da proposta oficial com os valores atualizados para ensaio fotográfico e cobertura da colação."
-          }
-        ],
+        observacoes: "Aguardando proposta oficial. Equipe com opções digitais e impressas.",
+        pacotes: [{ id: "despertar_aguardando", nome: "Proposta em Análise", valorVista: 0, valorPrazo: 0, desc: "Aguardando envio formal." }],
         extras: []
       },
-
-      // 2. Inspirar Fotografia
       {
         id: "inspirar_fotografia",
         nome: "Inspirar Fotografia",
         servicos: ["fotografia"],
         contato: "",
         instagram: "@inspirarfotografia",
-        portfolioUrl: "#",
-        observacoes: "Reunião agendada. Aguardando apresentação e envio formal da proposta de orçamento para inclusão dos pacotes.",
-        pacotes: [
-          {
-            id: "inspirar_aguardando",
-            nome: "Proposta em Análise",
-            valorVista: 0,
-            valorPrazo: 0,
-            desc: "Valores e pacotes serão atualizados imediatamente após a reunião com a comissão."
-          }
-        ],
+        observacoes: "Reunião agendada. Aguardando apresentação e envio formal da proposta.",
+        pacotes: [{ id: "inspirar_aguardando", nome: "Proposta em Análise", valorVista: 0, valorPrazo: 0, desc: "Aguardando apresentação." }],
         extras: []
       },
-
-      // 3. Vitis Fotografia
       {
         id: "vitis_fotografia",
         nome: "Vitis Fotografia",
         servicos: ["fotografia", "placa", "replica"],
         contato: "(87) 9 9106-8494",
         instagram: "@vitisfotografia",
-        portfolioUrl: "https://instagram.com/vitisfotografia",
-        observacoes: "• Cada formando escolhe seu pacote individualmente. • Quantidade mínima de 10 formandos para produções coletivas. • Ensaio em estúdio de 1h, até 10 acompanhantes e até 3 peças de roupa. • Beca inclusa sem custo. • Parcelamento no boleto até 24x ou cartão até 5x sem juros.",
+        observacoes: "• Escolha individual. Mínimo 10 formandos para estúdio coletivo. Até 24x no boleto ou 5x sem juros.",
         pacotes: [
-          {
-            id: "vitis_basic",
-            nome: "Pacote Basic (10 Fotos)",
-            valorVista: 400,
-            valorPrazo: 450,
-            desc: "1 produção à escolha, 10 fotos digitais editadas em alta resolução, beca premium em cetim e canudo personalizado premium em camurça. (Até 5x no cartão ou até 24x no boleto)."
-          },
-          {
-            id: "vitis_essential",
-            nome: "Pacote Essential (25 Fotos)",
-            valorVista: 700,
-            valorPrazo: 780,
-            desc: "Até 2 produções à escolha, 25 fotos digitais editadas em alta resolução, beca premium em cetim e canudo personalizado premium em camurça. (Até 5x no cartão ou até 24x no boleto)."
-          },
-          {
-            id: "vitis_classic",
-            nome: "Pacote Classic (35 Fotos)",
-            valorVista: 900,
-            valorPrazo: 990,
-            desc: "Até 3 produções à escolha, 35 fotos digitais editadas em alta resolução, beca premium em cetim e canudo personalizado premium em camurça. (Até 5x no cartão ou até 24x no boleto)."
-          },
-          {
-            id: "vitis_premium",
-            nome: "Pacote Premium (45 Fotos)",
-            valorVista: 1200,
-            valorPrazo: 1320,
-            desc: "Até 4 produções à escolha, 45 fotos digitais editadas em alta resolução, beca premium em cetim e canudo personalizado premium em camurça. (Até 5x no cartão ou até 24x no boleto)."
-          },
-          {
-            id: "vitis_exclusive",
-            nome: "Pacote Exclusive (55 Fotos)",
-            valorVista: 1500,
-            valorPrazo: 1650,
-            desc: "Até 5 produções à escolha, 55 fotos digitais editadas em alta resolução, beca premium em cetim e canudo personalizado premium em camurça. (Até 5x no cartão ou até 24x no boleto)."
-          },
-          {
-            id: "vitis_signature",
-            nome: "Pacote Signature (65 Fotos)",
-            valorVista: 1800,
-            valorPrazo: 1980,
-            desc: "Até 6 produções à escolha, 65 fotos digitais editadas em alta resolução, beca premium em cetim e canudo personalizado premium em camurça. (Até 5x no cartão ou até 24x no boleto)."
-          }
+          { id: "vitis_basic", nome: "Pacote Basic (10 Fotos)", valorVista: 400, valorPrazo: 450, desc: "1 produção, 10 fotos digitais editadas em alta resolução, beca e canudo premium." },
+          { id: "vitis_essential", nome: "Pacote Essential (25 Fotos)", valorVista: 700, valorPrazo: 780, desc: "Até 2 produções, 25 fotos digitais editadas, beca e canudo premium." },
+          { id: "vitis_classic", nome: "Pacote Classic (35 Fotos)", valorVista: 900, valorPrazo: 990, desc: "Até 3 produções, 35 fotos digitais editadas, beca e canudo premium." },
+          { id: "vitis_premium", nome: "Pacote Premium (45 Fotos)", valorVista: 1200, valorPrazo: 1320, desc: "Até 4 produções, 45 fotos digitais, beca e canudo." }
         ],
         extras: [
           { id: "vitis_ex_replica", nome: "Réplica da Placa em Acrílico (15x21 cm)", valorVista: 250, valorPrazo: 280 },
-          { id: "vitis_ex_fotobox", nome: "Kit Fotos Silk (20 fotos 15x21 + Fotobox + Pôster 30x45 cm)", valorVista: 300, valorPrazo: 350 },
-          { id: "vitis_ex_familiares", nome: "10 Familiares extras no ensaio em estúdio", valorVista: 450, valorPrazo: 490 },
-          { id: "vitis_ex_fotolivro", nome: "Fotolivro Premium Signature (26 pág, 30x20 cm, capa couro sintético)", valorVista: 800, valorPrazo: 890 },
-          { id: "vitis_ex_storymaker", nome: "Storymaker (Cobertura exclusiva na Colação de Grau)", valorVista: 700, valorPrazo: 780 },
-          { id: "vitis_ex_backup", nome: "Backup de todos os arquivos sem edição em Pen Drive de madeira", valorVista: 3000, valorPrazo: 3550 },
-          { id: "vitis_ex_foto_avulsa", nome: "Foto extra digital editada (unidade)", valorVista: 25, valorPrazo: 30 }
+          { id: "vitis_ex_fotobox", nome: "Kit Fotos Silk (20 fotos + Fotobox + Pôster)", valorVista: 300, valorPrazo: 350 }
         ]
       },
-
-      // 4. Flam Formaturas
       {
         id: "flam",
         nome: "Flam Formaturas",
         servicos: ["fotografia"],
         contato: "(87) 9 9938-0001",
         instagram: "@flamformaturas",
-        portfolioUrl: "https://instagram.com/flamformaturas",
-        observacoes: "Contato de difícil retorno, informações que a entrega de fotos também demora.",
+        observacoes: "Contato com retorno lento. Pacotes completos com álbum físico incluso.",
         pacotes: [
-          { id: "investimento_slim", nome: "Investimento Slim - Apenas colação", valorVista: 470, valorPrazo: 490, desc: "Cobertura exclusiva da colação de grau, mídia digital com todas as fotos, diária de 1 dia para beca e canudo." },
-          { id: "investimento_basic", nome: "Investimento Basic - Apenas colação", valorVista: 520, valorPrazo: 560, desc: "Cobertura exclusiva da colação de grau, mídia digital com todas as fotos, revelação de 10 fotos, diária de beca e canudo." },
-          { id: "investimento_basicCompleto", nome: "Investimento Basic - completo", valorVista: 790, valorPrazo: 890, desc: "25 fotos, foto-livro 20x30 com 12 páginas e álbum digital, caixa personalizada, canudo e 2 diárias de beca." },
-          { id: "investimento_master", nome: "Investimento Master - completo", valorVista: 1090, valorPrazo: 1180, desc: "35 fotos, foto-livro 30x40 com 20 páginas e álbum digital, caixa personalizada, canudo e 2 diárias de beca." },
-          { id: "investimento_ouro", nome: "Investimento Ouro - completo", valorVista: 1340, valorPrazo: 1430, desc: "45 fotos, foto-livro 30x40 com 20 páginas e álbum digital, caixa personalizada, canudo, 2 diárias de beca e 1 réplica" },
-          { id: "investimento_diamante", nome: "Investimento Diamante - completo", valorVista: 1650, valorPrazo: 1790, desc: "75 fotos, foto-livro 30x40 com 25 páginas e álbum digital, caixa personalizada, canudo, 2 diárias de beca e 1 réplica." }
+          { id: "investimento_slim", nome: "Investimento Slim - Apenas Colação", valorVista: 470, valorPrazo: 490, desc: "Cobertura exclusiva da colação, fotos digitais, diária da beca." },
+          { id: "investimento_basicCompleto", nome: "Investimento Basic - Completo", valorVista: 790, valorPrazo: 890, desc: "25 fotos, foto-livro 20x30 com 12 páginas, estojo e canudo." }
         ],
         extras: []
       },
-
-      // 5. Compor Formaturas (Fotografia, Cerimonial e Decoração)
       {
         id: "compor_eventos",
-        nome: "Compor Fotografia",
+        nome: "Compor Fotografia & Eventos",
         servicos: ["fotografia","placa","replica"],
         contato: "",
         instagram: "@comporfotografiaoficial",
-        portfolioUrl: "#",
-        observacoes: "Reunião presencial agendada. Atende Fotografia. Proposta detalhada em elaboração.",
-        pacotes: [
-          {
-            id: "compor_solene_foto",
-            nome: "Pacote Integrado (Em Negociação)",
-            valorVista: 0,
-            valorPrazo: 0,
-            desc: "Aguardando apresentação presencial e envio das opções de combos da solenidade e fotografia."
-          }
-        ],
+        observacoes: "Reunião presencial agendada no Centro de Petrolina.",
+        pacotes: [{ id: "compor_solene_foto", nome: "Pacote Integrado (Em Negociação)", valorVista: 0, valorPrazo: 0, desc: "Aguardando envio formal pós-reunião." }],
         extras: []
       },
-
-      // 6. Formar Formaturas & Eventos
       {
         id: "formar_eventos",
         nome: "Formar Formaturas & Eventos",
         servicos: ["cerimonial", "decoracao"],
         contato: "",
         instagram: "@formareventos",
-        portfolioUrl: "#",
-        observacoes: "Aguardando envio da proposta comercial para o projeto de Cerimonial e Decoração da colação solene.",
-        pacotes: [
-          {
-            id: "formar_aguardando",
-            nome: "Projeto Colação Solene",
-            valorVista: 0,
-            valorPrazo: 0,
-            desc: "Aguardando proposta."
-          }
-        ],
+        observacoes: "Aguardando orçamento da Colação Solene.",
+        pacotes: [{ id: "formar_aguardando", nome: "Projeto Colação Solene", valorVista: 0, valorPrazo: 0, desc: "Aguardando proposta." }],
         extras: []
       },
-
-      // 7. Lu Festas Buffet e Eventos (Cerimonial, Decoração e Baile)
       {
         id: "lu_festas",
         nome: "Lu Festas Buffet e Eventos",
         servicos: ["cerimonial", "decoracao", "baile"],
         contato: "(87) 99152-6093",
         instagram: "@lufestas",
-        portfolioUrl: "#",
         observacoes: "Aguardando retorno.",
-        pacotes: [
-          {
-            id: "lu_solene_aguardando",
-            nome: "Projeto Colação Solene & Recepção (Aguardando Orçamento)",
-            valorVista: 0,
-            valorPrazo: 0,
-            desc: "Aguardando resposta."
-          }
-        ],
+        pacotes: [{ id: "lu_solene_aguardando", nome: "Projeto Colação & Recepção", valorVista: 0, valorPrazo: 0, desc: "Sob consulta." }],
         extras: []
       },
-
-      // 8. Samara Vidal Assessoria e Cerimonial
       {
         id: "samara_vidal",
         nome: "Samara Vidal Assessoria e Cerimonial",
         servicos: ["cerimonial", "decoracao"],
         contato: "svcerimonial@hotmail.com",
         instagram: "@svcerimonial",
-        portfolioUrl: "https://instagram.com/svcerimonial",
-        observacoes: "Aguardando envio da proposta oficial de orçamento para a turma.",
-        pacotes: [
-          {
-            id: "sv_aguardando",
-            nome: "Projeto Colação Solene (Aguardando Orçamento)",
-            valorVista: 0,
-            valorPrazo: 0,
-            desc: "Aguardando proposta comercial a ser enviada na segunda 14/09."
-          }
-        ],
+        observacoes: "Aguardando envio da proposta oficial para a turma.",
+        pacotes: [{ id: "sv_aguardando", nome: "Projeto Colação Solene", valorVista: 0, valorPrazo: 0, desc: "Envio previsto para 14/09." }],
         extras: []
       },
-
-      // 9. Félix Festas e Eventos
       {
         id: "eventos_felix",
         nome: "Félix Festas e Eventos",
         servicos: ["cerimonial", "decoracao"],
         contato: "(74) 9 9108-9473",
         instagram: "@felixfestaseventos",
-        portfolioUrl: "https://instagram.com/felixfestaseventos",
-        observacoes: "Aguardando envio da proposta oficial de orçamento. Projeto solene com assessoria, cerimonial e ornamentação.",
-        pacotes: [
-          {
-            id: "felix_aguardando",
-            nome: "Projeto Colação Solene (Aguardando Orçamento)",
-            valorVista: 0,
-            valorPrazo: 0,
-            desc: "Aguardando envio da proposta com detalhamento de serviços, roteiro e estrutura do evento. Fez engenharias 2025.1"
-          }
-        ],
+        observacoes: "Realizou a formatura das engenharias 2025.1. Aguardando proposta.",
+        pacotes: [{ id: "felix_aguardando", nome: "Projeto Colação Solene", valorVista: 0, valorPrazo: 0, desc: "Aguardando envio formal." }],
         extras: []
       },
-
-      // 10. Oliveira Assessoria e Cerimonial
       {
         id: "oliveira_cerimonial",
         nome: "Oliveira Assessoria e Cerimonial",
         servicos: ["cerimonial", "decoracao"],
         contato: "(87) 98844-2431",
         instagram: "@oliveiraassessoriaecerimonial",
-        portfolioUrl: "https://instagram.com/oliveiraassessoriaecerimonial",
-        observacoes: "Aguardando envio da proposta oficial de orçamento para a turma.",
-        pacotes: [
-          {
-            id: "oliveira_aguardando",
-            nome: "Projeto Colação Solene (Aguardando Orçamento)",
-            valorVista: 1400,
-            valorPrazo: 1400,
-            desc: "Inclui telão, iluminação cênica, cerimonial e decoração. Conferir opções de parcelamento"
-          }
-        ],
+        observacoes: "Inclui telão, iluminação cênica, cerimonial e decoração.",
+        pacotes: [{ id: "oliveira_aguardando", nome: "Projeto Colação Solene", valorVista: 1400, valorPrazo: 1400, desc: "Estrutura completa para auditório." }],
         extras: []
       },
-
-      // 11. Cerimonial Lisandro Reis
       {
         id: "lisandro_reis",
         nome: "Cerimonial Lisandro Reis",
         servicos: ["cerimonial", "decoracao"],
         contato: "(87) 98101-8576",
         instagram: "@cerimonialisandroreis",
-        portfolioUrl: "#",
-        observacoes: "Aguardando reinião para envio da proposta oficial de orçamento para a turma. Empresa tradicional com vasta experiência em solenidades da UNIVASF (incluindo o campus CCA).",
-        pacotes: [
-          {
-            id: "lr_aguardando",
-            nome: "Cerimonial & Organização da Colação (Aguardando Orçamento)",
-            valorVista: 0,
-            valorPrazo: 0,
-            desc: "Aguardando envio da proposta oficial com decoração, layout, ensaio e opções de solenidade. Sempre faz a colação do CCA."
-          }
-        ],
+        observacoes: "Empresa tradicional com vasta experiência em solenidades da UNIVASF (CCA).",
+        pacotes: [{ id: "lr_aguardando", nome: "Cerimonial & Colação", valorVista: 0, valorPrazo: 0, desc: "Apresentação e proposta em reunião." }],
         extras: []
       },
-
-      // 12. Kathya Lucas Cerimonial e Decoração
       {
         id: "kathya_lucas",
         nome: "Kathya Lucas Cerimonial e Decoração",
         servicos: ["cerimonial", "decoracao"],
         contato: "",
         instagram: "@kathyalucascerimonial",
-        portfolioUrl: "#",
-        observacoes: "Aguardando reunião da proposta oficial de orçamento para a turma.",
-        pacotes: [
-          {
-            id: "kathya_aguardando",
-            nome: "Projeto Colação Solene",
-            valorVista: 0,
-            valorPrazo: 0,
-            desc: "Apresentação e detalhamento de valores sob consulta."
-          }
-        ],
+        observacoes: "Aguardando reunião da proposta oficial.",
+        pacotes: [{ id: "kathya_aguardando", nome: "Projeto Colação Solene", valorVista: 0, valorPrazo: 0, desc: "Sob consulta." }],
         extras: []
       },
-
-      // 13. Janete Viana Eventos
       {
         id: "Janete_Viana",
         nome: "Janete Viana Eventos",
         servicos: ["cerimonial", "decoracao"],
         contato: "(87) 9 8835-4434",
         instagram: "@janetevianaeventos",
-        portfolioUrl: "https://instagram.com/janetevianaeventos",
-        observacoes: "• Decoração e cerimonial integrados. Não formalizou proposta por documento, apenas mensagem.",
-        pacotes: [
-          {
-            id: "decoracao_janeteviana",
-            nome: "Pacote Colação Solene",
-            valorVista: 1300,
-            valorPrazo: 1300,
-            desc: "Decoração do auditório, mestre de cerimônias, cerimonialista e telão de projeção."
-          }
-        ],
+        observacoes: "Decoração e cerimonial integrados. Proposta enviada por mensagem.",
+        pacotes: [{ id: "decoracao_janeteviana", nome: "Pacote Colação Solene", valorVista: 1300, valorPrazo: 1300, desc: "Decoração, mestre de cerimônias e telão." }],
         extras: []
       },
-
-      // 14. Maria Leite Recepções e Eventos
       {
         id: "maria_leite_eventos",
         nome: "Maria Leite Recepções e Eventos",
         servicos: ["decoracao", "baile"],
         contato: "(87) 98800-0000",
         instagram: "@marialeiterecepcoesoficial",
-        portfolioUrl: "https://instagram.com/marialeiterecepcoesoficial",
-        observacoes: "Este pacote só faz sentido para festas de formatura",
+        observacoes: "Opção para recepções e festas completas com buffet.",
         pacotes: [
-          {
-            id: "ml_colacao_solene",
-            nome: "Colação Solene no Espaço (11 a 40 formandos)",
-            valorVista: 1116,
-            valorPrazo: 1200,
-            desc: "Espaço nobre climatizado, cadeiras Tiffany, decoração, painel de LED 4x2m, som, iluminação e buffet leve (aluno + 10 convidados). (10x de R$ 120 ou 7% desc. à vista)."
-          },
-          {
-            id: "ml_baile_padrao",
-            nome: "Baile de Formatura - Pacote Padrão",
-            valorVista: 1860,
-            valorPrazo: 2000,
-            desc: "Mesa com 8 cadeiras (aluno + 7). Som, iluminação, DJ da casa (3h), buffet completo (6h) e drinks com álcool (4h). (10x de R$ 200 ou 7% desc. à vista)."
-          },
-          {
-            id: "ml_baile_plus",
-            nome: "Baile de Formatura - Padrão Plus (c/ Banda)",
-            valorVista: 2325,
-            valorPrazo: 2500,
-            desc: "Itens do Baile Padrão + 2h30 de Banda ao vivo, 6h de balcão de drinks e água de coco servida às mesas. (10x de R$ 250 ou 7% desc. à vista)."
-          },
-          {
-            id: "ml_baile_premium",
-            nome: "Baile de Formatura - Premium (Ilha Gastronômica)",
-            valorVista: 3069,
-            valorPrazo: 3300,
-            desc: "Itens do Plus + Ilha Gastronômica sofisticada, Open de Açaí/Sorvete e 5 doces finos por convidado. (10x de R$ 330 ou 7% desc. à vista)."
-          }
+          { id: "ml_colacao_solene", nome: "Colação Solene no Espaço", valorVista: 1116, valorPrazo: 1200, desc: "Espaço climatizado, som, LED e buffet leve (aluno + 10 convidados)." },
+          { id: "ml_baile_padrao", nome: "Baile Padrão (Mesa c/ 8)", valorVista: 1860, valorPrazo: 2000, desc: "Buffet 6h, drinks 4h, DJ e estrutura." }
         ],
-        extras: [
-          { id: "ml_ex_senha_colacao", nome: "Senha Extra - Colação de Grau (convidado adicional)", valorVista: 80, valorPrazo: 80 },
-          { id: "ml_ex_senha_baile_padrao", nome: "Senha Extra - Baile Padrão", valorVista: 150, valorPrazo: 150 },
-          { id: "ml_ex_senha_baile_plus", nome: "Senha Extra - Baile Plus", valorVista: 175, valorPrazo: 175 },
-          { id: "ml_ex_senha_baile_premium", nome: "Senha Extra - Baile Premium", valorVista: 220, valorPrazo: 220 }
-        ]
+        extras: []
       }
     ];
 
-    /* ========================================================
-     * BASE DE DADOS DAS REUNIÕES (Mantida Exatamente Como Você Definiu!)
-     * ======================================================== */
     const reunioesData = [
-      {
-        id: "meet_1",
-        empresa: "Inspirar Fotografia",
-        data: "2026-09-10",
-        horario: "14:30",
-        local: "Google Meet",
-        linkMeet: "",
-        pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.",
-        status: "realizada"
-      },
-      {
-        id: "meet_2",
-        empresa: "Lisandro Reis",
-        data: "2026-09-10",
-        horario: "19:00",
-        local: "Google Meet",
-        linkMeet: "https://meet.google.com/sfu-vdjo-irr",
-        pauta: "Apresentação do serviço de cerimonial e decoração, além de valores. Empresa que faz as colações do CCA.",
-        status: "agendada"
-      },
-            {
-        id: "meet_3",
-        empresa: "Vitis Fotografia",
-        data: "2026-09-12",
-        horario: "19:00",
-        local: "Google Meet",
-        linkMeet: "",
-        pauta: "Apresentação sobre o serviço de fotografia.",
-        status: "agendada"
-      },
-      {
-        id: "meet_4",
-        empresa: "Compor",
-        data: "2026-09-14",
-        horario: "10:30",
-        local: "Rua Irmã Jerônima, 162, Centro, Petrolina - PE (CEP 56304-130)",
-        linkMeet: "",
-        pauta: "Apresentação presencial da proposta de fotografia e cerimonial.",
-        status: "agendada"
-      },
-      {
-        id: "meet_55",
-        empresa: "Kathya Lucas Cerimonial",
-        data: "2026-09-14",
-        horario: "18:00",
-        local: "Google Meet",
-        linkMeet: "",
-        pauta: "Apresentação do serviço de cerimonial e decoração, além de valores.",
-        status: "agendada"
-      },
-      {
-        id: "meet_6",
-        empresa: "Despertar Formaturas",
-        data: "2026-09-16",
-        horario: "15:00",
-        local: "Google Meet",
-        linkMeet: "",
-        pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.",
-        status: "agendada"
-      }
+      { id: "meet_1", empresa: "Inspirar Fotografia", data: "2026-09-10", horario: "14:30", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes e demonstração de álbuns.", status: "realizada" },
+      { id: "meet_2", empresa: "Lisandro Reis", data: "2026-09-10", horario: "19:00", local: "Google Meet", linkMeet: "https://meet.google.com/sfu-vdjo-irr", pauta: "Apresentação de cerimonial e decoração.", status: "realizada" },
+      { id: "meet_3", empresa: "Vitis Fotografia", data: "2026-09-12", horario: "19:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação do serviço de fotografia e becas.", status: "agendada" },
+      { id: "meet_4", empresa: "Compor", data: "2026-09-14", horario: "10:30", local: "Rua Irmã Jerônima, 162, Centro, Petrolina", linkMeet: "", pauta: "Apresentação presencial da proposta de fotografia.", status: "agendada" },
+      { id: "meet_55", empresa: "Kathya Lucas Cerimonial", data: "2026-09-14", horario: "18:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação do cerimonial e decoração.", status: "agendada" },
+      { id: "meet_6", empresa: "Despertar Formaturas", data: "2026-09-16", horario: "15:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes de fotografia.", status: "agendada" }
     ];
 
-    /* ========================================================
-     * ESTADO DA APLICAÇÃO (Local & LocalStorage)
-     * ======================================================== */
     const STORAGE_KEY_PROFILE = 'univasf_perfil';
     const STORAGE_KEY_COMBO = 'univasf_combo';
-    const STORAGE_KEY_VOTES = 'univasf_votos_auditaveis';
 
     let currentFilter = 'todas';
-    let currentFilterReunioes = 'todas';
+    let userProfile = { nome: '', whatsapp: '', email: '', interesses: { colacao: true, ensaio: true, placa: false, replica: false, festa: false } };
+    let comboState = { cerimonial: null, decoracao: null, fotografia: null, fotoExtras: [], placaOficial: false, replicaPlaca: false };
 
-    // Perfil do Formando
-    let userProfile = {
-      nome: '',
-      whatsapp: '',
-      email: '',
-      interesses: {
-        colacao: true,
-        ensaio: true,
-        placa: false,
-        replica: false,
-        festa: false
-      }
-    };
-
-    // Estado do Combo Selecionado
-    let comboState = {
-      cerimonial: null,
-      decoracao: null,
-      fotografia: null,
-      fotoExtras: [],
-      placaOficial: false,
-      replicaPlaca: false
-    };
-
-    // Histórico de Votos Auditáveis
-    let votesHistory = [];
-
-    /* ========================================================
-     * INICIALIZAÇÃO
-     * ======================================================== */
     document.addEventListener('DOMContentLoaded', () => {
       carregarLocalStorage();
       renderCatalogo();
       updateComboDisplay();
       updateProfileUI();
-      atualizarDashboardApuracao();
       renderReunioes();
-      updateReunioesBadge();
       lucide.createIcons();
     });
 
     function carregarLocalStorage() {
       try {
-        const savedProfile = localStorage.getItem(STORAGE_KEY_PROFILE);
-        if (savedProfile) userProfile = JSON.parse(savedProfile);
-
-        const savedCombo = localStorage.getItem(STORAGE_KEY_COMBO);
-        if (savedCombo) comboState = JSON.parse(savedCombo);
-
-        const savedVotes = localStorage.getItem(STORAGE_KEY_VOTES);
-        if (savedVotes) {
-          try {
-            const parsed = JSON.parse(savedVotes);
-            // Limpa dados de teste ou demonstração antigos para garantir apenas cadastros reais
-            votesHistory = Array.isArray(parsed)
-              ? parsed.filter(v => v && v.id !== 'voto_1' && !String(v.id).startsWith('voto_demo_'))
-              : [];
-          } catch (err) {
-            votesHistory = [];
-          }
-        } else {
-          votesHistory = [];
-        }
-      } catch (e) {
-        console.error("Erro ao carregar localStorage:", e);
-        votesHistory = [];
-      }
+        const p = localStorage.getItem(STORAGE_KEY_PROFILE);
+        if (p) userProfile = JSON.parse(p);
+        const c = localStorage.getItem(STORAGE_KEY_COMBO);
+        if (c) comboState = JSON.parse(c);
+      } catch (e) {}
     }
 
     function salvarComboStorage() {
       localStorage.setItem(STORAGE_KEY_COMBO, JSON.stringify(comboState));
     }
 
-    function salvarVotosStorage() {
-      localStorage.setItem(STORAGE_KEY_VOTES, JSON.stringify(votesHistory));
+    function salvarPerfilStorage() {
+      localStorage.setItem(STORAGE_KEY_PROFILE, JSON.stringify(userProfile));
     }
 
-    /* ========================================================
-     * NAVEGAÇÃO DE TELAS (Home, Combo, Apuração, Reuniões)
-     * ======================================================== */
     function navigateTo(tab) {
       const views = {
         catalogo: document.getElementById('viewCatalogo'),
         combo: document.getElementById('viewCombo'),
-        apuracao: document.getElementById('viewApuracao'),
         reunioes: document.getElementById('viewReunioes')
       };
-
-      Object.keys(views).forEach(k => {
-        if (views[k]) views[k].classList.add('hidden');
-      });
-
-      if (views[tab]) {
-        views[tab].classList.remove('hidden');
-      }
-
+      Object.keys(views).forEach(k => views[k] && views[k].classList.add('hidden'));
+      if (views[tab]) views[tab].classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      if (tab === 'combo') {
-        updateComboDisplay();
-      } else if (tab === 'apuracao') {
-        atualizarDashboardApuracao();
-      } else if (tab === 'catalogo') {
-        renderCatalogo();
-      } else if (tab === 'reunioes') {
-        renderReunioes();
-      }
-
+      if (tab === 'combo') updateComboDisplay();
+      if (tab === 'catalogo') renderCatalogo();
+      if (tab === 'reunioes') renderReunioes();
       lucide.createIcons();
     }
 
-    /* ========================================================
-     * RENDERIZAÇÃO DO CATÁLOGO DE EMPRESAS & FILTROS
-     * ======================================================== */
-    function applyFilter(filter) {
-      currentFilter = filter;
+    function applyFilter(f) {
+      currentFilter = f;
       document.querySelectorAll('#filterContainer .filter-btn').forEach(btn => {
-        const btnFilter = btn.getAttribute('data-filter');
-        if (btnFilter === filter) {
-          btn.className = "filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-univasf-700 text-white shadow-xs";
-        } else {
-          btn.className = "filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200";
-        }
+        const bf = btn.getAttribute('data-filter');
+        btn.className = (bf === f) 
+          ? "filter-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-univasf-700 text-white shadow-xs"
+          : "filter-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200";
       });
       renderCatalogo();
     }
@@ -1436,170 +630,83 @@
       const grid = document.getElementById('empresasGrid');
       if (!grid) return;
 
-      const filtradas = empresasData.filter(emp => {
-        if (currentFilter === 'todas') return true;
-        return emp.servicos.includes(currentFilter);
-      });
-
-      if (filtradas.length === 0) {
-        grid.innerHTML = `
-          <div class="col-span-full text-center py-12 bg-white rounded-2xl border border-slate-200 p-8">
-            <i data-lucide="inbox" class="w-12 h-12 text-slate-300 mx-auto mb-3"></i>
-            <h3 class="text-base font-bold text-slate-700">Nenhuma empresa encontrada com este filtro</h3>
-            <p class="text-xs text-slate-400 mt-1">Selecione "Todas" para visualizar o catálogo completo.</p>
-          </div>
-        `;
-        lucide.createIcons();
-        return;
-      }
+      const filtradas = empresasData.filter(e => currentFilter === 'todas' || e.servicos.includes(currentFilter));
 
       grid.innerHTML = filtradas.map(emp => {
-        const badgesHtml = emp.servicos.map(srv => {
-          if (srv === 'cerimonial') return `<span class="badge-cerimonial text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Cerimonial</span>`;
-          if (srv === 'decoracao') return `<span class="badge-decoracao text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Decoração</span>`;
-          if (srv === 'fotografia') return `<span class="badge-fotografia text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Fotografia</span>`;
-          if (srv === 'baile' || srv === 'festa') return `<span class="badge-baile text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Baile / Festa</span>`;
-          if (srv === 'placa') return `<span class="bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Placa</span>`;
-          if (srv === 'replica') return `<span class="bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Réplica</span>`;
+        // Mapeamento completo com Placa e Réplica restauradas
+        const badgesHtml = emp.servicos.map(s => {
+          if (s === 'cerimonial') return `<span class="badge-cerimonial text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Cerimonial</span>`;
+          if (s === 'decoracao') return `<span class="badge-decoracao text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Decoração</span>`;
+          if (s === 'fotografia') return `<span class="badge-fotografia text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Fotografia</span>`;
+          if (s === 'baile' || s === 'festa') return `<span class="badge-baile text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Baile / Festa</span>`;
+          if (s === 'placa') return `<span class="bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Placa</span>`;
+          if (s === 'replica') return `<span class="bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Réplica</span>`;
           return '';
         }).join(' ');
-
-        const obsHtml = emp.observacoes ? `
-          <div class="mt-4 p-3.5 rounded-xl bg-amber-50/90 border border-amber-200/90 text-amber-900 text-xs leading-relaxed">
-            <div class="flex items-start gap-2">
-              <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
-              <div>
-                <strong class="font-bold text-amber-950 block">Pontos de Atenção:</strong>
-                <span>${escapeHtml(emp.observacoes)}</span>
-              </div>
-            </div>
-          </div>
-        ` : '';
 
         const pacotesHtml = emp.pacotes.map(pct => {
           const isSelected = isPacoteNoCombo(emp.id, pct.id);
           const isAguardando = pct.valorVista === 0 && pct.valorPrazo === 0;
 
           return `
-            <div class="p-4 rounded-xl border ${isSelected ? 'border-univasf-500 bg-univasf-50/40 ring-1 ring-univasf-400' : 'border-slate-200 bg-white hover:border-slate-300'} transition-all flex flex-col justify-between gap-3">
+            <div class="p-3 sm:p-3.5 rounded-xl border ${isSelected ? 'border-univasf-500 bg-univasf-50/40 ring-1 ring-univasf-400' : 'border-slate-200 bg-white'} flex flex-col justify-between gap-2.5">
               <div>
-                <div class="flex items-start justify-between gap-2 mb-1">
-                  <h4 class="font-bold text-slate-900 text-sm leading-snug">${escapeHtml(pct.nome)}</h4>
-                  ${isSelected ? `<span class="inline-flex items-center gap-1 text-[11px] font-extrabold bg-univasf-600 text-white px-2 py-0.5 rounded-full shrink-0">✓ No Combo</span>` : ''}
+                <div class="flex items-start justify-between gap-2">
+                  <h4 class="font-bold text-slate-900 text-xs sm:text-sm">${escapeHtml(pct.nome)}</h4>
+                  ${isSelected ? `<span class="text-[10px] font-extrabold bg-univasf-600 text-white px-1.5 py-0.5 rounded">No Combo</span>` : ''}
                 </div>
-                <p class="text-xs text-slate-600 leading-relaxed mb-2.5">${escapeHtml(pct.desc)}</p>
-                
+                <p class="text-xs text-slate-500 mt-1 leading-relaxed">${escapeHtml(pct.desc)}</p>
                 ${isAguardando ? `
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-100/80 text-amber-900 text-xs font-bold">
-                    <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-                    Aguardando Envio da Proposta
-                  </div>
+                  <div class="mt-2 text-[11px] font-bold text-amber-800 bg-amber-50 p-1.5 rounded-md inline-block">Aguardando Envio de Orçamento</div>
                 ` : `
-                  <div class="flex items-baseline gap-2">
-                    <span class="text-base font-extrabold text-slate-900">${formatMoney(pct.valorVista)}</span>
-                    <span class="text-xs text-slate-500 font-medium">à vista</span>
-                    ${pct.valorPrazo !== pct.valorVista ? `<span class="text-xs text-slate-400">ou ${formatMoney(pct.valorPrazo)} a prazo</span>` : ''}
+                  <div class="mt-2 flex items-baseline gap-1.5">
+                    <span class="text-sm sm:text-base font-extrabold text-slate-900">${formatMoney(pct.valorVista)}</span>
+                    <span class="text-[10px] text-slate-500">à vista</span>
                   </div>
                 `}
               </div>
 
-              <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-[11px] text-slate-400">${emp.servicos.includes('cerimonial') ? 'Em grupo' : 'Individual'}</span>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-end">
                 ${isAguardando ? `
-                  <button type="button" onclick="navigateTo('reunioes')" class="text-xs font-semibold text-univasf-700 hover:underline flex items-center gap-1">
-                    Ver agenda de reunião →
-                  </button>
+                  <a href="propostas.html?empresa=${emp.id}" class="text-xs font-semibold text-univasf-700 hover:underline">Ver status da reunião →</a>
                 ` : (isSelected ? `
-                  <button onclick="removerPacoteDoCombo('${emp.id}', '${pct.id}')" class="px-3 py-1.5 rounded-lg border border-red-200 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold transition-colors flex items-center gap-1">
-                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                    Remover
-                  </button>
+                  <button onclick="removerPacoteDoCombo('${emp.id}', '${pct.id}')" class="px-2.5 py-1 rounded-lg bg-red-50 text-red-700 text-xs font-bold hover:bg-red-100 transition-colors">Remover</button>
                 ` : `
-                  <button onclick="adicionarPacoteAoCombo('${emp.id}', '${pct.id}')" class="px-3.5 py-1.5 rounded-lg bg-univasf-700 hover:bg-univasf-800 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 active:scale-98">
-                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-                    Adicionar ao Meu Combo
-                  </button>
+                  <button onclick="adicionarPacoteAoCombo('${emp.id}', '${pct.id}')" class="px-3 py-1.5 rounded-lg bg-univasf-700 hover:bg-univasf-800 text-white text-xs font-bold transition-all shadow-xs active:scale-98">Adicionar ao Combo</button>
                 `)}
               </div>
             </div>
           `;
         }).join('');
 
-        let extrasHtml = '';
-        if (emp.extras && emp.extras.length > 0) {
-          extrasHtml = `
-            <div class="mt-4 pt-4 border-t border-slate-200">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                  <i data-lucide="plus-circle" class="w-3.5 h-3.5 text-amber-600"></i>
-                  Itens Opcionais / Extras Avulsos:
-                </span>
-                <span class="text-[11px] text-slate-400">Marque para somar ao combo</span>
-              </div>
-              <div class="space-y-2">
-                ${emp.extras.map(ex => {
-                  const isExtraChecked = isExtraNoCombo(emp.id, ex.id);
-                  return `
-                    <label class="flex items-center justify-between p-2.5 rounded-lg border ${isExtraChecked ? 'border-amber-300 bg-amber-50/50' : 'border-slate-200 bg-slate-50/60 hover:bg-slate-50'} cursor-pointer text-xs transition-colors">
-                      <div class="flex items-center gap-2.5">
-                        <input type="checkbox" onchange="toggleExtraDoCombo('${emp.id}', '${ex.id}', this.checked)" ${isExtraChecked ? 'checked' : ''} class="w-4 h-4 rounded text-univasf-600 focus:ring-univasf-500 border-slate-300">
-                        <span class="font-medium text-slate-800">${escapeHtml(ex.nome)}</span>
-                      </div>
-                      <div class="text-right">
-                        <span class="font-bold text-slate-900 block">${formatMoney(ex.valorVista)}</span>
-                        ${ex.valorPrazo !== ex.valorVista ? `<span class="text-[10px] text-slate-500">${formatMoney(ex.valorPrazo)} a prazo</span>` : ''}
-                      </div>
-                    </label>
-                  `;
-                }).join('')}
-              </div>
-            </div>
-          `;
-        }
-
         return `
-          <div class="card-transition bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md p-5 sm:p-6 flex flex-col justify-between">
+          <div class="card-transition bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 flex flex-col justify-between shadow-xs">
             <div>
-              <div class="flex items-start justify-between gap-3 pb-3 border-b border-slate-100">
+              <div class="flex items-start justify-between gap-2 pb-3 border-b border-slate-100">
                 <div>
-                  <div class="flex flex-wrap items-center gap-1.5 mb-1.5">
-                    ${badgesHtml}
-                  </div>
-                  <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight">${escapeHtml(emp.nome)}</h3>
+                  <div class="flex flex-wrap gap-1 mb-1.5">${badgesHtml}</div>
+                  <h3 class="text-base sm:text-lg font-extrabold text-slate-900">${escapeHtml(emp.nome)}</h3>
                 </div>
               </div>
 
-              <div class="flex flex-wrap items-center gap-x-4 gap-y-2 py-3 text-xs text-slate-600">
-                ${emp.contato ? `
-                  <a href="${formatWhatsAppLink(emp.contato)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-emerald-700 hover:text-emerald-800 font-semibold bg-emerald-50 px-2 py-1 rounded-md border border-emerald-200/60">
-                    <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                    ${escapeHtml(emp.contato)}
-                  </a>
-                ` : '<span class="text-slate-400 italic">Contato sob consulta</span>'}
-                
-                ${emp.instagram ? `
-                  <a href="https://instagram.com/${emp.instagram.replace('@','')}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-slate-700 hover:text-pink-600 font-semibold">
-                    <i data-lucide="instagram" class="w-3.5 h-3.5 text-pink-600"></i>
-                    ${escapeHtml(emp.instagram)}
-                  </a>
-                ` : ''}
-
-                ${emp.portfolioUrl && emp.portfolioUrl !== '#' ? `
-                  <a href="${emp.portfolioUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-univasf-700 hover:text-univasf-900 font-semibold underline">
-                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                    Portfólio
-                  </a>
-                ` : ''}
+              <div class="mt-3">
+                <a href="propostas.html?empresa=${emp.id}" class="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-slate-100 hover:bg-univasf-50 hover:text-univasf-700 hover:border-univasf-300 border border-slate-200 text-slate-700 text-xs font-bold transition-all group">
+                  <i data-lucide="file-search" class="w-4 h-4 text-slate-500 group-hover:text-univasf-600"></i>
+                  <span>Abrir e Ver Proposta Completa (Fotos & PDF)</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5 opacity-70 group-hover:translate-x-1 transition-transform"></i>
+                </a>
               </div>
 
-              ${obsHtml}
+              ${emp.observacoes ? `
+                <div class="mt-3 p-3 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-900 text-xs">
+                  <strong>Atenção:</strong> ${escapeHtml(emp.observacoes)}
+                </div>
+              ` : ''}
 
-              <div class="mt-4 space-y-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block">Pacotes Disponíveis:</span>
+              <div class="mt-3 space-y-2.5">
+                <span class="text-[11px] font-bold uppercase text-slate-400">Opções de Pacote:</span>
                 ${pacotesHtml}
               </div>
-
-              ${extrasHtml}
             </div>
           </div>
         `;
@@ -1608,29 +715,17 @@
       lucide.createIcons();
     }
 
-    /* ========================================================
-     * GERENCIAMENTO DO COMBO (SELEÇÃO INTELIGENTE)
-     * ======================================================== */
     function isPacoteNoCombo(empresaId, pacoteId) {
-      if (comboState.cerimonial && comboState.cerimonial.empresaId === empresaId && comboState.cerimonial.pacoteId === pacoteId) return true;
-      if (comboState.decoracao && comboState.decoracao.empresaId === empresaId && comboState.decoracao.pacoteId === pacoteId) return true;
-      if (comboState.fotografia && comboState.fotografia.empresaId === empresaId && comboState.fotografia.pacoteId === pacoteId) return true;
+      if (comboState.cerimonial?.empresaId === empresaId && comboState.cerimonial?.pacoteId === pacoteId) return true;
+      if (comboState.decoracao?.empresaId === empresaId && comboState.decoracao?.pacoteId === pacoteId) return true;
+      if (comboState.fotografia?.empresaId === empresaId && comboState.fotografia?.pacoteId === pacoteId) return true;
       return false;
-    }
-
-    function isExtraNoCombo(empresaId, extraId) {
-      return comboState.fotoExtras.some(e => e.empresaId === empresaId && e.extraId === extraId);
     }
 
     function adicionarPacoteAoCombo(empresaId, pacoteId) {
       const empresa = empresasData.find(e => e.id === empresaId);
-      if (!empresa) return;
-
-      const pacote = empresa.pacotes.find(p => p.id === pacoteId);
-      if (!pacote || (pacote.valorVista === 0 && pacote.valorPrazo === 0)) {
-        showToast('Esta empresa ainda não disponibilizou os valores definitivos.', 'warning');
-        return;
-      }
+      const pacote = empresa?.pacotes.find(p => p.id === pacoteId);
+      if (!pacote || (pacote.valorVista === 0 && pacote.valorPrazo === 0)) return;
 
       const itemData = {
         empresaId: empresa.id,
@@ -1644,1239 +739,181 @@
 
       if (empresa.servicos.includes('fotografia')) {
         comboState.fotografia = itemData;
-        showToast(`Pacote "${pacote.nome}" de Fotografia adicionado ao combo!`, 'success');
       } else {
         if (empresa.servicos.includes('cerimonial') && empresa.servicos.includes('decoracao')) {
           comboState.cerimonial = itemData;
           comboState.decoracao = itemData;
-          showToast(`Colação Completa (Cerimonial + Decoração) definida com ${empresa.nome}!`, 'success');
         } else if (empresa.servicos.includes('cerimonial')) {
           comboState.cerimonial = itemData;
-          if (comboState.decoracao && comboState.decoracao.empresaId === empresa.id) {
-            comboState.decoracao = null;
-          }
-          showToast(`Cerimonial definido com ${empresa.nome}. Não esqueça de selecionar a Decoração!`, 'warning');
         } else if (empresa.servicos.includes('decoracao')) {
           comboState.decoracao = itemData;
-          if (comboState.cerimonial && comboState.cerimonial.empresaId === empresa.id) {
-            comboState.cerimonial = null;
-          }
-          showToast(`Decoração definida com ${empresa.nome}. Não esqueça de selecionar o Cerimonial!`, 'warning');
         }
       }
 
       salvarComboStorage();
       renderCatalogo();
       updateComboDisplay();
+      showToast(`Adicionado ao combo!`, 'success');
     }
 
     function removerPacoteDoCombo(empresaId, pacoteId) {
-      if (comboState.cerimonial && comboState.cerimonial.empresaId === empresaId && comboState.cerimonial.pacoteId === pacoteId) {
-        if (comboState.decoracao && comboState.decoracao.empresaId === empresaId) {
-          comboState.decoracao = null;
-        }
-        comboState.cerimonial = null;
-      }
-      if (comboState.decoracao && comboState.decoracao.empresaId === empresaId && comboState.decoracao.pacoteId === pacoteId) {
-        comboState.decoracao = null;
-      }
-      if (comboState.fotografia && comboState.fotografia.empresaId === empresaId && comboState.fotografia.pacoteId === pacoteId) {
-        comboState.fotografia = null;
-        comboState.fotoExtras = comboState.fotoExtras.filter(e => e.empresaId !== empresaId);
-      }
+      if (comboState.cerimonial?.pacoteId === pacoteId) comboState.cerimonial = null;
+      if (comboState.decoracao?.pacoteId === pacoteId) comboState.decoracao = null;
+      if (comboState.fotografia?.pacoteId === pacoteId) comboState.fotografia = null;
 
       salvarComboStorage();
       renderCatalogo();
       updateComboDisplay();
-      showToast('Item removido do seu combo.', 'info');
-    }
-
-    function toggleExtraDoCombo(empresaId, extraId, isChecked) {
-      const empresa = empresasData.find(e => e.id === empresaId);
-      if (!empresa || !empresa.extras) return;
-
-      const extra = empresa.extras.find(ex => ex.id === extraId);
-      if (!extra) return;
-
-      if (isChecked) {
-        if (!comboState.fotoExtras.some(e => e.empresaId === empresaId && e.extraId === extraId)) {
-          comboState.fotoExtras.push({
-            empresaId: empresa.id,
-            extraId: extra.id,
-            nome: extra.nome,
-            valorVista: extra.valorVista,
-            valorPrazo: extra.valorPrazo
-          });
-          showToast(`Extra "${extra.nome}" adicionado ao combo.`, 'success');
-        }
-      } else {
-        comboState.fotoExtras = comboState.fotoExtras.filter(e => !(e.empresaId === empresaId && e.extraId === extraId));
-        showToast(`Extra "${extra.nome}" removido do combo.`, 'info');
-      }
-
-      salvarComboStorage();
-      updateComboDisplay();
-      renderCatalogo();
+      showToast('Item removido.', 'info');
     }
 
     function toggleItemInteresse(tipo, isChecked) {
-      if (tipo === 'placa') {
-        comboState.placaOficial = isChecked;
-        userProfile.interesses.placa = isChecked;
-      } else if (tipo === 'replica') {
-        comboState.replicaPlaca = isChecked;
-        userProfile.interesses.replica = isChecked;
-      }
+      if (tipo === 'placa') comboState.placaOficial = isChecked;
+      if (tipo === 'replica') comboState.replicaPlaca = isChecked;
       salvarComboStorage();
-      salvarPerfilStorage();
       updateComboDisplay();
     }
 
-    /* ========================================================
-     * ATUALIZAÇÃO DA TELA MEU COMBO & REGRA DA COLAÇÃO
-     * ======================================================== */
     function updateComboDisplay() {
-      const totalHeader = calcularTotalCombo();
-      const countItens = contarItensCombo();
-      
-      const elCartTotal = document.getElementById('cartTotalHeader');
-      if (elCartTotal) elCartTotal.textContent = formatMoney(totalHeader.totalVista);
+      const total = calcularTotalCombo();
+      const count = (comboState.cerimonial ? 1 : 0) + (comboState.decoracao && comboState.decoracao.empresaId !== comboState.cerimonial?.empresaId ? 1 : 0) + (comboState.fotografia ? 1 : 0) + (comboState.placaOficial ? 1 : 0) + (comboState.replicaPlaca ? 1 : 0);
 
-      const elCartCount = document.getElementById('cartCountBadge');
-      if (elCartCount) elCartCount.textContent = countItens;
-
-      updateColacaoBanner();
+      document.getElementById('cartTotalHeader').textContent = formatMoney(total.totalVista);
+      document.getElementById('cartCountBadge').textContent = count;
+      document.getElementById('comboTotalVista').textContent = formatMoney(total.totalVista);
+      document.getElementById('comboTotalPrazo').textContent = formatMoney(total.totalPrazo);
 
       const colacaoContainer = document.getElementById('colacaoComboItems');
       if (colacaoContainer) {
         if (!comboState.cerimonial && !comboState.decoracao) {
-          colacaoContainer.innerHTML = `
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <p class="text-xs text-slate-500 mb-2">Nenhum pacote de Cerimonial ou Decoração selecionado.</p>
-              <button onclick="navigateTo('catalogo')" class="px-3 py-1.5 rounded-lg bg-univasf-700 hover:bg-univasf-800 text-white text-xs font-bold">
-                Explorar empresas de Colação
-              </button>
-            </div>
-          `;
-        } else if (comboState.cerimonial && comboState.decoracao && comboState.cerimonial.empresaId === comboState.decoracao.empresaId) {
-          colacaoContainer.innerHTML = `
-            <div class="p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Empresa Única (Completa)</span>
-                  <span class="font-bold text-slate-900 text-sm">${escapeHtml(comboState.cerimonial.nomeEmpresa)}</span>
-                </div>
-                <p class="text-xs text-slate-700 mt-1 font-medium">${escapeHtml(comboState.cerimonial.nomePacote)}</p>
-                <p class="text-xs text-slate-500 mt-0.5">${escapeHtml(comboState.cerimonial.desc)}</p>
-              </div>
-              <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
-                <span class="text-base font-extrabold text-slate-900">${formatMoney(comboState.cerimonial.valorVista)}</span>
-                <button onclick="removerPacoteDoCombo('${comboState.cerimonial.empresaId}', '${comboState.cerimonial.pacoteId}')" class="text-xs text-red-600 hover:underline font-bold">
-                  Remover
-                </button>
-              </div>
-            </div>
-          `;
+          colacaoContainer.innerHTML = `<p class="text-xs text-slate-400 italic">Nenhum serviço de colação selecionado.</p>`;
         } else {
-          let html = '';
-          if (comboState.cerimonial) {
-            html += `
-              <div class="p-3.5 rounded-xl border border-sky-200 bg-sky-50/50 flex items-center justify-between gap-2">
-                <div>
-                  <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-sky-100 text-sky-800">Cerimonial</span>
-                  <h4 class="font-bold text-slate-900 text-sm mt-1">${escapeHtml(comboState.cerimonial.nomeEmpresa)}</h4>
-                  <p class="text-xs text-slate-600">${escapeHtml(comboState.cerimonial.nomePacote)}</p>
-                </div>
-                <div class="text-right shrink-0">
-                  <span class="font-extrabold text-slate-900 block">${formatMoney(comboState.cerimonial.valorVista)}</span>
-                  <button onclick="removerPacoteDoCombo('${comboState.cerimonial.empresaId}', '${comboState.cerimonial.pacoteId}')" class="text-xs text-red-600 hover:underline font-bold">
-                    Remover
-                  </button>
-                </div>
-              </div>
-            `;
-          }
-          if (comboState.decoracao) {
-            html += `
-              <div class="p-3.5 rounded-xl border border-pink-200 bg-pink-50/50 flex items-center justify-between gap-2">
-                <div>
-                  <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-pink-100 text-pink-800">Decoração</span>
-                  <h4 class="font-bold text-slate-900 text-sm mt-1">${escapeHtml(comboState.decoracao.nomeEmpresa)}</h4>
-                  <p class="text-xs text-slate-600">${escapeHtml(comboState.decoracao.nomePacote)}</p>
-                </div>
-                <div class="text-right shrink-0">
-                  <span class="font-extrabold text-slate-900 block">${formatMoney(comboState.decoracao.valorVista)}</span>
-                  <button onclick="removerPacoteDoCombo('${comboState.decoracao.empresaId}', '${comboState.decoracao.pacoteId}')" class="text-xs text-red-600 hover:underline font-bold">
-                    Remover
-                  </button>
-                </div>
-              </div>
-            `;
-          }
-          colacaoContainer.innerHTML = html;
+          colacaoContainer.innerHTML = `
+            <div class="text-xs bg-slate-50 p-3 rounded-xl border border-slate-200">
+              ${comboState.cerimonial ? `<p class="font-bold text-slate-800">Cerimonial: ${comboState.cerimonial.nomeEmpresa} (${formatMoney(comboState.cerimonial.valorVista)})</p>` : ''}
+              ${comboState.decoracao && comboState.decoracao.empresaId !== comboState.cerimonial?.empresaId ? `<p class="font-bold text-slate-800 mt-1">Decoração: ${comboState.decoracao.nomeEmpresa} (${formatMoney(comboState.decoracao.valorVista)})</p>` : ''}
+            </div>
+          `;
         }
       }
 
       const fotoContainer = document.getElementById('fotografiaComboItems');
       if (fotoContainer) {
-        if (!comboState.fotografia && comboState.fotoExtras.length === 0) {
-          fotoContainer.innerHTML = `
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <p class="text-xs text-slate-500 mb-2">Nenhum pacote de Fotografia ou item extra selecionado.</p>
-              <button onclick="navigateTo('catalogo'); applyFilter('fotografia');" class="px-3 py-1.5 rounded-lg bg-univasf-700 hover:bg-univasf-800 text-white text-xs font-bold">
-                Ver Pacotes de Fotografia
-              </button>
-            </div>
-          `;
-        } else {
-          let fotoHtml = '';
-          if (comboState.fotografia) {
-            fotoHtml += `
-              <div class="p-3.5 rounded-xl border border-amber-200 bg-amber-50/40 flex items-center justify-between gap-2">
-                <div>
-                  <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-900">Pacote Principal</span>
-                  <h4 class="font-bold text-slate-900 text-sm mt-1">${escapeHtml(comboState.fotografia.nomeEmpresa)} - ${escapeHtml(comboState.fotografia.nomePacote)}</h4>
-                  <p class="text-xs text-slate-600">${escapeHtml(comboState.fotografia.desc)}</p>
-                </div>
-                <div class="text-right shrink-0">
-                  <span class="font-extrabold text-slate-900 block">${formatMoney(comboState.fotografia.valorVista)}</span>
-                  <button onclick="removerPacoteDoCombo('${comboState.fotografia.empresaId}', '${comboState.fotografia.pacoteId}')" class="text-xs text-red-600 hover:underline font-bold">
-                    Remover
-                  </button>
-                </div>
-              </div>
-            `;
-          }
-          if (comboState.fotoExtras.length > 0) {
-            fotoHtml += `
-              <div class="pt-2">
-                <span class="text-xs font-bold text-slate-600 uppercase block mb-2">Itens Opcionais / Extras:</span>
-                <div class="space-y-1.5">
-                  ${comboState.fotoExtras.map(ex => `
-                    <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200 text-xs">
-                      <span class="font-medium text-slate-800">${escapeHtml(ex.nome)}</span>
-                      <div class="flex items-center gap-3">
-                        <span class="font-bold text-slate-900">${formatMoney(ex.valorVista)}</span>
-                        <button onclick="toggleExtraDoCombo('${ex.empresaId}', '${ex.extraId}', false)" class="text-red-500 hover:text-red-700">
-                          <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                        </button>
-                      </div>
-                    </div>
-                  `).join('')}
-                </div>
-              </div>
-            `;
-          }
-          fotoContainer.innerHTML = fotoHtml;
-        }
+        fotoContainer.innerHTML = comboState.fotografia 
+          ? `<div class="text-xs bg-slate-50 p-3 rounded-xl border border-slate-200 font-bold text-slate-800">${comboState.fotografia.nomeEmpresa} - ${comboState.fotografia.nomePacote} (${formatMoney(comboState.fotografia.valorVista)})</div>`
+          : `<p class="text-xs text-slate-400 italic">Nenhum pacote de fotografia escolhido.</p>`;
       }
 
-      const elPlaca = document.getElementById('checkPlacaOficial');
-      if (elPlaca) elPlaca.checked = comboState.placaOficial;
-
-      const elReplica = document.getElementById('checkReplicaPlaca');
-      if (elReplica) elReplica.checked = comboState.replicaPlaca;
-
-      const elComboTotalVista = document.getElementById('comboTotalVista');
-      if (elComboTotalVista) elComboTotalVista.textContent = formatMoney(totalHeader.totalVista);
-
-      const elComboTotalPrazo = document.getElementById('comboTotalPrazo');
-      if (elComboTotalPrazo) elComboTotalPrazo.textContent = formatMoney(totalHeader.totalPrazo);
-
-      const elVotoNome = document.getElementById('votoNomeDisplay');
-      if (elVotoNome) {
-        elVotoNome.textContent = userProfile.nome.trim() ? userProfile.nome : 'Não identificado (Preencher Perfil)';
-      }
-
-      lucide.createIcons();
+      updateColacaoBanner();
     }
 
-    /* ========================================================
-     * REGRA INTELIGENTE DA COLAÇÃO (CERIMONIAL + DECORAÇÃO)
-     * ======================================================== */
     function updateColacaoBanner() {
-      const banner = document.getElementById('colacaoStatusBanner');
-      if (!banner) return;
+      const b = document.getElementById('colacaoStatusBanner');
+      if (!b) return;
+      const temC = !!comboState.cerimonial;
+      const temD = !!comboState.decoracao;
 
-      const temCerimonial = !!comboState.cerimonial;
-      const temDecoracao = !!comboState.decoracao;
-
-      if (temCerimonial && temDecoracao && comboState.cerimonial.empresaId === comboState.decoracao.empresaId) {
-        banner.className = "rounded-2xl p-5 border border-emerald-300 bg-emerald-50 text-emerald-950 shadow-xs";
-        banner.innerHTML = `
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
-              <i data-lucide="check" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <h4 class="font-extrabold text-base text-emerald-950">✅ Colação Completa: Cerimonial + Decoração contratados com [${escapeHtml(comboState.cerimonial.nomeEmpresa)}]</h4>
-              <p class="text-xs text-emerald-800 mt-1 leading-relaxed">
-                Excelente! Você escolheu uma empresa que atende integralmente os dois pilares obrigatórios da colação solene da turma em um pacote unificado.
-              </p>
-            </div>
-          </div>
-        `;
-      } else if (temCerimonial && temDecoracao) {
-        banner.className = "rounded-2xl p-5 border border-emerald-300 bg-emerald-50 text-emerald-950 shadow-xs";
-        banner.innerHTML = `
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
-              <i data-lucide="check-check" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <h4 class="font-extrabold text-base text-emerald-950">✅ Colação Completa: Cerimonial ([${escapeHtml(comboState.cerimonial.nomeEmpresa)}]) + Decoração ([${escapeHtml(comboState.decoracao.nomeEmpresa)}])</h4>
-              <p class="text-xs text-emerald-800 mt-1 leading-relaxed">
-                Combinação válida! Você optou por contratar o Cerimonial e a Decoração com fornecedores especializados avulsos.
-              </p>
-            </div>
-          </div>
-        `;
-      } else if (temCerimonial && !temDecoracao) {
-        banner.className = "rounded-2xl p-5 border border-amber-300 bg-amber-50 text-amber-950 shadow-xs";
-        banner.innerHTML = `
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div class="flex items-start gap-3">
-              <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center shrink-0 mt-0.5">
-                <i data-lucide="alert-triangle" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <h4 class="font-extrabold text-base text-amber-950">⚠️ Falta a Decoração!</h4>
-                <p class="text-xs text-amber-800 mt-1 leading-relaxed">
-                  Você selecionou Cerimonial com <strong>[${escapeHtml(comboState.cerimonial.nomeEmpresa)}]</strong>. A Colação de Grau exige obrigatoriamente Decoração de palco e auditório.
-                </p>
-              </div>
-            </div>
-            <button onclick="navigateTo('catalogo'); applyFilter('decoracao');" class="px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold shrink-0 transition-colors shadow-xs">
-              Selecionar Decoração no Catálogo →
-            </button>
-          </div>
-        `;
-      } else if (!temCerimonial && temDecoracao) {
-        banner.className = "rounded-2xl p-5 border border-amber-300 bg-amber-50 text-amber-950 shadow-xs";
-        banner.innerHTML = `
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div class="flex items-start gap-3">
-              <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center shrink-0 mt-0.5">
-                <i data-lucide="alert-triangle" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <h4 class="font-extrabold text-base text-amber-950">⚠️ Falta o Cerimonial!</h4>
-                <p class="text-xs text-amber-800 mt-1 leading-relaxed">
-                  Você selecionou Decoração com <strong>[${escapeHtml(comboState.decoracao.nomeEmpresa)}]</strong>, selecione agora uma empresa de Cerimonial no catálogo para completar a colação solene.
-                </p>
-              </div>
-            </div>
-            <button onclick="navigateTo('catalogo'); applyFilter('cerimonial');" class="px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold shrink-0 transition-colors shadow-xs">
-              Selecionar Cerimonial no Catálogo →
-            </button>
-          </div>
-        `;
+      if (temC && temD) {
+        b.className = "rounded-2xl p-4 border border-emerald-300 bg-emerald-50 text-emerald-950 text-xs";
+        b.innerHTML = `<strong>✅ Colação de Grau Completa:</strong> Cerimonial e Decoração incluídos.`;
+      } else if (temC && !temD) {
+        b.className = "rounded-2xl p-4 border border-amber-300 bg-amber-50 text-amber-950 text-xs";
+        b.innerHTML = `<strong>⚠️ Atenção:</strong> Falta selecionar a Decoração no catálogo.`;
+      } else if (!temC && temD) {
+        b.className = "rounded-2xl p-4 border border-amber-300 bg-amber-50 text-amber-950 text-xs";
+        b.innerHTML = `<strong>⚠️ Atenção:</strong> Falta selecionar o Cerimonial no catálogo.`;
       } else {
-        banner.className = "rounded-2xl p-5 border border-slate-200 bg-white text-slate-800 shadow-xs";
-        banner.innerHTML = `
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center shrink-0">
-                <i data-lucide="info" class="w-4 h-4"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-sm text-slate-800">Colação Solene Pendente de Seleção</h4>
-                <p class="text-xs text-slate-500">Escolha uma empresa conjunta ou selecione Cerimonial e Decoração separadamente.</p>
-              </div>
-            </div>
-            <button onclick="navigateTo('catalogo')" class="px-3.5 py-2 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-bold transition-colors">
-              Explorar Catálogo
-            </button>
-          </div>
-        `;
+        b.className = "rounded-2xl p-4 border border-slate-200 bg-white text-slate-700 text-xs";
+        b.innerHTML = `Nenhum pacote de colação solene adicionado ainda.`;
       }
-      lucide.createIcons();
-    }
-
-    function contarItensCombo() {
-      let count = 0;
-      if (comboState.cerimonial) count++;
-      if (comboState.decoracao && (!comboState.cerimonial || comboState.decoracao.empresaId !== comboState.cerimonial.empresaId)) count++;
-      if (comboState.fotografia) count++;
-      count += comboState.fotoExtras.length;
-      if (comboState.placaOficial) count++;
-      if (comboState.replicaPlaca) count++;
-      return count;
     }
 
     function calcularTotalCombo() {
-      let vista = 0;
-      let prazo = 0;
-
-      if (comboState.cerimonial && comboState.decoracao && comboState.cerimonial.empresaId === comboState.decoracao.empresaId) {
-        vista += comboState.cerimonial.valorVista;
-        prazo += comboState.cerimonial.valorPrazo;
-      } else {
-        if (comboState.cerimonial) {
-          vista += comboState.cerimonial.valorVista;
-          prazo += comboState.cerimonial.valorPrazo;
-        }
-        if (comboState.decoracao) {
-          vista += comboState.decoracao.valorVista;
-          prazo += comboState.decoracao.valorPrazo;
-        }
-      }
-
-      if (comboState.fotografia) {
-        vista += comboState.fotografia.valorVista;
-        prazo += comboState.fotografia.valorPrazo;
-      }
-
-      comboState.fotoExtras.forEach(ex => {
-        vista += ex.valorVista;
-        prazo += ex.valorPrazo;
-      });
-
-      if (comboState.placaOficial) {
-        vista += 150;
-        prazo += 150;
-      }
-
-      if (comboState.replicaPlaca) {
-        vista += 250;
-        prazo += 250;
-      }
-
-      return { totalVista: vista, totalPrazo: prazo };
+      let v = 0; let p = 0;
+      if (comboState.cerimonial) { v += comboState.cerimonial.valorVista; p += comboState.cerimonial.valorPrazo; }
+      if (comboState.decoracao && comboState.decoracao.empresaId !== comboState.cerimonial?.empresaId) { v += comboState.decoracao.valorVista; p += comboState.decoracao.valorPrazo; }
+      if (comboState.fotografia) { v += comboState.fotografia.valorVista; p += comboState.fotografia.valorPrazo; }
+      if (comboState.placaOficial) { v += 150; p += 150; }
+      if (comboState.replicaPlaca) { v += 250; p += 250; }
+      return { totalVista: v, totalPrazo: p };
     }
 
-    /* ========================================================
-     * PERFIL DO FORMANDO (MODAL & VALIDAÇÕES)
-     * ======================================================== */
     function openProfileModal() {
       document.getElementById('inputNome').value = userProfile.nome || '';
       document.getElementById('inputWhatsapp').value = userProfile.whatsapp || '';
       document.getElementById('inputEmail').value = userProfile.email || '';
-
-      document.getElementById('intColacao').checked = !!userProfile.interesses.colacao;
-      document.getElementById('intEnsaio').checked = !!userProfile.interesses.ensaio;
-      document.getElementById('intPlaca').checked = !!userProfile.interesses.placa;
-      document.getElementById('intReplica').checked = !!userProfile.interesses.replica;
-      document.getElementById('intFesta').checked = !!userProfile.interesses.festa;
-
-      toggleFestaAlert(!!userProfile.interesses.festa);
-
       document.getElementById('profileModal').classList.remove('hidden');
       lucide.createIcons();
     }
-
     function closeProfileModal() {
       document.getElementById('profileModal').classList.add('hidden');
     }
 
-    function toggleFestaAlert(isChecked) {
-      const box = document.getElementById('festaAlertBox');
-      if (box) {
-        box.classList.remove('hidden');
-      }
-    }
-
-    function obterDadosRegistroAtual() {
-      const agora = new Date();
-      if (!userProfile.id) {
-        userProfile.id = 'cad_' + agora.getTime() + '_' + Math.random().toString(36).substring(2, 7);
-      }
-
-      // Colação
-      let opcaoColacaoTxt = "Não selecionada";
-      let tipoColacaoTxt = "nenhuma";
-      let empColacaoNome = "Nenhuma";
-      if (comboState.cerimonial && comboState.decoracao && comboState.cerimonial.empresaId === comboState.decoracao.empresaId) {
-        opcaoColacaoTxt = `${comboState.cerimonial.nomeEmpresa} (Única: ${comboState.cerimonial.nomePacote})`;
-        tipoColacaoTxt = "unica";
-        empColacaoNome = comboState.cerimonial.nomeEmpresa;
-      } else if (comboState.cerimonial && comboState.decoracao) {
-        opcaoColacaoTxt = `Separada: Cerimonial (${comboState.cerimonial.nomeEmpresa}) + Decoração (${comboState.decoracao.nomeEmpresa})`;
-        tipoColacaoTxt = "separada";
-        empColacaoNome = `${comboState.cerimonial.nomeEmpresa} + ${comboState.decoracao.nomeEmpresa}`;
-      } else if (comboState.cerimonial) {
-        opcaoColacaoTxt = `Cerimonial: ${comboState.cerimonial.nomeEmpresa} (Sem decoração)`;
-        tipoColacaoTxt = "cerimonial_apenas";
-        empColacaoNome = comboState.cerimonial.nomeEmpresa;
-      } else if (comboState.decoracao) {
-        opcaoColacaoTxt = `Decoração: ${comboState.decoracao.nomeEmpresa} (Sem cerimonial)`;
-        tipoColacaoTxt = "decoracao_apenas";
-        empColacaoNome = comboState.decoracao.nomeEmpresa;
-      }
-
-      // Fotografia
-      let empresaFotoTxt = "Não optou por foto";
-      let pacoteFotoTxt = "Nenhum";
-      if (comboState.fotografia) {
-        empresaFotoTxt = comboState.fotografia.nomeEmpresa;
-        pacoteFotoTxt = comboState.fotografia.nomePacote;
-      }
-
-      // Extras
-      const extras = [];
-      if (comboState.fotoExtras && comboState.fotoExtras.length > 0) {
-        comboState.fotoExtras.forEach(ex => extras.push(ex.nome));
-      }
-      if (comboState.placaOficial) extras.push("Cota Placa Oficial");
-      if (comboState.replicaPlaca) extras.push("Réplica Individual da Placa");
-
-      const totais = calcularTotalCombo();
-
-      return {
-        id: userProfile.id,
-        timestamp: agora.toISOString(),
-        nome: userProfile.nome,
-        contato: userProfile.whatsapp,
-        email: userProfile.email || 'Não informado',
-        opcaoColacao: opcaoColacaoTxt,
-        tipoColacao: tipoColacaoTxt,
-        empresaColacaoNome: empColacaoNome,
-        empresaFoto: empresaFotoTxt,
-        pacoteFoto: pacoteFotoTxt,
-        extras: extras,
-        interesses: { ...userProfile.interesses },
-        totalVista: totais.totalVista,
-        totalPrazo: totais.totalPrazo
-      };
-    }
-
-    function registrarOuAtualizarVoto(registro) {
-      const foneNorm = (registro.contato || '').replace(/\D/g, '');
-      const idxExistente = votesHistory.findIndex(v => {
-        if (v.id && registro.id && v.id === registro.id) return true;
-        const vFoneNorm = (v.contato || '').replace(/\D/g, '');
-        return foneNorm && vFoneNorm && foneNorm === vFoneNorm;
-      });
-
-      if (idxExistente >= 0) {
-        votesHistory[idxExistente] = { ...votesHistory[idxExistente], ...registro };
-      } else {
-        votesHistory.push(registro);
-      }
-
-      salvarVotosStorage();
-      atualizarDashboardApuracao();
-    }
-
-    function enviarNetlifyForms(registro) {
-      try {
-        const formData = new URLSearchParams();
-        formData.append('form-name', 'cadastro-formandos');
-        formData.append('nome', registro.nome || '');
-        formData.append('whatsapp', registro.contato || '');
-        formData.append('email', registro.email || '');
-        formData.append('quer_colacao', registro.interesses?.colacao ? 'Sim' : 'Não');
-        formData.append('quer_ensaio', registro.interesses?.ensaio ? 'Sim' : 'Não');
-        formData.append('quer_placa', registro.interesses?.placa ? 'Sim' : 'Não');
-        formData.append('quer_replica', registro.interesses?.replica ? 'Sim' : 'Não');
-        formData.append('quer_festa', registro.interesses?.festa ? 'Sim' : 'Não');
-        formData.append('opcao_colacao', registro.opcaoColacao || 'Não selecionada');
-        formData.append('empresa_fotografia', registro.empresaFoto || 'Não optou por foto');
-        formData.append('pacote_fotografia', registro.pacoteFoto || 'Nenhum');
-        formData.append('extras_selecionados', (registro.extras && registro.extras.length > 0) ? registro.extras.join('; ') : 'Nenhum');
-        formData.append('total_estimado_vista', formatMoney(registro.totalVista || 0));
-        formData.append('total_estimado_prazo', formatMoney(registro.totalPrazo || 0));
-        formData.append('data_hora', new Date(registro.timestamp).toLocaleString('pt-BR'));
-
-        fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: formData.toString()
-        }).then(res => {
-          if (res.ok) {
-            console.log('✅ Dados registrados e transmitidos ao Netlify Forms com sucesso!');
-          }
-        }).catch(err => {
-          console.log('Envio ao Netlify (esperado em produção no Netlify):', err);
-        });
-      } catch (e) {
-        console.error('Erro ao enviar dados ao Netlify Forms:', e);
-      }
-    }
-
     function salvarPerfil(e) {
       if (e) e.preventDefault();
-
-      const nome = document.getElementById('inputNome').value.trim();
-      const whatsapp = document.getElementById('inputWhatsapp').value.trim();
-      const email = document.getElementById('inputEmail').value.trim();
-
-      if (!nome || !whatsapp) {
-        showToast('Por favor, preencha seu Nome e WhatsApp!', 'error');
-        return;
-      }
-
-      userProfile.nome = nome;
-      userProfile.whatsapp = whatsapp;
-      userProfile.email = email;
-      userProfile.interesses = {
-        colacao: document.getElementById('intColacao').checked,
-        ensaio: document.getElementById('intEnsaio').checked,
-        placa: document.getElementById('intPlaca').checked,
-        replica: document.getElementById('intReplica').checked,
-        festa: document.getElementById('intFesta').checked
-      };
-
-      comboState.placaOficial = userProfile.interesses.placa;
-      comboState.replicaPlaca = userProfile.interesses.replica;
-
-      const registro = obterDadosRegistroAtual();
-      registrarOuAtualizarVoto(registro);
-      enviarNetlifyForms(registro);
-
+      userProfile.nome = document.getElementById('inputNome').value.trim();
+      userProfile.whatsapp = document.getElementById('inputWhatsapp').value.trim();
+      userProfile.email = document.getElementById('inputEmail').value.trim();
       salvarPerfilStorage();
-      salvarComboStorage();
       updateProfileUI();
-      updateComboDisplay();
       closeProfileModal();
-      showToast('Cadastro salvo e resposta gravada com sucesso!', 'success');
+      showToast('Perfil salvo com sucesso!', 'success');
     }
 
     function salvarComboSimulacao() {
-      if (!userProfile.nome || !userProfile.whatsapp) {
-        showToast('Identifique-se no perfil para salvar sua simulação!', 'info');
+      if (!userProfile.nome) {
+        showToast('Identifique-se no perfil primeiro!', 'info');
         openProfileModal();
         return;
       }
-      const registro = obterDadosRegistroAtual();
-      registrarOuAtualizarVoto(registro);
-      enviarNetlifyForms(registro);
       salvarComboStorage();
-      showToast('Sua simulação de combo foi gravada com sucesso!', 'success');
-    }
-
-    function salvarPerfilStorage() {
-      localStorage.setItem(STORAGE_KEY_PROFILE, JSON.stringify(userProfile));
+      showToast('Simulação gravada com sucesso!', 'success');
     }
 
     function updateProfileUI() {
-      const isIdentified = userProfile.nome && userProfile.whatsapp;
+      const isIdentified = !!userProfile.nome;
       const navText = document.getElementById('navProfileText');
-      const navIndicator = document.getElementById('profileStatusIndicator');
-
-      if (navText) {
-        if (isIdentified) {
-          const primeiroNome = userProfile.nome.split(' ')[0];
-          navText.textContent = `Olá, ${primeiroNome}`;
-        } else {
-          navText.textContent = "Meu Cadastro / Perfil";
-        }
-      }
-
-      if (navIndicator) {
-        if (isIdentified) {
-          navIndicator.innerHTML = `<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>`;
-        } else {
-          navIndicator.innerHTML = `
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-          `;
-        }
-      }
-    }
-
-    /* ========================================================
-     * PAINEL DE APURAÇÃO & AUDITORIA (DASHBOARD & GRÁFICOS)
-     * ======================================================== */
-    function atualizarDashboardApuracao() {
-      const totalVotos = votesHistory.length;
-      
-      const elKpiTotal = document.getElementById('kpiTotalVotos');
-      if (elKpiTotal) elKpiTotal.textContent = totalVotos;
-
-      let countFesta = 0;
-      let countPlaca = 0;
-      let somaTotal = 0;
-
-      const contagemColacao = {};
-      const contagemFoto = {};
-
-      votesHistory.forEach(v => {
-        if (v.interesses && v.interesses.festa) countFesta++;
-        if (v.interesses && v.interesses.placa) countPlaca++;
-        somaTotal += Number(v.totalVista || 0);
-
-        const keyColacao = v.opcaoColacao || 'Não informado';
-        contagemColacao[keyColacao] = (contagemColacao[keyColacao] || 0) + 1;
-
-        const keyFoto = v.empresaFoto && v.empresaFoto !== 'Não optou por foto' ? `${v.empresaFoto} - ${v.pacoteFoto}` : 'Sem Fotografia';
-        contagemFoto[keyFoto] = (contagemFoto[keyFoto] || 0) + 1;
-      });
-
-      const pctFesta = totalVotos > 0 ? Math.round((countFesta / totalVotos) * 100) : 0;
-      const pctPlaca = totalVotos > 0 ? Math.round((countPlaca / totalVotos) * 100) : 0;
-      const mediaCombo = totalVotos > 0 ? Math.round(somaTotal / totalVotos) : 0;
-
-      const elKpiFesta = document.getElementById('kpiInteresseFesta');
-      if (elKpiFesta) elKpiFesta.textContent = countFesta;
-
-      const elKpiFestaPct = document.getElementById('kpiInteresseFestaPct');
-      if (elKpiFestaPct) elKpiFestaPct.textContent = `${pctFesta}% dos votantes (${countFesta} discentes)`;
-
-      const elKpiPlaca = document.getElementById('kpiInteressePlaca');
-      if (elKpiPlaca) elKpiPlaca.textContent = countPlaca;
-
-      const elKpiPlacaPct = document.getElementById('kpiInteressePlacaPct');
-      if (elKpiPlacaPct) elKpiPlacaPct.textContent = `${pctPlaca}% de adesão à placa`;
-
-      const elKpiMedia = document.getElementById('kpiMediaCombo');
-      if (elKpiMedia) elKpiMedia.textContent = formatMoney(mediaCombo);
-
-      const chartColacao = document.getElementById('chartColacaoContainer');
-      if (chartColacao) {
-        if (totalVotos === 0) {
-          chartColacao.innerHTML = `<p class="text-xs text-slate-400 py-4 text-center">Nenhum voto computado ainda.</p>`;
-        } else {
-          chartColacao.innerHTML = Object.entries(contagemColacao)
-            .sort((a,b) => b[1] - a[1])
-            .map(([nome, qtd]) => {
-              const pct = Math.round((qtd / totalVotos) * 100);
-              return `
-                <div>
-                  <div class="flex items-center justify-between text-xs mb-1">
-                    <span class="font-bold text-slate-800 truncate max-w-[280px]" title="${escapeHtml(nome)}">${escapeHtml(nome)}</span>
-                    <span class="font-extrabold text-univasf-700">${qtd} voto(s) (${pct}%)</span>
-                  </div>
-                  <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                    <div class="bg-univasf-600 h-2.5 rounded-full transition-all duration-500" style="width: ${pct}%"></div>
-                  </div>
-                </div>
-              `;
-            }).join('');
-        }
-      }
-
-      const chartFoto = document.getElementById('chartFotoContainer');
-      if (chartFoto) {
-        if (totalVotos === 0) {
-          chartFoto.innerHTML = `<p class="text-xs text-slate-400 py-4 text-center">Nenhum voto computado ainda.</p>`;
-        } else {
-          chartFoto.innerHTML = Object.entries(contagemFoto)
-            .sort((a,b) => b[1] - a[1])
-            .map(([nome, qtd]) => {
-              const pct = Math.round((qtd / totalVotos) * 100);
-              return `
-                <div>
-                  <div class="flex items-center justify-between text-xs mb-1">
-                    <span class="font-bold text-slate-800 truncate max-w-[280px]" title="${escapeHtml(nome)}">${escapeHtml(nome)}</span>
-                    <span class="font-extrabold text-amber-600">${qtd} voto(s) (${pct}%)</span>
-                  </div>
-                  <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                    <div class="bg-amber-500 h-2.5 rounded-full transition-all duration-500" style="width: ${pct}%"></div>
-                  </div>
-                </div>
-              `;
-            }).join('');
-        }
-      }
-
-      const tbody = document.getElementById('tabelaVotosBody');
-      if (tbody) {
-        if (votesHistory.length === 0) {
-          tbody.innerHTML = `
-            <tr>
-              <td colspan="7" class="py-8 text-center text-slate-400 text-xs">
-                Nenhum voto registrado no sistema.
-              </td>
-            </tr>
-          `;
-        } else {
-          tbody.innerHTML = votesHistory.map((v) => {
-            const dataFmt = new Date(v.timestamp).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
-            const extrasStr = (v.extras && v.extras.length > 0) ? v.extras.join(', ') : 'Nenhum';
-            return `
-              <tr class="hover:bg-slate-50/80 transition-colors">
-                <td class="py-3 px-4 text-slate-500 whitespace-nowrap">${dataFmt}</td>
-                <td class="py-3 px-4">
-                  <div class="font-bold text-slate-900">${escapeHtml(v.nome)}</div>
-                  <div class="text-[11px] text-slate-500">${escapeHtml(v.contato)} &bull; ${escapeHtml(v.email)}</div>
-                </td>
-                <td class="py-3 px-4 max-w-[220px]">
-                  <span class="font-semibold text-slate-800 text-xs block leading-tight">${escapeHtml(v.opcaoColacao)}</span>
-                </td>
-                <td class="py-3 px-4">
-                  <div class="font-medium text-slate-800">${escapeHtml(v.empresaFoto)}</div>
-                  <div class="text-[11px] text-slate-500">${escapeHtml(v.pacoteFoto)}</div>
-                </td>
-                <td class="py-3 px-4 text-xs text-slate-600 max-w-[180px]">
-                  ${escapeHtml(extrasStr)}
-                </td>
-                <td class="py-3 px-4 whitespace-nowrap">
-                  <span class="font-extrabold text-emerald-700 block">${formatMoney(v.totalVista)}</span>
-                  <span class="text-[10px] text-slate-400">${formatMoney(v.totalPrazo)} a prazo</span>
-                </td>
-                <td class="py-3 px-4 text-center whitespace-nowrap">
-                  <button onclick="excluirVoto('${v.id}')" class="text-red-500 hover:text-red-700 p-1.5 rounded-lg hover:bg-red-50 transition-colors" title="Excluir Voto">
-                    <i data-lucide="trash-2" class="w-4 h-4"></i>
-                  </button>
-                </td>
-              </tr>
-            `;
-          }).join('');
-        }
-      }
-
-      lucide.createIcons();
-    }
-
-    function excluirVoto(id) {
-      const senha = prompt('🔒 Digite a senha da Comissão para excluir este registro:');
-      if (senha === null) return;
-      if (senha.trim() !== 'paixao') {
-        showToast('Senha incorreta! Operação não autorizada.', 'error');
-        return;
-      }
-      if (!confirm('Deseja realmente remover este registro do histórico da turma?')) return;
-      votesHistory = votesHistory.filter(v => v.id !== id);
-      salvarVotosStorage();
-      atualizarDashboardApuracao();
-      showToast('Registro excluído com sucesso.', 'info');
-    }
-
-    function limparVotos() {
-      const senha = prompt('⚠️ ATENÇÃO COMISSÃO: Digite a senha para apagar TODOS os registros:');
-      if (senha === null) return;
-      if (senha.trim() !== 'paixao') {
-        showToast('Senha incorreta! Nenhum registro foi apagado.', 'error');
-        return;
-      }
-      if (!confirm('ATENÇÃO: Deseja apagar TODOS os registros salvos? Esta ação não pode ser desfeita.')) return;
-      votesHistory = [];
-      salvarVotosStorage();
-      atualizarDashboardApuracao();
-      showToast('Todos os registros foram apagados com sucesso.', 'info');
-    }
-
-    function importarPlanilhaCsv(event) {
-      const file = event.target.files && event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          const content = e.target.result;
-          const lines = content.split(/\r?\n/).filter(line => line.trim().length > 0);
-          if (lines.length <= 1) {
-            showToast('O arquivo CSV está vazio ou contém apenas o cabeçalho.', 'warning');
-            return;
-          }
-
-          const header = lines[0].split(/[;,]/).map(h => h.replace(/^[\"']|[\"']$/g, '').trim().toLowerCase());
-          
-          let importados = 0;
-          for (let i = 1; i < lines.length; i++) {
-            const rawCols = lines[i].match(/(".*?"|[^;,]+)(?=\s*[;,]|\s*$)/g);
-            if (!rawCols || rawCols.length < 3) continue;
-
-            const cols = rawCols.map(c => c.replace(/^[\"']|[\"']$/g, '').trim());
-
-            const getCol = (term, defaultIdx) => {
-              const idx = header.findIndex(h => h.includes(term.toLowerCase()));
-              return idx >= 0 && idx < cols.length ? cols[idx] : (cols[defaultIdx] || '');
-            };
-
-            const dataHora = getCol('data', 0) || new Date().toISOString();
-            const nome = getCol('nome', 1);
-            const contato = getCol('whats', 2) || getCol('telefone', 2);
-            const email = getCol('email', 3);
-
-            if (!nome || !contato) continue;
-
-            const querColacao = getCol('colação', 4).toLowerCase().startsWith('s');
-            const querEnsaio = getCol('ensaio', 5).toLowerCase().startsWith('s');
-            const querPlaca = getCol('placa', 6).toLowerCase().startsWith('s');
-            const querReplica = getCol('réplica', 7).toLowerCase().startsWith('s') || getCol('replica', 7).toLowerCase().startsWith('s');
-            const querFesta = getCol('festa', 8).toLowerCase().startsWith('s') || getCol('baile', 8).toLowerCase().startsWith('s');
-
-            const opcaoColacao = getCol('opção', 9) || 'Não selecionada';
-            const empresaFoto = getCol('empresa', 10) || getCol('foto', 10) || 'Não optou por foto';
-            const pacoteFoto = getCol('pacote', 11) || 'Nenhum';
-            const extrasStr = getCol('extras', 12) || '';
-            const extras = extrasStr && extrasStr !== 'Nenhum' ? extrasStr.split(/[+;]/).map(s => s.trim()) : [];
-
-            const totalVistaStr = getCol('vista', 13).replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
-            const totalPrazoStr = getCol('prazo', 14).replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
-
-            const registro = {
-              id: 'imp_' + Date.now() + '_' + i,
-              timestamp: new Date().toISOString(),
-              nome: nome,
-              contato: contato,
-              email: email || '',
-              opcaoColacao: opcaoColacao,
-              tipoColacao: opcaoColacao.includes('Separada') ? 'separada' : 'unica',
-              empresaColacaoNome: opcaoColacao,
-              empresaFoto: empresaFoto,
-              pacoteFoto: pacoteFoto,
-              extras: extras,
-              interesses: {
-                colacao: querColacao,
-                ensaio: querEnsaio,
-                placa: querPlaca,
-                replica: querReplica,
-                festa: querFesta
-              },
-              totalVista: parseFloat(totalVistaStr) || 0,
-              totalPrazo: parseFloat(totalPrazoStr) || 0
-            };
-
-            registrarOuAtualizarVoto(registro);
-            importados++;
-          }
-
-          atualizarDashboardApuracao();
-          showToast(`${importados} cadastros importados com sucesso!`, 'success');
-        } catch (err) {
-          console.error('Erro ao importar CSV:', err);
-          showToast('Erro ao processar arquivo CSV.', 'error');
-        }
-        event.target.value = '';
-      };
-      reader.readAsText(file, 'UTF-8');
-    }
-
-    /* ========================================================
-     * EXPORTAÇÃO DE VOTOS PARA CSV / EXCEL
-     * ======================================================== */
-    function exportarVotacaoCSV() {
-      if (votesHistory.length === 0) {
-        showToast('Não há votos para exportar no momento.', 'warning');
-        return;
-      }
-
-      const cabecalho = [
-        "Data/Hora",
-        "Nome do Formando",
-        "WhatsApp",
-        "E-mail",
-        "Quer Colação Solene?",
-        "Quer Ensaio de Fotos?",
-        "Quer Placa UNIVASF?",
-        "Quer Réplica da Placa?",
-        "Quer Festa de Formatura?",
-        "Opção Colação Solene",
-        "Empresa Fotografia",
-        "Pacote Fotografia",
-        "Extras Selecionados",
-        "Total à Vista (R$)",
-        "Total a Prazo (R$)"
-      ];
-
-      const linhas = votesHistory.map(v => {
-        const dataFmt = new Date(v.timestamp).toLocaleString('pt-BR');
-        const extras = (v.extras && v.extras.length > 0) ? v.extras.join(' + ') : 'Nenhum';
-        const querColacao = v.interesses && v.interesses.colacao ? 'Sim' : 'Não';
-        const querEnsaio = v.interesses && v.interesses.ensaio ? 'Sim' : 'Não';
-        const querPlaca = v.interesses && v.interesses.placa ? 'Sim' : 'Não';
-        const querReplica = v.interesses && v.interesses.replica ? 'Sim' : 'Não';
-        const querFesta = v.interesses && v.interesses.festa ? 'Sim' : 'Não';
-
-        return [
-          `"${dataFmt}"`,
-          `"${escapeCsv(v.nome)}"`,
-          `"${escapeCsv(v.contato)}"`,
-          `"${escapeCsv(v.email)}"`,
-          `"${querColacao}"`,
-          `"${querEnsaio}"`,
-          `"${querPlaca}"`,
-          `"${querReplica}"`,
-          `"${querFesta}"`,
-          `"${escapeCsv(v.opcaoColacao)}"`,
-          `"${escapeCsv(v.empresaFoto)}"`,
-          `"${escapeCsv(v.pacoteFoto)}"`,
-          `"${escapeCsv(extras)}"`,
-          `"${v.totalVista.toFixed(2).replace('.', ',')}"`,
-          `"${v.totalPrazo.toFixed(2).replace('.', ',')}"`
-        ].join(';');
-      });
-
-      const csvConteudo = '\uFEFF' + cabecalho.join(';') + '\n' + linhas.join('\n');
-      const blob = new Blob([csvConteudo], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      
-      const link = document.createElement('a');
-      link.setAttribute('href', url);
-      const dataArquivo = new Date().toISOString().slice(0, 10);
-      link.setAttribute('download', `cadastro_e_votacao_formatura_${dataArquivo}.csv`);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-
-      showToast('Planilha CSV gerada com sucesso!', 'success');
-    }
-
-    function escapeCsv(str) {
-      if (!str) return '';
-      return String(str).replace(/"/g, '""');
-    }
-
-    /* ========================================================
-     * AGENDA DE REUNIÕES & APRESENTAÇÕES COM EMPRESAS
-     * ======================================================== */
-    function applyFilterReunioes(filter) {
-      currentFilterReunioes = filter;
-      document.querySelectorAll('#filterReunioesContainer .filter-reuniao-btn').forEach(btn => {
-        const btnFilter = btn.getAttribute('data-filter-reuniao');
-        if (btnFilter === filter) {
-          btn.className = "filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-univasf-700 text-white shadow-xs";
-        } else {
-          btn.className = "filter-reuniao-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200";
-        }
-      });
-      renderReunioes();
-    }
-
-    function updateReunioesBadge() {
-      const elBadge = document.getElementById('reunioesCountBadge');
-      if (!elBadge) return;
-      const proximas = reunioesData.filter(r => r.status !== 'realizada').length;
-      elBadge.textContent = proximas;
-    }
-
-    function formatDataReuniao(dataStr, horarioStr) {
-      const partes = dataStr.split('-');
-      const ano = parseInt(partes[0], 10);
-      const mes = parseInt(partes[1], 10);
-      const dia = parseInt(partes[2], 10);
-      
-      const dataObj = new Date(ano, mes - 1, dia);
-      
-      const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-      const mesesAbrev = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-      const mesesExtenso = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-
-      const diaSemana = diasSemana[dataObj.getDay()] || 'Data marcada';
-      const mesAbrev = mesesAbrev[mes - 1] || 'SET';
-      const mesExtenso = mesesExtenso[mes - 1] || 'Setembro';
-
-      return {
-        diaSemana: diaSemana,
-        diaMes: String(dia).padStart(2, '0'),
-        mesAbrev: mesAbrev,
-        mesExtenso: mesExtenso,
-        ano: ano,
-        horario: horarioStr,
-        textoCompleto: `${diaSemana}, ${dia} de ${mesExtenso} às ${horarioStr}h`
-      };
-    }
-
-    function generateGoogleCalendarLink(reuniao) {
-      const [ano, mes, dia] = reuniao.data.split('-');
-      const [hora, minuto] = reuniao.horario.split(':');
-      
-      const startStr = `${ano}${mes}${dia}T${hora}${minuto}00`;
-      
-      let endHora = parseInt(hora, 10) + 1;
-      let endMinuto = parseInt(minuto, 10) + 30;
-      if (endMinuto >= 60) {
-        endHora += 1;
-        endMinuto -= 60;
-      }
-      const endHoraStr = String(endHora).padStart(2, '0');
-      const endMinStr = String(endMinuto).padStart(2, '0');
-      const endStr = `${ano}${mes}${dia}T${endHoraStr}${endMinStr}00`;
-      
-      const title = `Formatura UNIVASF: Reunião com ${reuniao.empresa}`;
-      const details = `Pauta: ${reuniao.pauta}\nLocal: ${reuniao.local}${reuniao.linkMeet ? '\nLink do Meet: ' + reuniao.linkMeet : ''}\n\nOrganização: Comissão de Formatura UNIVASF`;
-      const location = reuniao.local;
-
-      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startStr}/${endStr}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+      const navInd = document.getElementById('profileStatusIndicator');
+      if (navText) navText.textContent = isIdentified ? userProfile.nome.split(' ')[0] : 'Perfil';
+      if (navInd) navInd.innerHTML = isIdentified ? `<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>` : `<span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>`;
+      const votoNome = document.getElementById('votoNomeDisplay');
+      if (votoNome) votoNome.textContent = userProfile.nome || 'Não identificado';
     }
 
     function renderReunioes() {
       const grid = document.getElementById('reunioesGrid');
       if (!grid) return;
-
-      const filtradas = reunioesData.filter(r => {
-        if (currentFilterReunioes === 'todas') return true;
-        if (currentFilterReunioes === 'proximas') return r.status === 'agendada' || r.status.toLowerCase().includes('aguardando');
-        if (currentFilterReunioes === 'realizadas') return r.status === 'realizada';
-        return true;
-      });
-
-      if (filtradas.length === 0) {
-        grid.innerHTML = `
-          <div class="text-center py-12 bg-white rounded-2xl border border-slate-200 p-8">
-            <i data-lucide="calendar-x" class="w-12 h-12 text-slate-300 mx-auto mb-3"></i>
-            <h3 class="text-base font-bold text-slate-700">Nenhuma reunião encontrada nesta categoria</h3>
-            <p class="text-xs text-slate-400 mt-1">Selecione "Todas" para visualizar o cronograma completo.</p>
-          </div>
-        `;
-        lucide.createIcons();
-        return;
-      }
-
-      grid.innerHTML = filtradas.map(r => {
-        const dataFmt = formatDataReuniao(r.data, r.horario);
-        const googleUrl = generateGoogleCalendarLink(r);
-
-        let statusBadge = '';
-        if (r.status.toLowerCase().includes('aguardando')) {
-          statusBadge = `
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
-              <span class="w-2 h-2 rounded-full bg-amber-600"></span> ${escapeHtml(r.status)}
-            </span>
-          `;
-        } else if (r.status === 'realizada') {
-          statusBadge = `
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-slate-500"></i> Realizada
-            </span>
-          `;
-        } else {
-          statusBadge = `
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Agendada
-            </span>
-          `;
-        }
-
-        let iconSegmento = 'building';
-        let corSegmento = 'bg-sky-100 text-sky-700';
-        if (r.empresa.toLowerCase().includes('foto')) {
-          iconSegmento = 'camera';
-          corSegmento = 'bg-amber-100 text-amber-800';
-        } else if (r.empresa.toLowerCase().includes('buffet') || r.empresa.toLowerCase().includes('festas')) {
-          iconSegmento = 'party-popper';
-          corSegmento = 'bg-pink-100 text-pink-700';
-        }
-
-        const isOnline = r.local.toLowerCase().includes('meet') || r.local.toLowerCase().includes('online') || !!r.linkMeet;
-        
-        let btnAcesso = '';
-        if (r.linkMeet && r.linkMeet.trim() !== '' && r.linkMeet !== 'https://meet.google.com/') {
-          btnAcesso = `
-            <a href="${r.linkMeet}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-univasf-700 hover:bg-univasf-800 text-white font-bold text-xs shadow-xs transition-all active:scale-98">
-              <i data-lucide="video" class="w-4 h-4"></i>
-              Acessar Reunião Online
-            </a>
-          `;
-        } else {
-          btnAcesso = `
-            <button type="button" onclick="alert('📍 Local / Plataforma:\\n${escapeHtml(r.local)}\\n\\nPauta: ${escapeHtml(r.pauta)}')" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors">
-              <i data-lucide="${isOnline ? 'video' : 'map-pin'}" class="w-4 h-4 text-slate-600"></i>
-              ${isOnline ? 'Link em breve' : 'Ver Local'}
-            </button>
-          `;
-        }
-
-        return `
-          <div class="card-transition bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md p-5 sm:p-6 transition-all">
-            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-              
-              <div class="flex items-start gap-4">
-                <div class="w-16 h-18 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-b from-univasf-50 to-white border border-univasf-200 flex flex-col items-center justify-center shrink-0 shadow-2xs">
-                  <span class="text-[10px] font-extrabold uppercase text-univasf-700 tracking-wider">${dataFmt.mesAbrev}</span>
-                  <span class="text-2xl sm:text-3xl font-black text-slate-900 leading-none">${dataFmt.diaMes}</span>
-                  <span class="text-[10px] font-bold text-slate-500 mt-0.5">${dataFmt.horario}h</span>
-                </div>
-
-                <div class="space-y-1.5 flex-1">
-                  <div class="flex flex-wrap items-center gap-2">
-                    ${statusBadge}
-                    <span class="text-xs font-semibold text-slate-500 flex items-center gap-1">
-                      <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-400"></i>
-                      ${dataFmt.textoCompleto}
-                    </span>
-                  </div>
-
-                  <div class="flex items-center gap-2.5 pt-0.5">
-                    <div class="w-7 h-7 rounded-lg ${corSegmento} flex items-center justify-center shrink-0">
-                      <i data-lucide="${iconSegmento}" class="w-4 h-4"></i>
-                    </div>
-                    <h3 class="text-lg font-extrabold text-slate-900 tracking-tight">${escapeHtml(r.empresa)}</h3>
-                  </div>
-
-                  <div class="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1">
-                    <strong class="text-slate-800 font-bold">Pauta / Objetivo:</strong> ${escapeHtml(r.pauta)}
-                  </div>
-
-                  <div class="flex items-center gap-2 text-xs text-slate-500 pt-1">
-                    <i data-lucide="${isOnline ? 'video' : 'map-pin'}" class="w-3.5 h-3.5 text-univasf-600"></i>
-                    <span><strong>Local / Plataforma:</strong> ${escapeHtml(r.local)}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-center lg:items-end gap-2.5 shrink-0 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100">
-                ${btnAcesso}
-                <a href="${googleUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-xs shadow-2xs transition-all" title="Adicionar lembrete à sua agenda do Google">
-                  <i data-lucide="calendar-plus" class="w-4 h-4 text-univasf-600"></i>
-                  Salvar no Google Agenda
-                </a>
-              </div>
-
+      grid.innerHTML = reunioesData.map(r => `
+        <div class="bg-white p-4 rounded-xl border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-slate-900 text-sm">${escapeHtml(r.empresa)}</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${r.status === 'realizada' ? 'bg-slate-100 text-slate-600' : 'bg-emerald-100 text-emerald-800'}">${r.status}</span>
             </div>
+            <p class="text-slate-600 mt-1"><strong>Data:</strong> ${r.data} às ${r.horario}h &bull; <strong>Local:</strong> ${escapeHtml(r.local)}</p>
+            <p class="text-slate-500 mt-0.5">${escapeHtml(r.pauta)}</p>
           </div>
-        `;
-      }).join('');
-
-      lucide.createIcons();
+          <a href="propostas.html?empresa=${r.empresa.toLowerCase().replace(/\s+/g, '_')}" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold shrink-0 text-center">
+            Ver Proposta & Ata
+          </a>
+        </div>
+      `).join('');
     }
 
-    /* ========================================================
-     * UTILITÁRIOS & TOASTS
-     * ======================================================== */
-    function formatMoney(value) {
-      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value || 0);
+    function formatMoney(v) {
+      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v || 0);
     }
-
-    function formatWhatsAppLink(phone) {
-      if (!phone) return '#';
-      const clean = phone.replace(/\D/g, '');
-      if (clean.length < 10) return '#';
-      const ddi = clean.startsWith('55') ? clean : '55' + clean;
-      return `https://wa.me/${ddi}`;
+    function escapeHtml(t) {
+      return (t || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[m]);
     }
-
-    function escapeHtml(text) {
-      if (!text) return '';
-      const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-      };
-      return String(text).replace(/[&<>"']/g, m => map[m]);
-    }
-
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toastContainer');
-      if (!container) return;
-
-      const toast = document.createElement('div');
-      
-      let colors = 'bg-slate-900 text-white border-slate-700';
-      let icon = 'info';
-
-      if (type === 'success') {
-        colors = 'bg-emerald-800 text-white border-emerald-600';
-        icon = 'check-circle';
-      } else if (type === 'warning') {
-        colors = 'bg-amber-700 text-white border-amber-500';
-        icon = 'alert-triangle';
-      } else if (type === 'error') {
-        colors = 'bg-red-800 text-white border-red-600';
-        icon = 'x-circle';
-      }
-
-      toast.className = `toast-animate pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl border text-xs sm:text-sm font-semibold ${colors}`;
-      toast.innerHTML = `
-        <i data-lucide="${icon}" class="w-4 h-4 shrink-0"></i>
-        <span>${escapeHtml(message)}</span>
-      `;
-
-      container.appendChild(toast);
-      lucide.createIcons();
-
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateY(10px)';
-        toast.style.transition = 'all 0.3s ease';
-        setTimeout(() => toast.remove(), 300);
-      }, 4000);
+    function showToast(msg, type = 'info') {
+      const c = document.getElementById('toastContainer');
+      if (!c) return;
+      const t = document.createElement('div');
+      t.className = `toast-animate px-4 py-2.5 rounded-xl text-white text-xs font-semibold shadow-lg ${type === 'success' ? 'bg-emerald-700' : 'bg-slate-800'}`;
+      t.textContent = msg;
+      c.appendChild(t);
+      setTimeout(() => t.remove(), 3500);
     }
   </script>
 </body>
