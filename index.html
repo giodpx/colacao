@@ -81,7 +81,7 @@
           <button onclick="navigateTo('reunioes')" id="navReunioesBtn" class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 rounded-lg transition-colors relative">
             <i data-lucide="calendar" class="w-4 h-4 text-univasf-600"></i>
             <span class="hidden sm:inline">Reuniões</span>
-            <span id="reunioesCountBadge" class="px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-sky-100 text-sky-800 border border-sky-200">5</span>
+            <span id="reunioesCountBadge" class="px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-sky-100 text-sky-800 border border-sky-200">4</span>
           </button>
 
           <button onclick="openProfileModal()" id="navProfileBtn" class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 transition-all shadow-2xs">
@@ -369,10 +369,8 @@
     Comissão de Formatura UNIVASF &bull; Petrolina / Juazeiro
   </footer>
 
+  <!-- SCRIPTS -->
   <script>
-    /* ========================================================
-     * INSIRA ABAIXO A URL DO SEU GOOGLE APPS SCRIPT
-     * ======================================================== */
     const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwTx2dVMfz22n8YZZ9ouYe77zfjV-kqrviAEm-M7xOttOFEEmKpvX1wh5NLB9W2TBzL/exec";
 
     const empresasData = [
@@ -380,7 +378,7 @@
         id: "despertar_formaturas",
         nome: "Despertar Formaturas",
         servicos: ["fotografia"],
-        contato: "",
+        contato: "(87) 8807-8636",
         instagram: "@despertarformaturas",
         observacoes: "Aguardando proposta oficial. Equipe com opções digitais e impressas.",
         pacotes: [{ id: "despertar_aguardando", nome: "Proposta em Análise", valorVista: 0, valorPrazo: 0, desc: "Aguardando envio formal." }],
@@ -390,11 +388,15 @@
         id: "inspirar_fotografia",
         nome: "Inspirar Fotografia",
         servicos: ["fotografia"],
-        contato: "",
+        contato: "(87) 9 8173-4674",
         instagram: "@inspirarfotografia",
-        observacoes: "Reunião realizada com a turma. Parcelamento em 7x sem juros no boleto e fotos nota 10/10.",
-        pacotes: [{ id: "inspirar_aguardando", nome: "Proposta em Análise", valorVista: 0, valorPrazo: 0, desc: "Consulte o PDF na aba de propostas." }],
-        extras: []
+        observacoes: "Reunião realizada com a turma. Parcelamento em 7x sem juros no boleto, com valor de a vista. A prazo no cartão até 12x com juros.",
+        pacotes: [
+          { id: "inspirar_pacote_vivencia", nome: "Pacote Vivência", valorVista: 850, valorPrazo: 1094, desc: "15 Fotos tratadas medianteescolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" },
+          { id: "inspirar_pacote_memoria", nome: "Pacote Memória", valorVista: 1300, valorPrazo: 1672, desc: "25 Fotos tratadas medianteescolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" },
+          { id: "inspirar_pacote_inspiracao", nome: "Pacote Inspiração", valorVista: 1500, valorPrazo: 16930, desc: "40 Fotos tratadas medianteescolha do formando, disponibilizadas em formato digital + impressas no tamanho 20 x 25" }
+        ],
+        extras: [{ id: "inspirar_ex_replica", nome: "Réplica da Placa em Acrílico (15x21 cm)", valorVista: 230, valorPrazo: 230 },{ id: "inspirar_ex_replica", nome: "Álbum (31x23 cm)", valorVista: 700, valorPrazo: 700 }]
       },
       {
         id: "vitis_fotografia",
@@ -431,7 +433,7 @@
         id: "compor_eventos",
         nome: "Compor Fotografia & Eventos",
         servicos: ["fotografia","placa","replica"],
-        contato: "",
+        contato: "(87) 9 9963-8710",
         instagram: "@comporfotografiaoficial",
         observacoes: "Reunião presencial agendada no Centro de Petrolina.",
         pacotes: [{ id: "compor_solene_foto", nome: "Pacote Integrado (Em Negociação)", valorVista: 0, valorPrazo: 0, desc: "Aguardando envio formal pós-reunião." }],
@@ -441,7 +443,7 @@
         id: "formar_eventos",
         nome: "Formar Formaturas & Eventos",
         servicos: ["cerimonial", "decoracao"],
-        contato: "",
+        contato: "(74) 9 8819-8458",
         instagram: "@formareventos",
         observacoes: "Aguardando orçamento da Colação Solene.",
         pacotes: [{ id: "formar_aguardando", nome: "Projeto Colação Solene", valorVista: 0, valorPrazo: 0, desc: "Aguardando proposta." }],
@@ -461,9 +463,9 @@
         id: "samara_vidal",
         nome: "Samara Vidal Assessoria e Cerimonial",
         servicos: ["cerimonial", "decoracao"],
-        contato: "svcerimonial@hotmail.com",
+        contato: "(87) 9 9997-3738",
         instagram: "@svcerimonial",
-        observacoes: "Aguardando envio da proposta oficial para a turma.",
+        observacoes: "Aguardando envio da proposta oficial para a turma. Prazo: segunda 14/09.",
         pacotes: [{ id: "sv_aguardando", nome: "Projeto Colação Solene", valorVista: 0, valorPrazo: 0, desc: "Envio previsto para 14/09." }],
         extras: []
       },
@@ -501,7 +503,7 @@
         id: "kathya_lucas",
         nome: "Kathya Lucas Cerimonial e Decoração",
         servicos: ["cerimonial", "decoracao"],
-        contato: "",
+        contato: "(87) 9 7400-4446",
         instagram: "@kathyalucascerimonial",
         observacoes: "Aguardando reunião da proposta oficial.",
         pacotes: [{ id: "kathya_aguardando", nome: "Projeto Colação Solene", valorVista: 0, valorPrazo: 0, desc: "Sob consulta." }],
@@ -521,7 +523,7 @@
         id: "maria_leite_eventos",
         nome: "Maria Leite Recepções e Eventos",
         servicos: ["decoracao", "baile"],
-        contato: "(87) 98800-0000",
+        contato: "(87) 9 8835-1188",
         instagram: "@marialeiterecepcoesoficial",
         observacoes: "Apenas no espaço próprio. Viável apenas para turmas com adesão de festa.",
         pacotes: [
@@ -533,12 +535,12 @@
     ];
 
     const reunioesData = [
-      { id: "meet_1", empresa: "Inspirar Fotografia", data: "2026-09-10", horario: "14:30", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.", status: "realizada" },
-      { id: "meet_2", empresa: "Lisandro Reis", data: "2026-09-10", horario: "19:00", local: "Google Meet", linkMeet: "https://meet.google.com/sfu-vdjo-irr", pauta: "Apresentação do serviço de cerimonial e decoração, além de valores. Empresa que faz as colações do CCA.", status: "realizada" },
-      { id: "meet_3", empresa: "Vitis Fotografia", data: "2026-09-12", horario: "19:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação sobre o serviço de fotografia.", status: "agendada" },
-      { id: "meet_4", empresa: "Compor", data: "2026-09-14", horario: "10:30", local: "Rua Irmã Jerônima, 162, Centro, Petrolina - PE", linkMeet: "", pauta: "Apresentação presencial da proposta de fotografia e cerimonial.", status: "agendada" },
-      { id: "meet_55", empresa: "Kathya Lucas Cerimonial", data: "2026-09-14", horario: "18:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação do serviço de cerimonial e decoração, além de valores.", status: "agendada" },
-      { id: "meet_6", empresa: "Despertar Formaturas", data: "2026-09-16", horario: "15:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.", status: "agendada" }
+      { id: "meet_1", empresaId: "inspirar_fotografia", empresa: "Inspirar Fotografia", data: "2026-09-10", horario: "14:30", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.", status: "realizada" },
+      { id: "meet_2", empresaId: "lisandro_reis", empresa: "Lisandro Reis", data: "2026-09-10", horario: "19:00", local: "Google Meet", linkMeet: "https://meet.google.com/sfu-vdjo-irr", pauta: "Apresentação do serviço de cerimonial e decoração, além de valores. Empresa que faz as colações do CCA.", status: "realizada" },
+      { id: "meet_3", empresaId: "vitis_fotografia", empresa: "Vitis Fotografia", data: "2026-09-12", horario: "19:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação sobre o serviço de fotografia.", status: "agendada" },
+      { id: "meet_4", empresaId: "compor_eventos", empresa: "Compor", data: "2026-09-14", horario: "10:30", local: "Rua Irmã Jerônima, 162, Centro, Petrolina - PE", linkMeet: "", pauta: "Apresentação presencial da proposta de fotografia e cerimonial.", status: "agendada" },
+      { id: "meet_55", empresaId: "kathya_lucas", empresa: "Kathya Lucas Cerimonial", data: "2026-09-14", horario: "18:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação do serviço de cerimonial e decoração, além de valores.", status: "agendada" },
+      { id: "meet_6", empresaId: "despertar_formaturas", empresa: "Despertar Formaturas", data: "2026-09-16", horario: "15:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.", status: "agendada" }
     ];
 
     const STORAGE_KEY_PROFILE = 'univasf_perfil';
@@ -826,9 +828,6 @@
       document.getElementById('profileModal').classList.add('hidden');
     }
 
-    /* ========================================================
-     * ENVIO E ATUALIZAÇÃO DIRETA NA GOOGLE PLANILHA
-     * ======================================================== */
     function obterDadosRegistroAtual() {
       let opcaoColacaoTxt = "Não selecionada";
       if (comboState.cerimonial && comboState.decoracao && comboState.cerimonial.empresaId === comboState.decoracao.empresaId) {
@@ -862,18 +861,13 @@
     }
 
     function transmitirParaGooglePlanilha(registro) {
-      if (!GOOGLE_SHEETS_WEBAPP_URL || GOOGLE_SHEETS_WEBAPP_URL.includes("SUA_URL")) {
-        console.log("Aviso: Conecte a URL do Google Apps Script para sincronizar com o Google Sheets.");
-        return;
-      }
+      if (!GOOGLE_SHEETS_WEBAPP_URL || GOOGLE_SHEETS_WEBAPP_URL.includes("SUA_URL")) return;
 
       fetch(GOOGLE_SHEETS_WEBAPP_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(registro)
-      }).then(() => {
-        console.log("✅ Dados sincronizados e atualizados na Google Planilha!");
       }).catch(err => {
         console.error("Erro ao enviar dados para a Planilha:", err);
       });
@@ -931,7 +925,7 @@
     }
 
     /* ========================================================
-     * RENDERIZAÇÃO DAS REUNIÕES (COM OCULTAÇÃO DE BOTÕES REALIZADOS)
+     * RENDERIZAÇÃO DAS REUNIÕES (LAYOUT COMPLETO RESTAURADO)
      * ======================================================== */
     function applyFilterReunioes(filter) {
       currentFilterReunioes = filter;
@@ -1043,7 +1037,7 @@
         let botoesAcao = '';
         if (isRealizada) {
           botoesAcao = `
-            <a href="propostas.html?empresa=${r.empresa.toLowerCase().replace(/\s+/g, '_')}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-univasf-50 hover:text-univasf-700 hover:border-univasf-300 border border-slate-200 text-slate-700 font-bold text-xs transition-all shadow-2xs group">
+            <a href="propostas.html?empresa=${r.empresaId || r.empresa.toLowerCase().replace(/\s+/g, '_')}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-univasf-50 hover:text-univasf-700 hover:border-univasf-300 border border-slate-200 text-slate-700 font-bold text-xs transition-all shadow-2xs group">
               <i data-lucide="file-check-2" class="w-4 h-4 text-emerald-600"></i>
               <span>Ver Impressões & Ata</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5 opacity-60 group-hover:translate-x-0.5 transition-transform"></i>
