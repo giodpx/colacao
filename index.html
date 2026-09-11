@@ -71,7 +71,7 @@
               <span class="font-extrabold text-base sm:text-xl text-slate-900 tracking-tight truncate">UNIVASF</span>
               <span class="hidden md:inline-flex items-center px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-univasf-100 text-univasf-800 border border-univasf-200">Oficial</span>
             </div>
-            <p class="text-[10px] sm:text-xs text-slate-500 font-medium truncate">Formatura & Cotações</p>
+            <p class="text-[10px] sm:text-xs text-slate-500 font-medium truncate">Formatura das engenharias</p>
           </div>
         </button>
 
@@ -680,7 +680,7 @@
                     <span>Remover</span>
                   </button>
                 ` : `
-                  <button onclick="adicionarPacoteAoCombo('${emp.id}', '${pct.id}')" class="px-3 py-1.5 rounded-lg bg-univasf-700 hover:bg-univasf-800 text-white text-xs font-bold transition-all shadow-xs active:scale-98 flex items-center gap-1.5">
+                  <button onclick="adicionarPacoteAoCombo('${emp.id}', '${pct.id}')" class="px-3.5 py-1.5 rounded-lg bg-univasf-700 hover:bg-univasf-800 text-white text-xs font-bold transition-all shadow-xs active:scale-98 flex items-center gap-1.5">
                     <i data-lucide="plus" class="w-4 h-4 text-white"></i>
                     <span>Adicionar ao Combo</span>
                   </button>
@@ -957,8 +957,74 @@
     }
 
     /* ========================================================
-     * RENDERIZAÇÃO ROBUSTA DA AGENDA DE REUNIÕES
+     * PARSER DE DATA E HORA TOTALMENTE ROBUSTO (SEM 00 NEM VAZIO)
      * ======================================================== */
+    function formatDataReuniao(dataStr, horarioStr) {
+      let ano = 2026, mes = 9, dia = 10;
+      const raw = String(dataStr || '').trim();
+
+      if (raw.includes('-')) {
+        const p = raw.split('-');
+        if (p[0].length === 4) {
+          ano = parseInt(p[0], 10) || 2026;
+          mes = parseInt(p[1], 10) || 9;
+          dia = parseInt(p[2], 10) || 10;
+        } else {
+          dia = parseInt(p[0], 10) || 10;
+          mes = parseInt(p[1], 10) || 9;
+          ano = parseInt(p[2], 10) || 2026;
+        }
+      } else if (raw.includes('/')) {
+        const p = raw.split('/');
+        dia = parseInt(p[0], 10) || 10;
+        mes = parseInt(p[1], 10) || 9;
+        ano = parseInt(p[2], 10) || 2026;
+      }
+
+      const dataObj = new Date(ano, mes - 1, dia);
+      const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+      const mesesAbrev = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+      const mesesExtenso = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+      const diaSemana = diasSemana[dataObj.getDay()] || 'Quinta-feira';
+      const mesAbrev = mesesAbrev[mes - 1] || 'SET';
+      const mesExtenso = mesesExtenso[mes - 1] || 'Setembro';
+      const diaFmt = String(dia).padStart(2, '0');
+      const horaFmt = horarioStr || '19:00';
+
+      return {
+        diaSemana: diaSemana,
+        diaMes: diaFmt,
+        mesAbrev: mesAbrev,
+        mesExtenso: mesExtenso,
+        ano: ano,
+        horario: horaFmt,
+        textoCompleto: `${diaSemana}, ${dia} de ${mesExtenso} às ${horaFmt}h`
+      };
+    }
+
+    function generateGoogleCalendarLink(reuniao) {
+      try {
+        const [ano, mes, dia] = String(reuniao.data || '2026-09-10').split('-');
+        const [hora, minuto] = String(reuniao.horario || '14:30').split(':');
+        const startStr = `${ano}${mes}${dia}T${hora}${minuto}00`;
+        
+        let endHora = parseInt(hora, 10) + 1;
+        let endMinuto = parseInt(minuto, 10) + 30;
+        if (endMinuto >= 60) {
+          endHora += 1;
+          endMinuto -= 60;
+        }
+        const endStr = `${ano}${mes}${dia}T${String(endHora).padStart(2, '0')}${String(endMinuto).padStart(2, '0')}00`;
+        
+        const title = `Formatura UNIVASF: Reunião com ${reuniao.empresa}`;
+        const details = `Pauta: ${reuniao.pauta}\nLocal: ${reuniao.local}\n\nComissão de Formatura UNIVASF`;
+        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startStr}/${endStr}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(reuniao.local || '')}`;
+      } catch (e) {
+        return '#';
+      }
+    }
+
     function applyFilterReunioes(filter) {
       currentFilterReunioes = filter;
       document.querySelectorAll('#filterReunioesContainer .filter-reuniao-btn').forEach(btn => {
@@ -977,53 +1043,6 @@
       if (!elBadge) return;
       const proximas = reunioesData.filter(r => (r.status || '').toLowerCase() !== 'realizada').length;
       elBadge.textContent = proximas;
-    }
-
-    function formatDataReuniao(dataStr, horarioStr) {
-      try {
-        if (!dataStr) return { mesAbrev: 'SET', diaMes: '00', horario: horarioStr || '00:00', textoCompleto: '' };
-        const partes = String(dataStr).split('-');
-        const ano = parseInt(partes[0], 10);
-        const mes = parseInt(partes[1], 10);
-        const dia = parseInt(partes[2], 10);
-        const dataObj = new Date(ano, mes - 1, dia);
-        
-        const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-        const mesesAbrev = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-        const mesesExtenso = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-
-        return {
-          diaSemana: diasSemana[dataObj.getDay()] || 'Data marcada',
-          diaMes: String(dia).padStart(2, '0'),
-          mesAbrev: mesesAbrev[mes - 1] || 'SET',
-          horario: horarioStr || '00:00',
-          textoCompleto: `${diasSemana[dataObj.getDay()] || ''}, ${dia} de ${mesExtenso[mes - 1] || ''} às ${horarioStr || ''}h`
-        };
-      } catch (e) {
-        return { mesAbrev: 'SET', diaMes: '00', horario: horarioStr || '00:00', textoCompleto: '' };
-      }
-    }
-
-    function generateGoogleCalendarLink(reuniao) {
-      try {
-        const [ano, mes, dia] = String(reuniao.data || '2026-09-01').split('-');
-        const [hora, minuto] = String(reuniao.horario || '12:00').split(':');
-        const startStr = `${ano}${mes}${dia}T${hora}${minuto}00`;
-        
-        let endHora = parseInt(hora, 10) + 1;
-        let endMinuto = parseInt(minuto, 10) + 30;
-        if (endMinuto >= 60) {
-          endHora += 1;
-          endMinuto -= 60;
-        }
-        const endStr = `${ano}${mes}${dia}T${String(endHora).padStart(2, '0')}${String(endMinuto).padStart(2, '0')}00`;
-        
-        const title = `Formatura UNIVASF: Reunião com ${reuniao.empresa}`;
-        const details = `Pauta: ${reuniao.pauta}\nLocal: ${reuniao.local}\n\nComissão de Formatura UNIVASF`;
-        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startStr}/${endStr}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(reuniao.local || '')}`;
-      } catch (e) {
-        return '#';
-      }
     }
 
     function renderReunioes() {
@@ -1077,10 +1096,8 @@
 
         const isOnline = String(r.local || '').toLowerCase().includes('meet') || String(r.local || '').toLowerCase().includes('online') || !!r.linkMeet;
 
-        // BOTÕES DA REUNIÃO
         let botoesAcao = '';
         if (isRealizada) {
-          // Quando realizada: oculta Meet e Agenda, mostrando botão da Ata
           const idEmpresaLink = r.empresaId ? r.empresaId : String(r.empresa || '').toLowerCase().replace(/\s+/g, '_');
           botoesAcao = `
             <a href="propostas.html?empresa=${idEmpresaLink}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-univasf-50 hover:text-univasf-700 hover:border-univasf-300 border border-slate-200 text-slate-700 font-bold text-xs transition-all shadow-2xs group">
@@ -1090,7 +1107,6 @@
             </a>
           `;
         } else {
-          // Quando agendada: mostra Meet e Agenda
           let btnAcesso = '';
           if (r.linkMeet && r.linkMeet.trim() !== '' && r.linkMeet !== 'https://meet.google.com/') {
             btnAcesso = `
@@ -1129,7 +1145,8 @@
                   <div class="flex flex-wrap items-center gap-2">
                     ${statusBadge}
                     <span class="text-xs font-semibold text-slate-500 flex items-center gap-1">
-                      <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-400"></i> ${dataFmt.textoCompleto}
+                      <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-400"></i>
+                      <span>${dataFmt.textoCompleto}</span>
                     </span>
                   </div>
 
