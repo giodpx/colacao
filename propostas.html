@@ -219,13 +219,13 @@
         pdfsMultiplos: [
           {
             titulo: "1. Proposta Parcial (Apenas Evento de Colação de Grau)",
-            embedUrl: "./empresas/flam/FLAM - Proposta parcial Colação.pdf]",
-            downloadUrl: "./empresas/flam/FLAM - Proposta parcial Colação.pdf]"
+            embedUrl: "./empresas/flam/FLAM - Proposta parcial Colação.pdf",
+            downloadUrl: "./empresas/flam/FLAM - Proposta parcial Colação.pdf"
           },
           {
             titulo: "2. Proposta Completa (Colação + Ensaio e Álbuns)",
-            embedUrl: "./empresas/flam/FLAM - Proposta completa.pdf]",
-            downloadUrl: "./empresas/flam/FLAM - Proposta completa.pdf]"
+            embedUrl: "./empresas/flam/FLAM - Proposta completa.pdf",
+            downloadUrl: "./empresas/flam/FLAM - Proposta completa.pdf"
           }
         ],
         pdfUrl: "",
@@ -531,17 +531,22 @@
         `;
       }
 
-      // 3. Fotos
+      // 3. Fotos & Amostras (Masonry: sem espaço em branco sobrando)
       const fotosHtml = p.fotos.length > 0 ? `
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+        <div class="columns-1 sm:columns-2 lg:columns-3 gap-3.5 space-y-3.5">
           ${p.fotos.map(foto => `
-            <div class="overflow-hidden rounded-xl border border-slate-200 bg-white">
-              <div class="aspect-4/3 overflow-hidden bg-slate-100">
-                <img src="${foto.url}" alt="${escapeHtml(foto.legenda)}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-              </div>
-              <div class="p-2.5 text-xs font-semibold text-slate-700 border-t border-slate-100">
-                ${escapeHtml(foto.legenda)}
-              </div>
+            <div class="break-inside-avoid overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xs">
+              <img 
+                src="${foto.url}" 
+                alt="${escapeHtml(foto.legenda || p.nome)}" 
+                class="w-full h-auto object-cover block hover:scale-102 transition-transform duration-300"
+                loading="lazy"
+              >
+              ${foto.legenda && foto.legenda.trim() !== '' ? `
+                <div class="p-2.5 text-xs font-semibold text-slate-700 border-t border-slate-100 bg-white">
+                  ${escapeHtml(foto.legenda)}
+                </div>
+              ` : ''}
             </div>
           `).join('')}
         </div>
