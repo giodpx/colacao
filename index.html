@@ -470,13 +470,21 @@
         extras: []
       },
       {
-        id: "formar_eventos",
-        nome: "Formar Formaturas & Eventos",
+        id: "formar",
+        nome: "Formar",
         servicos: ["cerimonial", "decoracao"],
-        contato: "(74) 9 8819-8458",
-        instagram: "@formareventos",
-        observacoes: "Aguardando orçamento da Colação Solene.",
-        pacotes: [{ id: "formar_aguardando", nome: "Projeto Colação Solene", valorVista: 0, valorPrazo: 0, desc: "Aguardando proposta." }],
+        contato: "Petrolina/PE",
+        instagram: "",
+        observacoes: "• BASE: Previsão orçamentária para 30 (trinta) formandos (UNIVASF Engenharias 2026.2). • ITENS INCLUSOS: Projeto de ambientação (tecidos, luminárias, móveis); Decoração de hall de entrada, lounges para fotos e palco; Iluminação cênica; Arranjo na mesa de apresentação; Estrutura de ferro e madeira com cadeiras Tiffanys para formandos; Painéis de LED; Mestre de Cerimônias; Coordenador/Produtor; Recepcionistas; Seguranças; Apoio de equipe técnica/operacional; Serviço de garçom com água para formandos. • PAGAMENTO: R$ 1.600,00 por formando. À vista; Boleto em 4x sem juros; Cartão de crédito em 6x sem juros ou 12x com acréscimo dos juros da maquineta. Proposta válida por 15 dias.",
+        pacotes: [
+          {
+            id: "formar_colacao_grau",
+            nome: "Colação de Grau Completa (Cerimonial + Decoração + LEDs + Mobiliário)",
+            valorVista: 1600,
+            valorPrazo: 1600,
+            desc: "Pacote para 30 formandos. Inclui ambientação completa, decoração de hall, lounges de fotos e palco, iluminação cênica, arranjo de mesa, estrutura em ferro/madeira com cadeiras Tiffanys, painéis de LED, mestre de cerimônias, produtor, recepcionistas, seguranças, equipe técnica/operacional e garçons servindo água aos formandos. Pagamento à vista, boleto em até 4x sem juros ou cartão em até 6x sem juros (ou 12x com juros da maquineta)."
+          }
+        ],
         extras: []
       },
       {
@@ -523,11 +531,20 @@
         id: "lisandro_reis",
         nome: "Cerimonial Lisandro Reis",
         servicos: ["cerimonial", "decoracao"],
-        contato: "(87) 98101-8576",
+        contato: "(87) 9 8101-8576",
         instagram: "@cerimonialisandroreis",
-        observacoes: "Apresentação profissional com proposta de decoração em tecido e música ao vivo.",
-        pacotes: [{ id: "lr_aguardando", nome: "Cerimonial & Colação", valorVista: 0, valorPrazo: 0, desc: "Apresentação concluída. Consulte a ata." }],
-        extras: []
+        portfolioUrl: "https://instagram.com/cerimonialisandroreis",
+        observacoes: "INCLUSO NO PACOTE: Equipe completa de cerimonial + Mestre de Cerimônias; Mesa principal decorada com toalhas e arranjos florais naturais (Folhagem, Áster Mariano e Rosas); Telão de LED 8x3m no palco + tecido de acabamento; 2 Painéis de LED 2x3m para fotos na recepção; 2 Cenários exclusivos para fotos; 6 Painéis temáticos por curso (6x3m cada); Atração musical ao vivo (Violinista ou Saxofonista) na recepção e pós-evento; Estrutura de poltronas/sofás, carpetes e divisão de assentos; Água mineral para professores e copos descartáveis para convidados. • FORMAS DE PAGAMENTO: R$ 1.100,00 à vista (via PIX); Parcelado no Boleto/PIX por R$ 1.100,00 (Entrada de R$ 220,00 + 4x de R$ 220,00); Cartão de crédito em até 6x sem juros ou até 12x com taxas da operadora. • REGRAS CONTRATUAIS: Contratos individuais com cláusula de cancelamento com retenção a partir de 50% para salvaguardar o rateio da estrutura da turma.",
+        pacotes: [
+          {
+            id: "lr_colacao_completa",
+            nome: "Colação Solene Completa (Cerimonial + Decoração + LEDs + Músico)",
+            valorVista: 1100,
+            valorPrazo: 1100,
+            desc: "Pacote para base de 30 formandos[cite: 1]. Inclui mestre de cerimônias, equipe de recepção, telão de LED 8x3m de palco, 2 LEDs 2x3m no foyer, 2 cenários fotográficos, 6 painéis de cursos (6x3m), violinista/saxofonista ao vivo, mesa diretiva floral, sofás/poltronas, carpetes e água mineral para bancada docente[cite: 1]. (À vista R$ 1.000 ou 1+4x de R$ 220 no Boleto/PIX / até 6x sem juros no cartão)[cite: 1]."
+          }
+        ],
+        extras: [ ]
       },
       {
         id: "kathya_lucas",
@@ -569,8 +586,9 @@
       { id: "meet_2", empresaId: "lisandro_reis", empresa: "Lisandro Reis", data: "2026-09-10", horario: "19:00", local: "Google Meet", linkMeet: "https://meet.google.com/sfu-vdjo-irr", pauta: "Apresentação do serviço de cerimonial e decoração, além de valores. Empresa que faz as colações do CCA.", status: "realizada" },
       { id: "meet_3", empresaId: "vitis_fotografia", empresa: "Vitis Fotografia", data: "2026-09-12", horario: "19:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação sobre o serviço de fotografia.", status: "agendada" },
       { id: "meet_4", empresaId: "compor_eventos", empresa: "Compor", data: "2026-09-14", horario: "10:30", local: "Rua Irmã Jerônima, 162, Centro, Petrolina - PE", linkMeet: "", pauta: "Apresentação presencial da proposta de fotografia e cerimonial.", status: "agendada" },
-      { id: "meet_55", empresaId: "kathya_lucas", empresa: "Kathya Lucas Cerimonial", data: "2026-09-14", horario: "18:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação do serviço de cerimonial e decoração, além de valores.", status: "agendada" },
-      { id: "meet_6", empresaId: "despertar_formaturas", empresa: "Despertar Formaturas", data: "2026-09-16", horario: "15:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.", status: "agendada" }
+      { id: "meet_5", empresaId: "kathya_lucas", empresa: "Kathya Lucas Cerimonial", data: "2026-09-14", horario: "18:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação do serviço de cerimonial e decoração, além de valores.", status: "agendada" },
+      { id: "meet_6", empresaId: "despertar_formaturas", empresa: "Lu Festas", data: "2026-09-15", horario: "11:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação do serviço de cerimonial e decoração, além de valores.", status: "agendada" }
+      { id: "meet_7", empresaId: "despertar_formaturas", empresa: "Despertar Formaturas", data: "2026-09-16", horario: "15:00", local: "Google Meet", linkMeet: "", pauta: "Apresentação dos pacotes de fotografia, demonstração de álbuns físicos e negociação de fotos extras.", status: "agendada" }
     ];
 
     const STORAGE_KEY_PROFILE = 'univasf_perfil';
